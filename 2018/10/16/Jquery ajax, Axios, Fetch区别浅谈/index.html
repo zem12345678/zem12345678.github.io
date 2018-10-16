@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Enmin`s blog</title>
+  <title>Jquery ajax, Axios, Fetch区别浅谈 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="前端技术是一个发展飞快的领域,JQuery ajax早已不能专美于前，axios和fetch都已经开始分别抢占“请求”这个前端高地。 1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。1234567$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,   suc">
+  <meta name="description" content="前端技术是一个发展飞快的领域,JQuery ajax早已不能专美于前，axios和fetch都已经开始分别抢占“请求”这个前端高地。 1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。1234567891011$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,">
+<meta name="keywords" content="前端,跨域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
+<meta property="og:title" content="Jquery ajax, Axios, Fetch区别浅谈">
 <meta property="og:url" content="http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="前端技术是一个发展飞快的领域,JQuery ajax早已不能专美于前，axios和fetch都已经开始分别抢占“请求”这个前端高地。 1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。1234567$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,   suc">
+<meta property="og:description" content="前端技术是一个发展飞快的领域,JQuery ajax早已不能专美于前，axios和fetch都已经开始分别抢占“请求”这个前端高地。 1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。1234567891011$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T11:31:52.801Z">
+<meta property="og:updated_time" content="2018-10-16T12:02:55.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="前端技术是一个发展飞快的领域,JQuery ajax早已不能专美于前，axios和fetch都已经开始分别抢占“请求”这个前端高地。 1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。1234567$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,   suc">
+<meta name="twitter:title" content="Jquery ajax, Axios, Fetch区别浅谈">
+<meta name="twitter:description" content="前端技术是一个发展飞快的领域,JQuery ajax早已不能专美于前，axios和fetch都已经开始分别抢占“请求”这个前端高地。 1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。1234567891011$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -116,10 +117,17 @@
         
   
     <h1 class="post-title" itemprop="name">
-      Hello World
+      Jquery ajax, Axios, Fetch区别浅谈
     </h1>
     <div class="post-title-bar">
       <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
           
         <li>
           <i class="fa fa-calendar"></i>  2018-10-16
@@ -139,7 +147,7 @@
       
             
             <p>前端技术是一个发展飞快的领域,JQuery ajax早已不能专美于前，axios和fetch都已经开始分别抢占“请求”这个前端高地。</p>
-<h1 id="1-JQuery-ajax：廉颇老矣。尚能饭，但总有饭不动的一天。"><a href="#1-JQuery-ajax：廉颇老矣。尚能饭，但总有饭不动的一天。" class="headerlink" title="1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。"></a>1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$.ajax(&#123;   type: &apos;POST&apos;,</span><br><span class="line">   url: url,</span><br><span class="line">   data: data,</span><br><span class="line">   dataType: dataType,</span><br><span class="line">   success: function () &#123;&#125;,   error: function () &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="1-JQuery-ajax：廉颇老矣。尚能饭，但总有饭不动的一天。"><a href="#1-JQuery-ajax：廉颇老矣。尚能饭，但总有饭不动的一天。" class="headerlink" title="1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。"></a>1 JQuery ajax：廉颇老矣。尚能饭，但总有饭不动的一天。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$.ajax(&#123;   type: &apos;POST&apos;,</span><br><span class="line">   url: url,</span><br><span class="line">   data: data,</span><br><span class="line">   dataType: dataType,</span><br><span class="line">   success: function () &#123;&#125;,   error: function () &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>这个我就不用多言了把，是对原生XHR的封装，除此以外还增添了对JSONP的支持。有一说一的说一句，JQuery ajax经过多年的更新维护，真的已经是非常的方便了，优点无需多言；如果是硬要举出几个缺点，那可能只有:</p>
 <ol>
 <li><strong>本身是针对MVC的编程,不符合现在前端MVVM的浪潮</strong> </li>
@@ -186,8 +194,8 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月16日 19:31</p>
-        <p>原始链接： <a class="post-url" href="/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/" title="Hello World">http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/</a></p>
+        <p>最后更新： 2018年10月16日 20:02</p>
+        <p>原始链接： <a class="post-url" href="/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/" title="Jquery ajax, Axios, Fetch区别浅谈">http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/</a></p>
         <footer>
             <a href="http://yoursite.com">
                 <img src="/images/logo.png" alt="Enmin">
@@ -244,7 +252,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/&title=《Hello World》 — Enmin`s blog&pic=http://yoursite.comimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/&title=《Jquery ajax, Axios, Fetch区别浅谈》 — Enmin`s blog&pic=/images/banner1.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -254,7 +262,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/&title=《Hello World》 — Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/&title=《Jquery ajax, Axios, Fetch区别浅谈》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -264,7 +272,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hello World》 — Enmin`s blog&url=http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Jquery ajax, Axios, Fetch区别浅谈》 — Enmin`s blog&url=http://yoursite.com/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/&via=http://yoursite.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -288,6 +296,15 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端/" class="color3">前端</a>
+      
+    <a href="/tags/跨域/" class="color3">跨域</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -333,10 +350,10 @@
       
 <p>
     <span id="busuanzi_container_site_uv" style='display:none'>
-        总访客数：<span id="busuanzi_value_site_uv"></span>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
     </span>
     <span id="busuanzi_container_site_pv" style='display:none'>
-        总访问量：<span id="busuanzi_value_site_pv"></span>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
 
@@ -377,10 +394,10 @@
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            
+            <a class="category-link" href="/categories/前端/">前端</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            
+            <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -413,7 +430,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            
+            <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
         </div>
     </div>
 </div>
