@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Thinking In Python Language | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="@TOC 1.前言本文诞生于利用 Topic Reading 方法读 Python 若干本技术书籍这个过程中结合自己的开发常见场景记录下来的一些笔记。 2.简介1. 为什么是 Python Python, 很大程度上是因为 Python 的快速开发。 当然，快速开发（这里的开发包含部署）这个词也往往会被误解。什么叫做快速？我用一个 CMS 框架快速搭建出一个网站这是否叫做快速？ 每一次部署的时候，">
+<meta name="keywords" content="Python,杂谈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thinking In Python Language">
+<meta property="og:url" content="https://zem12345678.github.io/2018/10/18/Thinking In Python Language/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="@TOC 1.前言本文诞生于利用 Topic Reading 方法读 Python 若干本技术书籍这个过程中结合自己的开发常见场景记录下来的一些笔记。 2.简介1. 为什么是 Python Python, 很大程度上是因为 Python 的快速开发。 当然，快速开发（这里的开发包含部署）这个词也往往会被误解。什么叫做快速？我用一个 CMS 框架快速搭建出一个网站这是否叫做快速？ 每一次部署的时候，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdn.net/2018101813544195?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3plbTEyMzQ1Njc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-10-18T05:58:59.630Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thinking In Python Language">
+<meta name="twitter:description" content="@TOC 1.前言本文诞生于利用 Topic Reading 方法读 Python 若干本技术书籍这个过程中结合自己的开发常见场景记录下来的一些笔记。 2.简介1. 为什么是 Python Python, 很大程度上是因为 Python 的快速开发。 当然，快速开发（这里的开发包含部署）这个词也往往会被误解。什么叫做快速？我用一个 CMS 框架快速搭建出一个网站这是否叫做快速？ 每一次部署的时候，">
+<meta name="twitter:image" content="https://img-blog.csdn.net/2018101813544195?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3plbTEyMzQ1Njc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Thinking In Python Language" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Thinking In Python Language
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Python/">Python</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-10-18
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>@<a href="Thinking In Python Language">TOC</a></p>
+<h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><p>本文诞生于利用 Topic Reading 方法读 Python 若干本技术书籍这个过程中结合自己的开发常见场景记录下来的一些笔记。</p>
+<h1 id="2-简介"><a href="#2-简介" class="headerlink" title="2.简介"></a>2.简介</h1><h2 id="1-为什么是-Python"><a href="#1-为什么是-Python" class="headerlink" title="1. 为什么是 Python"></a>1. 为什么是 Python</h2><p> Python, 很大程度上是因为 Python 的快速开发。</p>
+<p>当然，快速开发（这里的开发包含部署）这个词也往往会被误解。什么叫做快速？我用一个 CMS 框架快速搭建出一个网站这是否叫做快速？</p>
+<p>每一次部署的时候，如果使用 Java 或者是 Go, 部署的时候直接 maven 编译打包，接着把 War 包直接上传到 Tomcat 就结束了。而用 Python 则需要各种虚拟环境，各种稀里哗啦的配置。这种情况下是哪一种快速呢？<br>Python 有什么好处呢？</p>
+<ol>
+<li><strong>写代码效率高</strong>。</li>
+<li><strong>生态圈好</strong>。</li>
+<li><p><strong>写代码效率高，这指的是写 Python 代码，而不是运行时</strong>。3.<strong>写代码效率高，这指的是写 Python 代码，而不是运行时</strong>。</p>
+</li>
+<li><p><strong>生态圈好，Web 开发用 Django/Flask , 数据抓取用 Requests , 数据分析清洗用 Pandas, 机器学习</strong>。</p>
+<h2 id="2-工具链"><a href="#2-工具链" class="headerlink" title="2. 工具链"></a>2. 工具链</h2></li>
+</ol>
+<blockquote>
+<p>Anaconda工具：<a href="https://www.anaconda.com/download/" target="_blank" rel="noopener">https://www.anaconda.com/download/</a></p>
+</blockquote>
+<h2 id="3-文档"><a href="#3-文档" class="headerlink" title="3. 文档"></a>3. 文档</h2><blockquote>
+<p>官方文档：<a href="https://docs.python.org/3/" target="_blank" rel="noopener">https://docs.python.org/3/</a></p>
+</blockquote>
+<h2 id="4-社区"><a href="#4-社区" class="headerlink" title="4. 社区"></a>4. 社区</h2><blockquote>
+<p>官方社区：<a href="https://www.python.org/community/" target="_blank" rel="noopener">https://www.python.org/community/</a></p>
+</blockquote>
+<h2 id="4-书籍"><a href="#4-书籍" class="headerlink" title="4. 书籍"></a>4. 书籍</h2><blockquote>
+<p>《python核心编程》，《python编程从入门到实践》</p>
+</blockquote>
+<h1 id="3-基本概念"><a href="#3-基本概念" class="headerlink" title="3. 基本概念"></a>3. 基本概念</h1><blockquote>
+<p>程序 = 算法 + 数据结构</p>
+</blockquote>
+<p>这句话当然是不全面的，但并不影响这句话在计算机世界里面的地位。<br>依我看来，对我的启发大致是：<br>我会把 API 的调用和数据结构以及算法想清楚，然后才动手把代码分解成伪代码。</p>
+<h2 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h2><p>数据类型按照不同的划分标准可以进行不同的划分：</p>
+<p>按照复杂性可以这么划分：</p>
+<ol>
+<li><strong>简单类型</strong></li>
+<li><strong>复杂类型</strong>】</li>
+</ol>
+<p>按照复杂性可以这么划分：</p>
+<ol>
+<li><strong>基本类型</strong></li>
+<li><strong>引用类型</strong></li>
+</ol>
+<p>按照数据结构可以这么划分：</p>
+<ol>
+<li><strong>集合结构 : 串</strong></li>
+<li><strong>线性结构 : 线性表 （单链表，静态链表，循环链表，双向链表，栈，队列)</strong></li>
+<li><strong>树形结构 : 树（二叉树，B+ 树，红黑树）</strong></li>
+<li><strong>图形结构 : 图</strong></li>
+</ol>
+<h2 id="2-操作"><a href="#2-操作" class="headerlink" title="2. 操作"></a>2. 操作</h2><p>对于一些基本的数据类型，操作为 加减乘除取余数位运算等等</p>
+<p>对于复杂的一些数据类型，则需要对数据结构多一些了解。</p>
+<p>比如，对队列而言，增删改查在算法复杂度上意味着什么？对机器的性能会不会有很多影响呢？<br>比如，对 hash 而言，增删改查在算法复杂度上意味着什么？对机器的性能会不会有很多影响呢？<br>比如，对字典而言，增删改查在算法复杂度上意味着什么？对机器的性能会不会有很多影响呢？<br>比如，对字符串而言，增删改查在算法复杂度上意味着什么？对机器的性能会不会有很多影响呢？</p>
+<p>那字符串来说，Java 推荐使用 StringBuilder 来合并多个字符串，Python 推荐 join 多个字符串等等。</p>
+<h1 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h1><h2 id="1-函数"><a href="#1-函数" class="headerlink" title="1.函数"></a>1.函数</h2><h2 id="2-作用域"><a href="#2-作用域" class="headerlink" title="2.作用域"></a>2.作用域</h2><h2 id="3-模块"><a href="#3-模块" class="headerlink" title="3.模块"></a>3.模块</h2><p>模块，这个概念，可大可小，大的时候，把一个程序说成是模块，小的时候，可以把一个文件，甚至你说这一个函数是一个模块，也行。</p>
+<p>这里的模块指的是一个包下的函数。</p>
+<h2 id="4-面向对象"><a href="#4-面向对象" class="headerlink" title="4.面向对象"></a>4.面向对象</h2><p>面向对象有三大概念：</p>
+<ol>
+<li><strong>封装</strong></li>
+<li><strong>继承</strong></li>
+<li><strong>多态</strong><h2 id="5-错误-调试测试"><a href="#5-错误-调试测试" class="headerlink" title="5.错误 / 调试测试"></a>5.错误 / 调试测试</h2>异常处理实际上可以考验一个程序员编写代码的健壮性。</li>
+</ol>
+<p>事实上来说，代码写的健壮是一个程序员必备的素养。但其实在开发过程中，出于对项目进行赶工上线，需要对程序的健壮性做出一定的取舍。并且，在编写客户端，服务端，网页前端的时候基本上都会遇到这个问题。什么时候选择健壮的程序，什么时候选择是还可以的程序。需要自己的经验。</p>
+<h2 id="6-IO-编程"><a href="#6-IO-编程" class="headerlink" title="6. IO 编程"></a>6. IO 编程</h2><h2 id="7-进程和线程"><a href="#7-进程和线程" class="headerlink" title="7.进程和线程"></a>7.进程和线程</h2><h3 id="1-多线程"><a href="#1-多线程" class="headerlink" title="1.多线程"></a>1.多线程</h3><blockquote>
+<p>Python 多线程约等于并发。</p>
+</blockquote>
+<h3 id="2-多进程"><a href="#2-多进程" class="headerlink" title="2.多进程"></a>2.多进程</h3><h3 id="3-GIL"><a href="#3-GIL" class="headerlink" title="3.GIL"></a>3.GIL</h3><p><strong>Global Interpreter Lock</strong></p>
+<p>并不是所有的解释器语言都有 GIL （尽管 Python 和 Ruby 里面都有）, 也并不是没有尝试过去除 GIL, 但是每次去除都会导致单线程性能的下降。所以暂时保留。</p>
+<p><strong>GIL 对程序中的影响：</strong></p>
+<blockquote>
+<p>一个线程运行 Python , 而其他 N 个睡眠或者等待 I/O - 同一时刻只有一个线程对共享资源进行存取 , Python 线程也可以等待 threading.Lock 或者线程模块中的其他同步对象；</p>
+</blockquote>
+<p><strong>协同式多任务处理</strong><br>如果有两个线程，同时进行 IO 请求，当其中一个线程连接之后，立即会主动让出 GIL, 其他线程就可以运行。</p>
+<blockquote>
+<p> 当N 个线程在网络 I/O 堵塞，或等待重新获取 GIL，而一个线程运行 Python。</p>
+</blockquote>
+<p>让出之后还要执行代码呀，所以要有个收回 GIL 的动作。</p>
+<p><strong>抢占式多任务处理</strong><br>Python 2 GIL , 尝试收回 GIL 为 执行 1000 字节码。<br>Python 3 GIL , 尝试收回 GIL 检测间隔为 15ms</p>
+<p><strong>线程安全</strong><br>原子操作：sort 之类不需要<br>非原子操作：n=n+2 的字节码分为 加载 n , 加载 2 , 相加，存储 n, 四个步骤，由于不是原子性，很可能被由于 15 ms 而被打断。</p>
+<p>当然，懒人一向是 : 优先级不决加括号，线程不决加 lock</p>
+<p>对于 Java, 程序员努力在尽可能短的时间内加锁存取共享数据，减轻线程的争夺，实现最大并行。但 Python 中，线程无法并行运行，细粒度的锁就没有了优势。</p>
+<h2 id="8-正则表达式"><a href="#8-正则表达式" class="headerlink" title="8.正则表达式"></a>8.正则表达式</h2><h1 id="5-高级技巧"><a href="#5-高级技巧" class="headerlink" title="5.高级技巧"></a>5.高级技巧</h1><h1 id="6-标准库"><a href="#6-标准库" class="headerlink" title="6.标准库"></a>6.标准库</h1><h2 id="常用内建模块"><a href="#常用内建模块" class="headerlink" title="常用内建模块"></a>常用内建模块</h2><h2 id="系统化模块"><a href="#系统化模块" class="headerlink" title="系统化模块"></a>系统化模块</h2><p>Introduction<br>Built-in Functions<br>Built-in Constants<br>Built-in Types<br>Built-in Exceptions<br>Text Processing Services<br>Binary Data Services<br>Data Types<br>Numeric and Mathematical Modules<br>Functional Programming Modules<br>File and Directory Access<br>Data Persistence<br>Data Compression and Archiving<br>File Formats<br>Cryptographic Services<br>Generic Operating System Services<br>Concurrent Execution<br>Interprocess Communication and Networking<br>Internet Data Handling<br>Structured Markup Processing Tools<br>Internet Protocols and Support<br>Multimedia Services<br>Internationalization<br>Program Frameworks<br>Graphical User Interfaces with Tk<br>Development Tools<br>Debugging and Profiling<br>Software Packaging and Distribution<br>Python Runtime Services<br>Custom Python Interpreters<br>Importing Modules<br>Python Language Services<br>Miscellaneous Services<br>MS Windows Specific Services<br>Unix Specific Services<br>Superseded Modules<br>Undocumented Modules</p>
+<h1 id="7-第三方库"><a href="#7-第三方库" class="headerlink" title="7.第三方库"></a>7.第三方库</h1><p>Requests : API 人性化</p>
+<h1 id="8-代码质量"><a href="#8-代码质量" class="headerlink" title="8.代码质量"></a>8.代码质量</h1><h2 id="1-正确性"><a href="#1-正确性" class="headerlink" title="1.正确性"></a>1.正确性</h2><blockquote>
+<p>外部不该引用 protected member （单下划线）<br>lambda 为一次使用，最好不要赋值。<br>不要给 buildin 函数赋值<br>py3 直接 super()<br>for in else 如果不内置 break 则出会在最后 for in 为 empty 的时候再执行 else 中的语句<br>context exit 如果不 catch 掉异常让其自然向上一级抛出错误的话，必须为 (self, exception_type, exception_value, traceback):<br>不要在 init 里面 return 数据<br>不要混用 tab 和 space<br>4 个 space 缩进<br>staticmethod 直接是 参数，classmethod 第一个参数为 cls<br>可变的 default value 是不能作为 参数的。（可能是解释器在确定函数的定义的时候完成赋值？)<br>遵循 exception hierachy <a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy" target="_blank" rel="noopener">https://docs.python.org/3/library/exceptions.html#exception-hierarchy</a><br>defaultdict defaultdict(lambda : 6) , 必须 callable<br>尽量 unpack 赋值<br>字典用获取用 get(“myk”,None) , 赋值用 dictionary.setdefault(“list”, []).append(“list_item”)</p>
+</blockquote>
+<h2 id="2-可维护性"><a href="#2-可维护性" class="headerlink" title="2.可维护性"></a>2.可维护性</h2><blockquote>
+<p>避免使用 import * , 我觉得这点值得商榷 , 如果是某个模块下，完全可以先把模块拆分成多个，最后 import 进来，接着使用 all.<br>getxxx 获取实际值，如果不为实际值，返回 None 显然不如 try catch 来的实在。<br>避免使用 global<br>命名要注意<br>动态创建方法 , 我觉得这点值得商榷。</p>
+</blockquote>
+<h2 id="3-可读性"><a href="#3-可读性" class="headerlink" title="3.可读性"></a>3.可读性</h2><blockquote>
+<p>不要检查，如果可能有异常，尽量抛出异常来 trycatch 解决。<br>a is None , if flag<br>isinstance , not type(r) is types.ListType<br>“{name}{city}”.format(**info_dict)<br>for k , v in infodict.items()<br>使用 poiinfo = namedtuple(“poiinfo”,[“name”,”lng”,”lat”]) 返回 poiinfo[‘上海’,121.00,23] 最后返回值打印 poi.name , poi.lng , poi lat<br>for numbers_value, letters_value in zip(numbers, letters):<br>enumerate<br>如果能用 listcomp 则不使用 map 和 filter</p>
+</blockquote>
+<h2 id="4-安全性"><a href="#4-安全性" class="headerlink" title="4.安全性"></a>4.安全性</h2><h2 id="5-性能"><a href="#5-性能" class="headerlink" title="5.性能"></a>5.性能</h2><p><img src="https://img-blog.csdn.net/2018101813544195?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3plbTEyMzQ1Njc4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="在这里插入图片描述"></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年10月18日 13:58</p>
+        <p>原始链接： <a class="post-url" href="/2018/10/18/Thinking In Python Language/" title="Thinking In Python Language">https://zem12345678.github.io/2018/10/18/Thinking In Python Language/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2018/10/18/Thinking In Python Language/&title=《Thinking In Python Language》 — Enmin`s blog&pic=images/2.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2018/10/18/Thinking In Python Language/&title=《Thinking In Python Language》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2018/10/18/Thinking In Python Language/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Thinking In Python Language》 — Enmin`s blog&url=https://zem12345678.github.io/2018/10/18/Thinking In Python Language/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2018/10/18/Thinking In Python Language/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2018/10/18/Thinking In Python Language/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Python/" class="color2">Python</a>
+      
+    <a href="/tags/杂谈/" class="color3">杂谈</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-前言"><span class="post-toc-text">1.前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-简介"><span class="post-toc-text">2.简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-为什么是-Python"><span class="post-toc-text">1. 为什么是 Python</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-工具链"><span class="post-toc-text">2. 工具链</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-文档"><span class="post-toc-text">3. 文档</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-社区"><span class="post-toc-text">4. 社区</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-书籍"><span class="post-toc-text">4. 书籍</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-基本概念"><span class="post-toc-text">3. 基本概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-数据类型"><span class="post-toc-text">1.数据类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-操作"><span class="post-toc-text">2. 操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4"><span class="post-toc-text">4.</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-函数"><span class="post-toc-text">1.函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-作用域"><span class="post-toc-text">2.作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-模块"><span class="post-toc-text">3.模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-面向对象"><span class="post-toc-text">4.面向对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-错误-调试测试"><span class="post-toc-text">5.错误 / 调试测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-IO-编程"><span class="post-toc-text">6. IO 编程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-进程和线程"><span class="post-toc-text">7.进程和线程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-多线程"><span class="post-toc-text">1.多线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-多进程"><span class="post-toc-text">2.多进程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-GIL"><span class="post-toc-text">3.GIL</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-正则表达式"><span class="post-toc-text">8.正则表达式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-高级技巧"><span class="post-toc-text">5.高级技巧</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-标准库"><span class="post-toc-text">6.标准库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用内建模块"><span class="post-toc-text">常用内建模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统化模块"><span class="post-toc-text">系统化模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-第三方库"><span class="post-toc-text">7.第三方库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-代码质量"><span class="post-toc-text">8.代码质量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-正确性"><span class="post-toc-text">1.正确性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-可维护性"><span class="post-toc-text">2.可维护性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-可读性"><span class="post-toc-text">3.可读性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-安全性"><span class="post-toc-text">4.安全性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-性能"><span class="post-toc-text">5.性能</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Jquery ajax, Axios, Fetch区别浅谈</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Thinking In Python Language" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/前端/">前端</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
