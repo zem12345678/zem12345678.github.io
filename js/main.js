@@ -239,25 +239,3 @@
         Blog.showMobileHeaderMenu(false);
     });
 })(window, document);
-
-<!--<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127786403-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-127786403-1');
-</script>
-
-<script src="https://s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script> -->
