@@ -9,7 +9,7 @@
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
   <meta name="description" content="0.学习目标 了解SpringBoot的作用 掌握java配置的方式 了解SpringBoot自动配置原理 掌握SpringBoot的基本使用 了解Thymeleaf的基本使用  1. 了解SpringBoot在这一部分，我们主要了解以下3个问题：  什么是SpringBoot 为什么要学习SpringBoot SpringBoot的特点  1.1.什么是SpringBootSpringBoot是">
-<meta name="keywords" content="SpringBoot,Java">
+<meta name="keywords" content="SpringBoot,Java,Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="day01-springboot">
 <meta property="og:url" content="https://zem12345678.github.io/2018/11/14/day01-springboot/index.html">
@@ -56,7 +56,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20181114200715861.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20181114200652779.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3plbTEyMzQ1Njc4,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20181114200618838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3plbTEyMzQ1Njc4,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2018-11-14T12:29:17.846Z">
+<meta property="og:updated_time" content="2018-11-14T12:39:45.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="day01-springboot">
 <meta name="twitter:description" content="0.学习目标 了解SpringBoot的作用 掌握java配置的方式 了解SpringBoot自动配置原理 掌握SpringBoot的基本使用 了解Thymeleaf的基本使用  1. 了解SpringBoot在这一部分，我们主要了解以下3个问题：  什么是SpringBoot 为什么要学习SpringBoot SpringBoot的特点  1.1.什么是SpringBootSpringBoot是">
@@ -559,7 +559,7 @@ ga('send', 'pageview');
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年11月14日 20:29</p>
+        <p>最后更新： 2018年11月14日 20:39</p>
         <p>原始链接： <a class="post-url" href="/2018/11/14/day01-springboot/" title="day01-springboot">https://zem12345678.github.io/2018/11/14/day01-springboot/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
@@ -668,6 +668,8 @@ ga('send', 'pageview');
       
     <a href="/tags/Java/" class="color5">Java</a>
       
+    <a href="/tags/Spring/" class="color2">Spring</a>
+      
   </li>
 
         </ul>
@@ -772,7 +774,7 @@ ga('send', 'pageview');
             <a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+            <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -805,7 +807,7 @@ ga('send', 'pageview');
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+            <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
         </div>
     </div>
 </div>
