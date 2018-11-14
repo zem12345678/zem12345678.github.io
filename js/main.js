@@ -240,7 +240,7 @@
     });
 })(window, document);
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!--<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127786403-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -260,4 +260,4 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script>
+</script>-->
