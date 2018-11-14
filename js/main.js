@@ -243,7 +243,6 @@
 })(window, document);
 
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
-
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
