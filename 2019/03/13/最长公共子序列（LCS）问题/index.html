@@ -3,22 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Enmin`s blog</title>
+  <title>最长公共子序列（LCS）问题 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="#最长公共子序列（LCS）问题给定两个 1 到 n 的排列 A,B （即长度为 n 的序列，其中 [1,n] 之间的所有数都出现了恰好一次）。 求它们的最长公共子序列长度。 ##子序列： 一个序列A ＝ a1,a2,……an,中任意删除若干项，剩余的序列叫做A的一个子序列。也可以认为是从序列A按原顺序保留任意若干项得到的序列。 #求解算法对于母串X=&amp;lt;x1,x2,⋯,xm&amp;gt;, Y=&amp;l">
+<meta name="keywords" content="算法,C&#x2F;C++,Leetcood,数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://zem12345678.github.io/2018/10/16/hello-world/index.html">
+<meta property="og:title" content="最长公共子序列（LCS）问题">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="#最长公共子序列（LCS）问题给定两个 1 到 n 的排列 A,B （即长度为 n 的序列，其中 [1,n] 之间的所有数都出现了恰好一次）。 求它们的最长公共子序列长度。 ##子序列： 一个序列A ＝ a1,a2,……an,中任意删除若干项，剩余的序列叫做A的一个子序列。也可以认为是从序列A按原顺序保留任意若干项得到的序列。 #求解算法对于母串X=&amp;lt;x1,x2,⋯,xm&amp;gt;, Y=&amp;l">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-16T03:24:15.311Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6125534-b9c2194ac6c8c9bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-03-13T15:43:40.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="最长公共子序列（LCS）问题">
+<meta name="twitter:description" content="#最长公共子序列（LCS）问题给定两个 1 到 n 的排列 A,B （即长度为 n 的序列，其中 [1,n] 之间的所有数都出现了恰好一次）。 求它们的最长公共子序列长度。 ##子序列： 一个序列A ＝ a1,a2,……an,中任意删除若干项，剩余的序列叫做A的一个子序列。也可以认为是从序列A按原顺序保留任意若干项得到的序列。 #求解算法对于母串X=&amp;lt;x1,x2,⋯,xm&amp;gt;, Y=&amp;l">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6125534-b9c2194ac6c8c9bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -136,20 +139,27 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-最长公共子序列（LCS）问题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      Hello World
+      最长公共子序列（LCS）问题
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/算法/">算法</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2018-10-16
+          <i class="fa fa-calendar"></i>  2019-03-13
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -165,20 +175,19 @@ ga('send', 'pageview');
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>#最长公共子序列（LCS）问题<br>给定两个 1 到 n 的排列 A,B （即长度为 n 的序列，其中 [1,n] 之间的所有数都出现了恰好一次）。</p>
+<p>求它们的最长公共子序列长度。</p>
+<p>##子序列： 一个序列A ＝ a1,a2,……an,中任意删除若干项，剩余的序列叫做A的一个子序列。也可以认为是从序列A按原顺序保留任意若干项得到的序列。</p>
+<p>#求解算法<br>对于母串X=&lt;x1,x2,⋯,xm&gt;, Y=&lt;y1,y2,⋯,yn&gt;，求LCS与最长公共子串。</p>
+<p>##暴力解法<br>假设 m&lt;n， 对于母串X，我们可以暴力找出2的m次方个子序列，然后依次在母串Y中匹配，算法的时间复杂度会达到指数级O(n∗2的m次)。显然，暴力求解不太适用于此类问题。</p>
+<p>##动态规划<br>假设Z=&lt;z1,z2,⋯,zk&gt;是X与Y的LCS， 我们观察到<br>如果Xm=Yn，则Zk=Xm=Yn，有Zk−1是Xm−1与Yn−1的LCS；<br>如果Xm≠Yn，则Zk是Xm与Yn−1的LCS，或者是Xm−1与Yn的LCS。<br>因此，求解LCS的问题则变成递归求解的两个子问题。但是，上述的递归求解的办法中，重复的子问题多，效率低下。改进的办法——用空间换时间，用数组保存中间状态，方便后面的计算。<br>先假设有 C[i,j] = | LCS(x[1…i] , y(1…j)) |，则有<br><img src="https://upload-images.jianshu.io/upload_images/6125534-b9c2194ac6c8c9bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">// n：表示两序列长度</span><br><span class="line">// a：描述序列 a（这里需要注意的是，由于 a 的下标从 1 开始，因此 a[0] 的值为-1，你可以忽略它的值，只需知道我们从下标 1 开始存放有效信息即可） </span><br><span class="line">// b：描述序列b（同样地，b[0] 的值为 -1）</span><br><span class="line">// 返回值：最长公共子序列的长度</span><br><span class="line">#include &lt;cstdio&gt;  </span><br><span class="line">#include &lt;cstring&gt;  </span><br><span class="line">#include &lt;cmath&gt;  </span><br><span class="line">#include &lt;cstdlib&gt;  </span><br><span class="line">#include &lt;algorithm&gt;  </span><br><span class="line">#include &lt;queue&gt;  </span><br><span class="line">#include &lt;stack&gt;  </span><br><span class="line">#include &lt;map&gt;  </span><br><span class="line">#include &lt;set&gt;  </span><br><span class="line">#include &lt;vector&gt;  </span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;utility&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define PII pair&lt;int,int&gt; </span><br><span class="line">#define PIII pair&lt;pair&lt;int,int&gt;,int&gt; </span><br><span class="line">#define mp make_pair</span><br><span class="line">#define pb push_back</span><br><span class="line">#define sz size() </span><br><span class="line">#define fi first</span><br><span class="line">#define se second</span><br><span class="line">typedef unsigned int ui;</span><br><span class="line">typedef long long ll;</span><br><span class="line">typedef unsigned long long ull;</span><br><span class="line">vector&lt;int&gt; pos,a,b,f;</span><br><span class="line">int getAns(int n,vector&lt;int&gt;a,vector&lt;int&gt;b)&#123;</span><br><span class="line">	f.resize(n+1);pos.resize(n+1);</span><br><span class="line">	for(int i=0;i&lt;=n;++i) f[i]=n+2;</span><br><span class="line">	for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">		pos[b[i]]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">		a[i]=pos[a[i]];</span><br><span class="line">	&#125;</span><br><span class="line">	f[0]=0;</span><br><span class="line">	for(int i=1;i&lt;=n;++i)</span><br><span class="line">	*lower_bound(f.begin(),f.end(),a[i])=a[i];</span><br><span class="line">	return int(lower_bound(f.begin(),f.end(),n+1)-f.begin())-1;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">	a.resize(n+1);b.resize(n+1);</span><br><span class="line">	for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;b[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d\n&quot;,getAns(n,a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#输出结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">1 2 4 3 5</span><br><span class="line">5 2 3 4 1</span><br><span class="line">2</span><br></pre></td></tr></table></figure></p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月16日 11:24</p>
-        <p>原始链接： <a class="post-url" href="/2018/10/16/hello-world/" title="Hello World">https://zem12345678.github.io/2018/10/16/hello-world/</a></p>
+        <p>最后更新： 2019年03月13日 23:43</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/13/最长公共子序列（LCS）问题/" title="最长公共子序列（LCS）问题">https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
                 <img src="/images/logo.png" alt="Enmin">
@@ -235,7 +244,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2018/10/16/hello-world/&title=《Hello World》 — Enmin`s blog&pic=https://zem12345678.github.ioimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/&title=《最长公共子序列（LCS）问题》 — Enmin`s blog&pic=images/9.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -245,22 +254,22 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2018/10/16/hello-world/&title=《Hello World》 — Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/&title=《最长公共子序列（LCS）问题》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2018/10/16/hello-world/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hello World》 — Enmin`s blog&url=https://zem12345678.github.io/2018/10/16/hello-world/&via=https://zem12345678.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《最长公共子序列（LCS）问题》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/&via=https://zem12345678.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2018/10/16/hello-world/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -270,7 +279,7 @@ ga('send', 'pageview');
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2018/10/16/hello-world/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/13/最长公共子序列（LCS）问题/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -279,6 +288,19 @@ ga('send', 'pageview');
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/算法/" class="color3">算法</a>
+      
+    <a href="/tags/C/C++/" class="color1">C/C++</a>
+      
+    <a href="/tags/Leetcood/" class="color4">Leetcood</a>
+      
+    <a href="/tags/数据结构/" class="color5">数据结构</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -286,32 +308,21 @@ ga('send', 'pageview');
 </article>
 
 
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-        </nav>
-    </aside>
-    
 
 <nav id="article-nav">
   
-    <a href="/2018/10/16/Jquery ajax, Axios, Fetch区别浅谈/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          Jquery ajax, Axios, Fetch区别浅谈
-        
-      </span>
-    </a>
   
+    <a href="/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Django Restful Framework(DRF)的开发思考（2）</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
   
 </nav>
 
 
 
     
-        <div id="SOHUCS" sid="hello-world" ></div>
+        <div id="SOHUCS" sid="最长公共子序列（LCS）问题" ></div>
 <script type="text/javascript">
     (function(){
         var appid = 'cytRXLIlH';
