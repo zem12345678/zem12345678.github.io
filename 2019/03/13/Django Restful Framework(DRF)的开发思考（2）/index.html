@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Enmin`s blog</title>
+  <title>Django Restful Framework(DRF)的开发思考（2） | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="#Django Restful Framework(DRF)的开发思考（2） @(Restful Api)[Django|Restful framework| 前后端分离] Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支">
+  <meta name="description" content="Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支持快于请求的一种方式，全称是“跨域资源共享“(Cross-origin resource sharing),当使用XMLHttpRequest发送请求时，浏览器发现该请求不符">
+<meta name="keywords" content="Django,Restful,前后端分离">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Enmin`s blog">
+<meta property="og:title" content="Django Restful Framework(DRF)的开发思考（2）">
 <meta property="og:url" content="https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="#Django Restful Framework(DRF)的开发思考（2） @(Restful Api)[Django|Restful framework| 前后端分离] Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支">
+<meta property="og:description" content="Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支持快于请求的一种方式，全称是“跨域资源共享“(Cross-origin resource sharing),当使用XMLHttpRequest发送请求时，浏览器发现该请求不符">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-13T14:59:11.521Z">
+<meta property="og:updated_time" content="2019-03-13T15:02:25.769Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enmin`s blog">
-<meta name="twitter:description" content="#Django Restful Framework(DRF)的开发思考（2） @(Restful Api)[Django|Restful framework| 前后端分离] Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支">
+<meta name="twitter:title" content="Django Restful Framework(DRF)的开发思考（2）">
+<meta name="twitter:description" content="Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支持快于请求的一种方式，全称是“跨域资源共享“(Cross-origin resource sharing),当使用XMLHttpRequest发送请求时，浏览器发现该请求不符">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -139,12 +140,40 @@ ga('send', 'pageview');
         <section id="main" class="body-wrap"><article id="post-Django Restful Framework(DRF)的开发思考（2）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Django Restful Framework(DRF)的开发思考（2）
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前后端分离/">前后端分离</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-13
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>#Django Restful Framework(DRF)的开发思考（2）</p>
-<p>@(Restful Api)[Django|Restful framework| 前后端分离]</p>
-<p><strong>Restful</strong>一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制：<br> <strong>CORS</strong> CORS是现代浏览亲支持快于请求的一种方式，全称是“跨域资源共享“(Cross-origin resource sharing),当使用XMLHttpRequest发送请求时，浏览器发现该请求不符合同源测率，会给该请求头：Origin，后台进行以系列处理，如果确定请求则在返回结果加入一个响应头：Access-Control-Allow-Origin；浏览器判断该响应头中是否包含Origin的值，如果有浏览器会处理响应，我们就可以拿到响应数据，如果不包含浏览器之间驳回，这时我们无法拿到响应数据<br>  <strong>JWT</strong> ：Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密；<br><strong>FastDFS</strong> ：FastDFS 是用 c 语言编写的一款开源的分布式文件系统。FastDFS 为互联网量身定制， 充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用 FastDFS 很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。<br>FastDFS 架构包括 Tracker server 和 Storage server。客户端请求 Tracker server 进行文 件上传、下载，通过 Tracker server 调度最终由 Storage server 完成文件上传和下载。</p>
+            <p><strong>Restful</strong>一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制：<br> <strong>CORS</strong> CORS是现代浏览亲支持快于请求的一种方式，全称是“跨域资源共享“(Cross-origin resource sharing),当使用XMLHttpRequest发送请求时，浏览器发现该请求不符合同源测率，会给该请求头：Origin，后台进行以系列处理，如果确定请求则在返回结果加入一个响应头：Access-Control-Allow-Origin；浏览器判断该响应头中是否包含Origin的值，如果有浏览器会处理响应，我们就可以拿到响应数据，如果不包含浏览器之间驳回，这时我们无法拿到响应数据<br>  <strong>JWT</strong> ：Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密；<br><strong>FastDFS</strong> ：FastDFS 是用 c 语言编写的一款开源的分布式文件系统。FastDFS 为互联网量身定制， 充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用 FastDFS 很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。<br>FastDFS 架构包括 Tracker server 和 Storage server。客户端请求 Tracker server 进行文 件上传、下载，通过 Tracker server 调度最终由 Storage server 完成文件上传和下载。</p>
 <p>[TOC]</p>
 <h2 id="Django认证系统-跨域请求-Celery"><a href="#Django认证系统-跨域请求-Celery" class="headerlink" title="Django认证系统|跨域请求|Celery"></a>Django认证系统|跨域请求|Celery</h2><p>提供了用户模型类User和User的相关操作方法。</p>
 <p>自定义User模型类之后，需要设置配置项<code>AUTH_USER_MODEL</code>。</p>
@@ -341,8 +370,8 @@ ga('send', 'pageview');
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年03月13日 22:59</p>
-        <p>原始链接： <a class="post-url" href="/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/" title="">https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/</a></p>
+        <p>最后更新： 2019年03月13日 23:02</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/" title="Django Restful Framework(DRF)的开发思考（2）">https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
                 <img src="/images/logo.png" alt="Enmin">
@@ -399,7 +428,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/&title=Enmin`s blog&pic=https://zem12345678.github.ioimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/&title=《Django Restful Framework(DRF)的开发思考（2）》 — Enmin`s blog&pic=images/6.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -409,7 +438,7 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/&title=Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/&title=《Django Restful Framework(DRF)的开发思考（2）》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -419,7 +448,7 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Enmin`s blog&url=https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/&via=https://zem12345678.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django Restful Framework(DRF)的开发思考（2）》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（2）/&via=https://zem12345678.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -443,6 +472,17 @@ ga('send', 'pageview');
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Django/" class="color2">Django</a>
+      
+    <a href="/tags/Restful/" class="color3">Restful</a>
+      
+    <a href="/tags/前后端分离/" class="color1">前后端分离</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -535,7 +575,7 @@ ga('send', 'pageview');
             <a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 10px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+            <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 20px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 20px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -568,7 +608,7 @@ ga('send', 'pageview');
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 10px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 10px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
+            <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 20px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 20px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a>
         </div>
     </div>
 </div>
