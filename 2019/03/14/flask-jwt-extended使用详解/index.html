@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>flask-jwt-extended使用详解 | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="#flask-jwt-extended使用详解  ##相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False ##产生token12a">
+<meta name="keywords" content="前后端分离,Flask,Jwt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flask-jwt-extended使用详解">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="#flask-jwt-extended使用详解  ##相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False ##产生token12a">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-14T03:00:53.428Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="flask-jwt-extended使用详解">
+<meta name="twitter:description" content="#flask-jwt-extended使用详解  ##相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False ##产生token12a">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-flask-jwt-extended使用详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      flask-jwt-extended使用详解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Flask/">Flask</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-14
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>#flask-jwt-extended使用详解</p>
+<hr>
+<p>##相关配置注册jwt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.config[&apos;JWT_SECRET_KEY&apos;] = &apos;jwt-secret-attendance&apos;</span><br><span class="line">jwt = JWTManager(app)</span><br><span class="line">app.config[&apos;JWT_BLACKLIST_ENABLED&apos;] = False</span><br></pre></td></tr></table></figure></p>
+<p>##产生token<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access_token = create_access_token(identity=username)</span><br><span class="line">return jsonify(msg=&quot;登录成功&quot;,access_token=access_token)</span><br></pre></td></tr></table></figure></p>
+<p>##获取当前用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username = get_jwt_identity()</span><br></pre></td></tr></table></figure></p>
+<p>##高级用法</p>
+<p>###自定义密钥和加秘方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">access_token = encode_access_token(identity=jwt_manager._user_identity_callback(username),</span><br><span class="line">            secret=<span class="string">'revoked-secret'</span>,</span><br><span class="line">            algorithm=config.algorithm,</span><br><span class="line">            expires_delta=<span class="keyword">None</span>,</span><br><span class="line">            fresh=<span class="keyword">False</span>,</span><br><span class="line">            user_claims=jwt_manager._user_claims_callback(username),</span><br><span class="line">            csrf=config.csrf_protect,</span><br><span class="line">            identity_claim_key=config.identity_claim_key,</span><br><span class="line">            user_claims_key=config.user_claims_key,</span><br><span class="line">            json_encoder=config.json_encoder)</span><br></pre></td></tr></table></figure></p>
+<p>##令牌撤销</p>
+<blockquote>
+<p>app.config[‘JWT_BLACKLIST_TOKEN_CHECKS’] = [‘access’, ‘refresh’]</p>
+</blockquote>
+<p>创建我们的函数以检查令牌是否已被列入黑名单。在这简单情况下，我们将只存储在Redis的令JTI（唯一标识符）每当我们创建一个新令牌时（撤销状态为’false’）。这个 function将返回令牌的撤销状态。如果令牌没有 存在于这个商店，我们不知道它来自哪里（因为我们正在新添加 创建令牌到我们的商店，撤销状态为’false’）。在这种情况下 出于安全考虑，我们会考虑撤销令牌。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">revoked_store = redis.StrictRedis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>,</span><br><span class="line">                                  decode_responses=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@jwt.token_in_blacklist_loader</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_if_token_is_revoked</span><span class="params">(decrypted_token)</span>:</span></span><br><span class="line">    jti = decrypted_token[<span class="string">'jti'</span>]</span><br><span class="line">    entry = revoked_store.get(jti)</span><br><span class="line">    <span class="keyword">if</span> entry <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> entry == <span class="string">'true'</span></span><br></pre></td></tr></table></figure>
+<p>产生token<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">access_token = create_access_token(identity=username)</span><br><span class="line">将令牌存储在redis中，状态目前未被撤销。</span><br><span class="line">我们可以使用`get_jti（）`方法获取唯一标识符字符串</span><br><span class="line">每个令牌。我们还可以在redis中设置这些令牌的到期时间，所以它们会在到期后自动删除。</span><br><span class="line">我们将设定令牌过期后不久将自动删除的所有内容</span><br><span class="line">access_jti = get_jti(encoded_token=access_token)</span><br><span class="line">revoked_store.set(access_jti, <span class="string">'false'</span>, ACCESS_EXPIRES * <span class="number">1.2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>撤销视图<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route('/auth/access_revoke', methods=['DELETE'])</span></span><br><span class="line"><span class="meta">@jwt_required</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span><span class="params">()</span>:</span></span><br><span class="line">    jti = get_raw_jwt()[<span class="string">'jti'</span>]</span><br><span class="line">    revoked_store.set(jti, <span class="string">'true'</span>, ACCESS_EXPIRES * <span class="number">1.2</span>)</span><br><span class="line">    <span class="keyword">return</span> jsonify(&#123;<span class="string">"msg"</span>: <span class="string">"Access token revoked"</span>&#125;), <span class="number">200</span></span><br></pre></td></tr></table></figure></p>
+<p>##在令牌中存储和获取数据<br>自定义一个基类存储角色和用户id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class UserObject:</span><br><span class="line">    def __init__(self,id,username, role):</span><br><span class="line">        self.id = id</span><br><span class="line">        self.username = username</span><br><span class="line">        self.role = role</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">创建一个将在create_access_token时调用的函数</span><br><span class="line">用来。它将采取任何传递到的对象create_access_token方法，让我们定义什么是自定义声明应添加到访问令牌中</span><br><span class="line"><span class="meta"> @jwt.user_claims_loader</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_claims_to_access_token</span><span class="params">(user)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">'role'</span>: user.role,<span class="string">'id'</span>:user.id&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">创建一个将在create_access_token时调用的函数用来。它将采取任何传递到的对象create_access_token方法，让我们定义什么标识应该是访问令牌的</span><br><span class="line"><span class="meta">    @jwt.user_identity_loader</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">user_identity_lookup</span><span class="params">(user)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> user.username</span><br></pre></td></tr></table></figure>
+<p>产生令牌<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = UserObject(id=user.id,username=username,role=user.role)</span><br><span class="line">expires = datetime.timedelta(days=<span class="number">2</span>)</span><br><span class="line">access_token = create_access_token(identity=data, expires_delta=expires)</span><br></pre></td></tr></table></figure></p>
+<p>如何获取数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username = get_jwt_claims()</span><br><span class="line">user_id = get_jwt_claims()[<span class="string">'id'</span>]</span><br><span class="line">user_role = get_jwt_claims()[<span class="string">'role'</span>]</span><br></pre></td></tr></table></figure></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年03月14日 11:00</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/14/flask-jwt-extended使用详解/" title="flask-jwt-extended使用详解">https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/&title=《flask-jwt-extended使用详解》 — Enmin`s blog&pic=images/13.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/&title=《flask-jwt-extended使用详解》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《flask-jwt-extended使用详解》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前后端分离/" class="color1">前后端分离</a>
+      
+    <a href="/tags/Flask/" class="color1">Flask</a>
+      
+    <a href="/tags/Jwt/" class="color4">Jwt</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/14/神兽保佑,代码无bug/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">神兽保佑,代码无bug　</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="flask-jwt-extended使用详解" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 16.67px;">Django</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Jwt/" style="font-size: 10px;">Jwt</a> <a href="/tags/Leetcood/" style="font-size: 10px;">Leetcood</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 13.33px;">Web</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 16.67px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 16.67px;">Django</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Jwt/" style="font-size: 10px;">Jwt</a> <a href="/tags/Leetcood/" style="font-size: 10px;">Leetcood</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 13.33px;">Web</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 16.67px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
