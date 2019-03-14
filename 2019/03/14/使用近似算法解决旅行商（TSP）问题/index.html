@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用近似算法解决旅行商（TSP）问题 | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="使用近似算法解决旅行商（TSP）问题什么是TSP问题？谓TSP问题（Travelling Salesman Problem）旅行商问题，即最短路径问题，就是在给定的起始点S到终止点T的通路集合中，寻求距离最小的通路，这样的通路称为S点到T点的最短路径。TSP是一种完全NP问题如果旅行商问题的权值函数满足三角不等式，即c(u,w)≤c(u,v) + c(v,w)对任意u,v,w都成立，则称它满足三角">
+<meta name="keywords" content="Python,数据结构,LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用近似算法解决旅行商（TSP）问题">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="使用近似算法解决旅行商（TSP）问题什么是TSP问题？谓TSP问题（Travelling Salesman Problem）旅行商问题，即最短路径问题，就是在给定的起始点S到终止点T的通路集合中，寻求距离最小的通路，这样的通路称为S点到T点的最短路径。TSP是一种完全NP问题如果旅行商问题的权值函数满足三角不等式，即c(u,w)≤c(u,v) + c(v,w)对任意u,v,w都成立，则称它满足三角">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12p9pgux1j304e01sa9t.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12paqwq6ej301o00k0bv.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12pbhkctbj306701wdfl.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12pc4auxqj306f00p0pp.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12pd7uqkbj302j00n0cc.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12pe5fpurj307j00p3y9.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12piqwktlj30lw01vglm.jpg">
+<meta property="og:updated_time" content="2019-03-14T14:50:40.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用近似算法解决旅行商（TSP）问题">
+<meta name="twitter:description" content="使用近似算法解决旅行商（TSP）问题什么是TSP问题？谓TSP问题（Travelling Salesman Problem）旅行商问题，即最短路径问题，就是在给定的起始点S到终止点T的通路集合中，寻求距离最小的通路，这样的通路称为S点到T点的最短路径。TSP是一种完全NP问题如果旅行商问题的权值函数满足三角不等式，即c(u,w)≤c(u,v) + c(v,w)对任意u,v,w都成立，则称它满足三角">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12p9pgux1j304e01sa9t.jpg">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-使用近似算法解决旅行商（TSP）问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      使用近似算法解决旅行商（TSP）问题
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/算法/">算法</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-14
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="使用近似算法解决旅行商（TSP）问题"><a href="#使用近似算法解决旅行商（TSP）问题" class="headerlink" title="使用近似算法解决旅行商（TSP）问题"></a>使用近似算法解决旅行商（TSP）问题</h1><h2 id="什么是TSP问题？"><a href="#什么是TSP问题？" class="headerlink" title="什么是TSP问题？"></a>什么是TSP问题？</h2><p>谓TSP问题（Travelling Salesman Problem）旅行商问题，即最短路径问题，就是在给定的起始点S到终止点T的通路集合中，寻求距离最小的通路，这样的通路称为S点到T点的最短路径。<br>TSP是一种完全NP问题如果旅行商问题的权值函数满足三角不等式，即c(u,w)≤c(u,v) + c(v,w)对任意u,v,w都成立，则称它满足三角不等式。无论旅行商问题是否满足三角不等式，它均是NP-完全问题。相关定理表明，不满足三角不等式的旅行商问题不存在常数近似比的近似算法，除非NP=P。</p>
+<h2 id="近似算法设计"><a href="#近似算法设计" class="headerlink" title="近似算法设计"></a>近似算法设计</h2><p>近似算法是指能够在多项式时间内给出优化问题的近似优化解的算法，近似算法不仅可用于近似求解NP-完全问题，也可用于近似求解复杂度较高的P问题。</p>
+<ol>
+<li>任意选择V中的一个顶点r，作为树根节点;</li>
+<li>调用Prim算法得到图G(V,E)的最小生成树T*;</li>
+<li>先序遍历T<em>，访问T</em>中的每条边两遍，得到顶点序列L;</li>
+<li>删除L中的重复顶点形成哈密顿环C；</li>
+<li>输出C.</li>
+<li>算法的性能分析</li>
+</ol>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>近似算法的性能分析包括时间复杂度分析、空间复杂度分析和近似精度分析，其中时间（空间）复杂度的分析同精确复杂度相同。近似精度分析是近似算法特有的，它主要用于刻画近似算法给出的近似解相比于问题优化解的优劣程度。目前，存在三种刻画近似精度的度量，即近似比、相对误差界和1+ε近似。<br> 该算法的时间复杂度为O(|V|^2 <em> log|V|)。事实上，第2步开销为O(|E| </em> log|V|)且图G是完全图，O(|E| <em> log|V|)等于O(|V|^2 </em> log|V|)。第3~4步的开销为O(|V|)，因为最小生成树恰有|V| - 1条边。</p>
+<h2 id="近似精度"><a href="#近似精度" class="headerlink" title="近似精度"></a>近似精度</h2><p>近似比：设A是一个优化问题的近似算法，A具有近似比（ratio bound） p(n), 如果max{C/C<em>, C</em>/C} ≤ p(n)。其中n是输入大小，C是A产生的解的代价，C<em>是优化解的代价。<br>相对误差：对于任意输入，近似算法的相对误差定义为|C - C</em>|/C<em>,其中C是近似解的代价，C</em>是优化解的代价。<br>相对误差界：一个近似算法的相对误差界为ε(n),如果|C-C<em>|/C</em> ≤ ε(n)。<br>近似模式：一个优化问题的近似模式是一个以问题实例I和ε&gt;0位输入的算法。对于任意固定的ε，近似模式是一个(1+ε)-近似算法。一个近似模式A(I,ε)称为一个多项式时间近似模式，如果对于任意ε&gt;0, A(I,ε)的运行时间是|I|的多项式。一个近似模式称为完全多项式时间近似模式，如果它的运行时间是关于I/ε和输入实例大小n的多项式。<br>对于近似解C，由于L是遍历T<em>的每条边两次得到的回路，则有c(L) = 2 </em> c(T<em>), 而C又是关于L删除某些重复边后得到的结果，因此C ≤ 2 </em> c(T<em>)。<br> 对于优化解C</em>，由于C<em>是一个简单环，则删除任一条边便可生成树，而且该树的代价一定不低于最小生成树的代价，因此有c(C</em>) ≥ c(T<em>)。<br>综上，有C ≤ 2 </em> c(T<em>) ≤ 2 </em> C<em>。所以C / C</em> ≤ 2，该算法的近似比为2。</p>
+<h2 id="近似算法解决TSP问题过程"><a href="#近似算法解决TSP问题过程" class="headerlink" title="近似算法解决TSP问题过程"></a>近似算法解决TSP问题过程</h2><p>TSP问题的实质可以抽象为在一个带权重的完全无向图中，找到一个权值总和最小的哈密顿回路<br>TSP问题翻译为数学语言为，在N个城市的完全无向图G中<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12p9pgux1j304e01sa9t.jpg" alt="enter image description here"></p>
+<p>其中每个城市之间的距离矩阵为 <img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12paqwq6ej301o00k0bv.jpg" alt="enter image description here"><br>目标函数为<img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12pbhkctbj306701wdfl.jpg" alt="enter image description here"></p>
+<p>需要求解的变量为w，w是使得目标函数达到最小值的一个排列 <img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12pc4auxqj306f00p0pp.jpg" alt="enter image description here"><br>且w的最后一项满足回到出发城市 <img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12pd7uqkbj302j00n0cc.jpg" alt="enter image description here"></p>
+<h2 id="满足三角不等式的TSP模型和算法步骤"><a href="#满足三角不等式的TSP模型和算法步骤" class="headerlink" title="满足三角不等式的TSP模型和算法步骤"></a>满足三角不等式的TSP模型和算法步骤</h2><p>我们从费用函数出发，费用函数也叫代价函数，指的是两个城市之间的费用指数或者代价程度的量化。在大多数的实际情况中，从一个地方u直接到另一个地方w，这个走法花费的代价总是最小的，而如果从u到w需要经过某个中转站v，则这种走法花费的代价却不可能比直接到达的走法花费的代价更小将上述的理论转化为数学语言为<img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12pe5fpurj307j00p3y9.jpg" alt="enter image description here"><br>其中c是费用函数，这个方程说明了，直接从u-&gt;w花费的代价，要比从u-&gt;v-&gt;w花费的代价要小，我们称这个费用函数满足三角不等式三角不等式的定义为：任意一个欧拉平面的三角形两边之和始终大于第三边，这是一个非常自然的不等式，其中欧拉平面上任意两点之间的欧式距离就满足三角不等式，为此，我们只要设TSP中的费用函数为欧式距离，即可将TSP问题转化为满足三角不等式的TSP模型</p>
+<h2 id="近似算法的解题步骤求解上述TSP模型的步骤"><a href="#近似算法的解题步骤求解上述TSP模型的步骤" class="headerlink" title="近似算法的解题步骤求解上述TSP模型的步骤"></a>近似算法的解题步骤求解上述TSP模型的步骤</h2><p>（1）选择G的任意一个顶点r作为根节点(出发/结束点)<br>（2）用Prim算法找出G的一棵以r为根的最小生成树T<br>（3）前序遍历访问树T，得到遍历顺序组成的顶点表L<br>（4）将r加到顶点表L的末尾，按L中顶点的次序组成哈密顿回路H<br>数学上已经证明，当费用函数满足三角不等式时，上述近似算法找出的哈密顿回路产生的总费用，不会超过最优回路的2倍</p>
+<h2 id="图的存储结构"><a href="#图的存储结构" class="headerlink" title="图的存储结构"></a>图的存储结构</h2><p>首先我们需要将图表示为我们熟悉的数据结构，图可以使用两种存储结构，分别是邻接链表和邻接矩阵邻接链表：是一个由链表组成的一维数组，数组中每个元素都存储以每个顶点为表头的链表邻接矩阵：以矩阵的形式存储图中所有顶点之间的关系用链表表示图的关系，会显得数据结构较为复杂，但节省空间的开销，而用矩阵来表示图的关系就显得非常清晰，但空间开销较大，这里我们选择邻接矩阵来表示TSP案例中的无向图G<br>我们设欧式距离为费用函数，矩阵中的每一行代表G中每一个的顶点到其余各个顶点的费用(欧式距离)，如果出现到达不了或者自身到达自身的情况，我们用无穷大inf来填充表示不可达<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">price_cn</span><span class="params">(vec1, vec2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.linalg.norm(np.array(vec1) - np.array(vec2))</span><br><span class="line"><span class="comment"># 从去过的点中，找到连接到未去过的点的边里，最小的代价边(贪心算法)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_min_edge</span><span class="params">(visited_ids, no_visited_ids)</span>:</span></span><br><span class="line">    min_weight, min_from, min_to = np.inf, np.inf, np.inf</span><br><span class="line">    <span class="keyword">for</span> from_index <span class="keyword">in</span> visited_ids:</span><br><span class="line">        <span class="keyword">for</span> to_index, weight <span class="keyword">in</span> enumerate(G[from_index]):</span><br><span class="line">			<span class="keyword">if</span> from_index != to_index <span class="keyword">and</span> weight &lt; min_weight <span class="keyword">and</span> to_index <span class="keyword">in</span> no_visited_ids:</span><br><span class="line">                min_to = to_index</span><br><span class="line">                min_from = from_index</span><br><span class="line">                min_weight = G[min_from][min_to]</span><br><span class="line">    <span class="keyword">return</span> (min_from, min_to), min_weight</span><br></pre></td></tr></table></figure></p>
+<h2 id="Prim最小生成树算法"><a href="#Prim最小生成树算法" class="headerlink" title="Prim最小生成树算法"></a>Prim最小生成树算法</h2><p>两点可以确定一条直线，则最小生成树的定义为：用n-1条边连接具有n个顶点的无向图G，并且使得边长的总和最小接下来我们需要找到G中的这颗最小生成树T，从T的定义可知，T满足<br>（1）T有且只有n-1条边<br>（2）T的总长度达到最小值<br>这里我们使用Prim算法来生成T，Prim算法的策略步骤为<br>（1）设集合V是G中所有的顶点，集合U是G中已经走过的顶点，集合U-V是G中没有走过的顶点<br>（2）从G中的起点a开始遍历，将a加入到集合U中，并将a从集合U-V替出<br>（3）在集合U-V中剩余的n-1个顶点中寻找与集合U中的a关联，且权重最小的那条边的终点b，将b加入到集合U中，并将b从集合U-V替出<br>（4）同理，在集合U-V中剩余的n-2个顶点中寻找与集合U中的a或b关联，且权重最小的那条边的终点c，将c加入到集合U中，并将c从集合U-V替出<br>（5）重复步骤(4)，直到G中所有的顶点都加入到集合U，且集合U-V为空，则集合U中的顶点就构成了T<br>显然，Prim算法的策略属于贪心算法，因为每一步所加入的边，都必须是使得当前数T的总权重增加量最小的边<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def prim(G, root_index=0):</span><br><span class="line">    visited_ids = [root_index]  # 初始化去过的点的集合</span><br><span class="line">    T_path = []</span><br><span class="line">    while len(visited_ids) != G.shape[0]:</span><br><span class="line">        no_visited_ids = contain_no_visited_ids(G, visited_ids)  # 维护未去过的点的集合</span><br><span class="line">		(min_from, min_to), min_weight = find_min_edge(visited_ids, no_visited_ids)</span><br><span class="line">        visited_ids.append(min_to)  # 维护去过的点的集合</span><br><span class="line">        T_path.append((min_from, min_to))</span><br><span class="line">    T = np.full_like(G, np.inf)  # 最小生成树的矩阵形式，n-1条边组成</span><br><span class="line">    for (from_, to_) in T_path:</span><br><span class="line">        T[from_][to_] = G[from_][to_]</span><br><span class="line">        T[to_][from_] = G[to_][from_]</span><br><span class="line">    return T, T_path</span><br></pre></td></tr></table></figure></p>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>序遍历：访问根节点—&gt;前序遍历左子树—&gt;前序遍历右子树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def preorder_tree_walk(T, root_index=0):</span><br><span class="line">    is_visited = [False] * T.shape[0]</span><br><span class="line">    stack = [root_index]</span><br><span class="line">    T_walk = []</span><br><span class="line">    while len(stack) != 0:</span><br><span class="line">        node = stack.pop()</span><br><span class="line">        T_walk.append(node)</span><br><span class="line">        is_visited[node] = True</span><br><span class="line">        nodes = np.where(T[node] != np.inf)[0]</span><br><span class="line">        if len(nodes) &gt; 0:</span><br><span class="line">            [stack.append(node) for node in reversed(nodes) if is_visited[node] is False]</span><br><span class="line">    return T_walk</span><br></pre></td></tr></table></figure></p>
+<h2 id="哈密顿回路"><a href="#哈密顿回路" class="headerlink" title="哈密顿回路"></a>哈密顿回路</h2><p>哈密顿回路的定义为：由指定的起点前往指定的终点，途中经过的城市有且只经过一次，所以一个无向图中含有若干个哈密顿回路<br>按照近似算法的最后一步，我们将根节点加入到顶点表的末尾，将顶点表的顶点顺序依次连接，就得到哈密顿回路<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def create_H(G, L):</span><br><span class="line">    H = np.full_like(G, np.inf)</span><br><span class="line">    H_path = []</span><br><span class="line">    for i, from_node in enumerate(L[0:-1]):</span><br><span class="line">        to_node = L[i + 1]</span><br><span class="line">        H[from_node][to_node] = G[from_node][to_node]</span><br><span class="line">        H[to_node][from_node] = G[to_node][from_node]</span><br><span class="line">        H_path.append((from_node, to_node))</span><br><span class="line">    return H, H_path</span><br></pre></td></tr></table></figure></p>
+<p>完成了近似算法的计算，找到了一个在G中从a出发，最后回到a，中间每个城市只经过一次的最小费用的行程走法，即计算出了目标函数的顶点排列w为<img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12piqwktlj30lw01vglm.jpg" alt="enter image description here"></p>
+<h2 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h2><p>从结果上可以看出，近似算法是解决TSP问题的一种有效方法，它可以在多项式时间内计算出一个近似解，来逼近真实的最优解，这个近似解尽量的逼近满足TSP的条件<br>（1）从开始点回到开始点，每个点都要经过且只经过一次<br>（2）行程的总费用达到最小值<br>近似算法求解TSP问题<br>（3）近似算法是求解TSP问题的一个渐进式算法<br>（4）近似解法求出的近似解和实际最优解的近似比不超过2，即w的总代价，在最优总代价的2倍之内</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">TSP—近似算法</span><br><span class="line">1、选择G的任意一个顶点</span><br><span class="line">2、Prim算法找出找出最小生成树T</span><br><span class="line">3、前序遍历树T得到的顶点表L</span><br><span class="line">4、将根节点添加到L的末尾，按表L中顶点的次序组成哈密顿回路H</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"># 代价函数（具有三角不等式性质）</span><br><span class="line">def price_cn(vec1, vec2):</span><br><span class="line">    return np.linalg.norm(np.array(vec1) - np.array(vec2))</span><br><span class="line"># 从去过的点中，找到连接到未去过的点的边里，最小的代价边(贪心算法)</span><br><span class="line">def find_min_edge(visited_ids, no_visited_ids):</span><br><span class="line">    min_weight, min_from, min_to = np.inf, np.inf, np.inf</span><br><span class="line">    for from_index in visited_ids:</span><br><span class="line">        for to_index, weight in enumerate(G[from_index]):</span><br><span class="line">            if from_index != to_index and weight &lt; min_weight and to_index in no_visited_ids:</span><br><span class="line">                min_to = to_index</span><br><span class="line">                min_from = from_index</span><br><span class="line">                min_weight = G[min_from][min_to]</span><br><span class="line">    return (min_from, min_to), min_weight</span><br><span class="line"># 维护未走过的点的集合</span><br><span class="line">def contain_no_visited_ids(G, visited_ids):</span><br><span class="line">    no_visited_ids = []  # 还没有走过的点的索引集合</span><br><span class="line">    [no_visited_ids.append(idx) for idx, _ in enumerate(G) if idx not in visited_ids]</span><br><span class="line">    return no_visited_ids</span><br><span class="line"># 生成最小生成树T</span><br><span class="line">def prim(G, root_index=0):</span><br><span class="line">    visited_ids = [root_index]  # 初始化去过的点的集合</span><br><span class="line">    T_path = []</span><br><span class="line">    while len(visited_ids) != G.shape[0]:</span><br><span class="line">        no_visited_ids = contain_no_visited_ids(G, visited_ids)  # 维护未去过的点的集合</span><br><span class="line">        (min_from, min_to), min_weight = find_min_edge(visited_ids, no_visited_ids)</span><br><span class="line">        visited_ids.append(min_to)  # 维护去过的点的集合</span><br><span class="line">        T_path.append((min_from, min_to))</span><br><span class="line">    T = np.full_like(G, np.inf)  # 最小生成树的矩阵形式，n-1条边组成</span><br><span class="line">    for (from_, to_) in T_path:</span><br><span class="line">        T[from_][to_] = G[from_][to_]</span><br><span class="line">        T[to_][from_] = G[to_][from_]</span><br><span class="line">    return T, T_path</span><br><span class="line"># 先序遍历图(最小生成树)的路径，得到顶点列表L</span><br><span class="line">def preorder_tree_walk(T, root_index=0):</span><br><span class="line">    is_visited = [False] * T.shape[0]</span><br><span class="line">    stack = [root_index]</span><br><span class="line">    T_walk = []</span><br><span class="line">    while len(stack) != 0:</span><br><span class="line">        node = stack.pop()</span><br><span class="line">        T_walk.append(node)</span><br><span class="line">        is_visited[node] = True</span><br><span class="line">        nodes = np.where(T[node] != np.inf)[0]</span><br><span class="line">        if len(nodes) &gt; 0:</span><br><span class="line">            [stack.append(node) for node in reversed(nodes) if is_visited[node] is False]</span><br><span class="line">    return T_walk</span><br><span class="line"># 生成哈密尔顿回路H</span><br><span class="line">def create_H(G, L):</span><br><span class="line">    H = np.full_like(G, np.inf)</span><br><span class="line">    H_path = []</span><br><span class="line">    for i, from_node in enumerate(L[0:-1]):</span><br><span class="line">        to_node = L[i + 1]</span><br><span class="line">        H[from_node][to_node] = G[from_node][to_node]</span><br><span class="line">        H[to_node][from_node] = G[to_node][from_node]</span><br><span class="line">        H_path.append((from_node, to_node))</span><br><span class="line">    return H, H_path</span><br><span class="line"># 可视化画出哈密顿回路</span><br><span class="line">def draw_H(citys, H_path):</span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(111)</span><br><span class="line">    plt.xlim(0, 7)</span><br><span class="line">    plt.ylim(0, 7)</span><br><span class="line">    for (from_, to_) in H_path:</span><br><span class="line">        p1 = plt.Circle(citys[from_], 0.2, color=&apos;red&apos;)</span><br><span class="line">        p2 = plt.Circle(citys[to_], 0.2, color=&apos;red&apos;)</span><br><span class="line">        ax.add_patch(p1)</span><br><span class="line">        ax.add_patch(p2)</span><br><span class="line">        ax.plot((citys[from_][0], citys[to_][0]), (citys[from_][1], citys[to_][1]), color=&apos;red&apos;)</span><br><span class="line">        ax.annotate(s=chr(97 + to_), xy=citys[to_], xytext=(-8, -4), textcoords=&apos;offset points&apos;, fontsize=20)</span><br><span class="line">    ax.axis(&apos;equal&apos;)</span><br><span class="line">    ax.grid()</span><br><span class="line">    plt.show()</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    citys = [(2, 6), (2, 4), (1, 3), (4, 6), (5, 5), (4, 4), (6, 4), (3, 2)]  # 城市坐标</span><br><span class="line">    G = []  # 完全无向图</span><br><span class="line">    for i, curr_point in enumerate(citys):</span><br><span class="line">        line = []</span><br><span class="line">        for j, other_point in enumerate(citys):</span><br><span class="line">            line.append(price_cn(curr_point, other_point)) if i != j else line.append(np.inf)</span><br><span class="line">        G.append(line)</span><br><span class="line">    G = np.array(G)</span><br><span class="line">    # 1、选择G的任意一个顶点</span><br><span class="line">    root_index = 0</span><br><span class="line">    # 2、Prim算法找出找出最小生成树T</span><br><span class="line">    T, T_path = prim(G, root_index=root_index)</span><br><span class="line">    # 3、前序遍历树T得到的顶点表L</span><br><span class="line">    L = preorder_tree_walk(T, root_index=root_index)</span><br><span class="line">    # 4、将根节点添加到L的末尾，按表L中顶点的次序组成哈密顿回路H</span><br><span class="line">    L.append(root_index)</span><br><span class="line">    H, H_path = create_H(G, L)</span><br><span class="line">    print(&apos;最小生成树的路径为：&#123;&#125;&apos;.format(T_path))</span><br><span class="line">    [print(chr(97 + v), end=&apos;,&apos; if i &lt; len(L) - 1 else &apos;\n&apos;) for i, v in enumerate(L)]</span><br><span class="line">    print(&apos;哈密顿回路的路径为：&#123;&#125;&apos;.format(H_path))</span><br><span class="line">    print(&apos;哈密顿回路产生的代价为：&#123;&#125;&apos;.format(sum(G[from_][to_] for (from_, to_) in H_path)))</span><br><span class="line">    # draw_H(citys, H_path)</span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年03月14日 22:50</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/14/使用近似算法解决旅行商（TSP）问题/" title="使用近似算法解决旅行商（TSP）问题">https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/&title=《使用近似算法解决旅行商（TSP）问题》 — Enmin`s blog&pic=images/27.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/&title=《使用近似算法解决旅行商（TSP）问题》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用近似算法解决旅行商（TSP）问题》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/14/使用近似算法解决旅行商（TSP）问题/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Python/" class="color2">Python</a>
+      
+    <a href="/tags/数据结构/" class="color5">数据结构</a>
+      
+    <a href="/tags/LeetCode/" class="color4">LeetCode</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用近似算法解决旅行商（TSP）问题"><span class="post-toc-text">使用近似算法解决旅行商（TSP）问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是TSP问题？"><span class="post-toc-text">什么是TSP问题？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#近似算法设计"><span class="post-toc-text">近似算法设计</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#时间复杂度"><span class="post-toc-text">时间复杂度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#近似精度"><span class="post-toc-text">近似精度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#近似算法解决TSP问题过程"><span class="post-toc-text">近似算法解决TSP问题过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#满足三角不等式的TSP模型和算法步骤"><span class="post-toc-text">满足三角不等式的TSP模型和算法步骤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#近似算法的解题步骤求解上述TSP模型的步骤"><span class="post-toc-text">近似算法的解题步骤求解上述TSP模型的步骤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图的存储结构"><span class="post-toc-text">图的存储结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Prim最小生成树算法"><span class="post-toc-text">Prim最小生成树算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#遍历"><span class="post-toc-text">遍历</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#哈密顿回路"><span class="post-toc-text">哈密顿回路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结果分析"><span class="post-toc-text">结果分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整代码"><span class="post-toc-text">完整代码</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/14/Logistic回归对鸾尾花进行分类/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">逻辑斯蒂回归对鸾尾花进行分类</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="使用近似算法解决旅行商（TSP）问题" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 10px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据结构/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 11.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 10px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据结构/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 11.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
