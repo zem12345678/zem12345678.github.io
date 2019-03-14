@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="#flask-jwt-extended使用详解  相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12acces">
+  <meta name="description" content="flask-jwt-extended使用详解 相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12access_">
 <meta name="keywords" content="前后端分离,Flask,Jwt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flask-jwt-extended使用详解">
 <meta property="og:url" content="https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="#flask-jwt-extended使用详解  相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12acces">
+<meta property="og:description" content="flask-jwt-extended使用详解 相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12access_">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-14T06:27:18.392Z">
+<meta property="og:updated_time" content="2019-03-14T06:30:57.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flask-jwt-extended使用详解">
-<meta name="twitter:description" content="#flask-jwt-extended使用详解  相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12acces">
+<meta name="twitter:description" content="flask-jwt-extended使用详解 相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12access_">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -173,8 +173,7 @@ ga('send', 'pageview');
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>#flask-jwt-extended使用详解</p>
-<hr>
+            <h1 id="flask-jwt-extended使用详解"><a href="#flask-jwt-extended使用详解" class="headerlink" title="flask-jwt-extended使用详解"></a>flask-jwt-extended使用详解</h1><hr>
 <h2 id="相关配置注册jwt"><a href="#相关配置注册jwt" class="headerlink" title="相关配置注册jwt"></a>相关配置注册jwt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.config[&apos;JWT_SECRET_KEY&apos;] = &apos;jwt-secret-attendance&apos;</span><br><span class="line">jwt = JWTManager(app)</span><br><span class="line">app.config[&apos;JWT_BLACKLIST_ENABLED&apos;] = False</span><br></pre></td></tr></table></figure>
 <h2 id="产生token"><a href="#产生token" class="headerlink" title="产生token"></a>产生token</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access_token = create_access_token(identity=username)</span><br><span class="line">return jsonify(msg=&quot;登录成功&quot;,access_token=access_token)</span><br></pre></td></tr></table></figure>
 <h2 id="获取当前用户"><a href="#获取当前用户" class="headerlink" title="获取当前用户"></a>获取当前用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username = get_jwt_identity()</span><br></pre></td></tr></table></figure>
@@ -193,7 +192,7 @@ ga('send', 'pageview');
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年03月14日 14:27</p>
+        <p>最后更新： 2019年03月14日 14:30</p>
         <p>原始链接： <a class="post-url" href="/2019/03/14/flask-jwt-extended使用详解/" title="flask-jwt-extended使用详解">https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
@@ -315,7 +314,7 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关配置注册jwt"><span class="post-toc-text">相关配置注册jwt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#产生token"><span class="post-toc-text">产生token</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取当前用户"><span class="post-toc-text">获取当前用户</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#高级用法"><span class="post-toc-text">高级用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义密钥和加秘方式"><span class="post-toc-text">自定义密钥和加秘方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#令牌撤销"><span class="post-toc-text">令牌撤销</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在令牌中存储和获取数据"><span class="post-toc-text">在令牌中存储和获取数据</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#flask-jwt-extended使用详解"><span class="post-toc-text">flask-jwt-extended使用详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关配置注册jwt"><span class="post-toc-text">相关配置注册jwt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#产生token"><span class="post-toc-text">产生token</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取当前用户"><span class="post-toc-text">获取当前用户</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#高级用法"><span class="post-toc-text">高级用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义密钥和加秘方式"><span class="post-toc-text">自定义密钥和加秘方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#令牌撤销"><span class="post-toc-text">令牌撤销</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在令牌中存储和获取数据"><span class="post-toc-text">在令牌中存储和获取数据</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
