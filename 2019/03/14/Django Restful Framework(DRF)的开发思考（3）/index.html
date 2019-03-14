@@ -3,30 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>RabbitMQ简介 | Enmin`s blog</title>
+  <title>Django Restful Framework(DRF)的开发思考（3） | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="RabbitMQ是一个由erlang开发的AMQP（Advanced Message Queue ）的开源实现。AMQP 的出现其实也是应了广大人民群众的需求，虽然在同步消息通讯的世界里有很多公开标准（如 COBAR的 IIOP ，或者是 SOAP 等），但是在异步消息处理中却不是这样，只有大企业有一些商业实现（如微软的 MSMQ ，IBM 的 Websphere MQ 等），因此，在 2006">
-<meta name="keywords" content="消息队列,分布式,RabbitMQ">
+  <meta name="description" content="Django Restful Framework(DRF)的开发思考（3）认证&amp;amp;权限,限流,过滤&amp;amp;排序 , 分页 ，异常 1）认证&amp;amp;权限2）限流控制用户访问API接口的频率。 针对匿名用户和认证用户分别进行限流。 1234567891011# 限流(针对匿名用户和认证用户分别进行限流控制)&apos;DEFAULT_THROTTLE_CLASSES&apos;: (    &apos;rest_fram">
+<meta name="keywords" content="Django,Restful,前后端分离">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RabbitMQ简介">
-<meta property="og:url" content="https://zem12345678.github.io/2018/10/19/RabbitMQ简介/index.html">
+<meta property="og:title" content="Django Restful Framework(DRF)的开发思考（3）">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="RabbitMQ是一个由erlang开发的AMQP（Advanced Message Queue ）的开源实现。AMQP 的出现其实也是应了广大人民群众的需求，虽然在同步消息通讯的世界里有很多公开标准（如 COBAR的 IIOP ，或者是 SOAP 等），但是在异步消息处理中却不是这样，只有大企业有一些商业实现（如微软的 MSMQ ，IBM 的 Websphere MQ 等），因此，在 2006">
+<meta property="og:description" content="Django Restful Framework(DRF)的开发思考（3）认证&amp;amp;权限,限流,过滤&amp;amp;排序 , 分页 ，异常 1）认证&amp;amp;权限2）限流控制用户访问API接口的频率。 针对匿名用户和认证用户分别进行限流。 1234567891011# 限流(针对匿名用户和认证用户分别进行限流控制)&apos;DEFAULT_THROTTLE_CLASSES&apos;: (    &apos;rest_fram">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5015984-066ff248d5ff8eed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/401/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5015984-367dd717d89ae5db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/554/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5015984-7fd73af768f28704.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/484/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5015984-13db639d2c22f2aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/385/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5015984-2f509b7f34c47170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/463/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5015984-275ea009bdf806a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/558/format/webp">
-<meta property="og:updated_time" content="2018-10-19T04:28:44.379Z">
+<meta property="og:updated_time" content="2019-03-14T13:24:46.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RabbitMQ简介">
-<meta name="twitter:description" content="RabbitMQ是一个由erlang开发的AMQP（Advanced Message Queue ）的开源实现。AMQP 的出现其实也是应了广大人民群众的需求，虽然在同步消息通讯的世界里有很多公开标准（如 COBAR的 IIOP ，或者是 SOAP 等），但是在异步消息处理中却不是这样，只有大企业有一些商业实现（如微软的 MSMQ ，IBM 的 Websphere MQ 等），因此，在 2006">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5015984-066ff248d5ff8eed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/401/format/webp">
+<meta name="twitter:title" content="Django Restful Framework(DRF)的开发思考（3）">
+<meta name="twitter:description" content="Django Restful Framework(DRF)的开发思考（3）认证&amp;amp;权限,限流,过滤&amp;amp;排序 , 分页 ，异常 1）认证&amp;amp;权限2）限流控制用户访问API接口的频率。 针对匿名用户和认证用户分别进行限流。 1234567891011# 限流(针对匿名用户和认证用户分别进行限流控制)&apos;DEFAULT_THROTTLE_CLASSES&apos;: (    &apos;rest_fram">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -144,14 +137,14 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-RabbitMQ简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-Django Restful Framework(DRF)的开发思考（3）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      RabbitMQ简介
+      Django Restful Framework(DRF)的开发思考（3）
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -159,12 +152,12 @@ ga('send', 'pageview');
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/异步处理/">异步处理</a>
+                      <a href="/categories/前后端分离/">前后端分离</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2018-10-19
+          <i class="fa fa-calendar"></i>  2019-03-14
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -180,69 +173,25 @@ ga('send', 'pageview');
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p> RabbitMQ是一个由erlang开发的AMQP（Advanced Message Queue ）的开源实现。AMQP 的出现其实也是应了广大人民群众的需求，虽然在同步消息通讯的世界里有很多公开标准（如 COBAR的 IIOP ，或者是 SOAP 等），但是在异步消息处理中却不是这样，只有大企业有一些商业实现（如微软的 MSMQ ，IBM 的 Websphere MQ 等），因此，在 2006 年的 6 月，Cisco 、Redhat、iMatix 等联合制定了 AMQP 的公开标准。<br>　　RabbitMQ是由RabbitMQ Technologies Ltd开发并且提供商业支持的。该公司在2010年4月被SpringSource（VMWare的一个部门）收购。在2013年5月被并入Pivotal。其实VMWare，Pivotal和EMC本质上是一家的。不同的是VMWare是独立上市子公司，而Pivotal是整合了EMC的某些资源，现在并没有上市。<br>　　<strong>RabbitMQ的官网是<a href="http://www.rabbitmq.com" target="_blank" rel="noopener">http://www.rabbitmq.com</a></strong><br>RabbitMQ 最初起源于金融系统，用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。具体特点包括：</p>
-<h1 id="什么叫消息队列-MQ"><a href="#什么叫消息队列-MQ" class="headerlink" title="什么叫消息队列(MQ)"></a>什么叫消息队列(MQ)</h1><p>消息（Message）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。</p>
-<p>消息队列（Message Queue）是一种应用程序对应用程序的通信方法，消息发送后可以立即返回，由消息系统来确保消息的可靠传递。消息发布者只管把消息发布到 MQ 中而不用管谁来取，消息使用者只管从 MQ 中取消息而不管是谁发布的。这样发布者和使用者都不用知道对方的存在。通过消息队列通信，让A，B两个服务指间保持低耦合，实现业务的灵活拓展。</p>
-<h1 id="为何用消息队列-MQ"><a href="#为何用消息队列-MQ" class="headerlink" title="为何用消息队列(MQ)"></a>为何用消息队列(MQ)</h1><p>从上面的描述中可以看出消息队列是一种应用间的异步协作机制，那什么时候需要使用 MQ 呢？</p>
-<p>以常见的订单系统为例，用户点击【下单】按钮之后的业务逻辑可能包括：扣减库存、生成相应单据、发红包、发短信通知。在业务发展初期这些逻辑可能放在一起同步执行，随着业务的发展订单量增长，需要提升系统服务的性能，这时可以将一些不需要立即生效的操作拆分出来异步执行，比如发放红包、发短信通知等。这种场景下就可以用 MQ ，在下单的主流程（比如扣减库存、生成相应单据）完成之后发送一条消息到 MQ 让主流程快速完结，而由另外的单独线程拉取MQ的消息（或者由 MQ 推送消息），当发现 MQ 中有发红包或发短信之类的消息时，执行相应的业务逻辑。</p>
-<p>以上是用于业务解耦的情况，其它常见场景包括最终一致性、广播、错峰流控等等。</p>
-<h1 id="RabbitMQ-特点"><a href="#RabbitMQ-特点" class="headerlink" title="RabbitMQ 特点"></a>RabbitMQ 特点</h1><ol>
-<li><p><strong>可靠性（Reliability）<br>RabbitMQ 使用一些机制来保证可靠性，如持久化、传输确认、发布确认。</strong></p>
-</li>
-<li><p><strong>灵活的路由（Flexible Routing）<br>在消息进入队列之前，通过 Exchange 来路由消息的。对于典型的路由功能，RabbitMQ 已经提供了一些内置的 Exchange 来实现。针对更复杂的路由功能，可以将多个 Exchange 绑定在一起，也通过插件机制实现自己的 Exchange 。</strong></p>
-</li>
-<li><p><strong>消息集群（Clustering）<br>多个 RabbitMQ 服务器可以组成一个集群，形成一个逻辑 Broker 。</strong></p>
-</li>
-<li><p><strong>高可用（Highly Available Queues）<br>队列可以在集群中的机器上进行镜像，使得在部分节点出问题的情况下队列仍然可用。</strong></p>
-</li>
-<li><p><strong>多种协议（Multi-protocol）<br>RabbitMQ 支持多种消息队列协议，比如 STOMP、MQTT 等等。</strong></p>
-</li>
-<li><p><strong>多语言客户端（Many Clients）<br>RabbitMQ 几乎支持所有常用语言，比如 Java、.NET、Ruby ,python,等等。</strong></p>
-</li>
-<li><p><strong>管理界面（Management UI）<br>RabbitMQ 提供了一个易用的用户界面，使得用户可以监控和管理消息 Broker 的许多方面。</strong></p>
-</li>
-<li><p><strong>跟踪机制（Tracing）<br>如果消息异常，RabbitMQ 提供了消息跟踪机制，使用者可以找出发生了什么。</strong></p>
-</li>
-<li><p><strong>插件机制（Plugin System）<br>RabbitMQ 提供了许多插件，来从多方面进行扩展，也可以编写自己的插件。</strong></p>
-<h1 id="RabbitMQ-中的概念模型"><a href="#RabbitMQ-中的概念模型" class="headerlink" title="RabbitMQ 中的概念模型"></a>RabbitMQ 中的概念模型</h1><h2 id="消息模型"><a href="#消息模型" class="headerlink" title="消息模型"></a>消息模型</h2><p>所有 MQ 产品从模型抽象上来说都是一样的过程：<br>消费者（consumer）订阅某个队列。生产者（producer）创建消息，然后发布到队列（queue）中，最后将消息发送到监听的消费者。</p>
-</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/5015984-066ff248d5ff8eed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/401/format/webp" alt="在这里插入图片描述"></p>
-<h2 id="RabbitMQ-基本概念"><a href="#RabbitMQ-基本概念" class="headerlink" title="RabbitMQ 基本概念"></a>RabbitMQ 基本概念</h2><p>上面只是最简单抽象的描述，具体到 RabbitMQ 则有更详细的概念需要解释。上面介绍过 RabbitMQ 是 AMQP 协议的一个开源实现，所以其内部实际上也是 AMQP 中的基本概念：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5015984-367dd717d89ae5db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/554/format/webp" alt="在这里插入图片描述"></p>
-<ol>
-<li><strong>Message</strong><br>消息，消息是不具名的，它由消息头和消息体组成。消息体是不透明的，而消息头则由一系列的可选属性组成，这些属性包括routing-key（路由键）、priority（相对于其他消息的优先权）、delivery-mode（指出该消息可能需要持久性存储）等。</li>
-<li><strong>Publisher</strong><br>消息的生产者，也是一个向交换器发布消息的客户端应用程序。</li>
-<li><strong>Exchange</strong><br>交换器，用来接收生产者发送的消息并将这些消息路由给服务器中的队列。</li>
-<li><strong>Binding</strong><br>绑定，用于消息队列和交换器之间的关联。一个绑定就是基于路由键将交换器和消息队列连接起来的路由规则，所以可以将交换器理解成一个由绑定构成的路由表。</li>
-<li><strong>Queue</strong><br>消息队列，用来保存消息直到发送给消费者。它是消息的容器，也是消息的终点。一个消息可投入一个或多个队列。消息一直在队列里面，等待消费者连接到这个队列将其取走。</li>
-<li><strong>Connection</strong><br>网络连接，比如一个TCP连接。</li>
-<li><strong>Channel</strong><br>信道，多路复用连接中的一条独立的双向数据流通道。信道是建立在真实的TCP连接内地虚拟连接，AMQP 命令都是通过信道发出去的，不管是发布消息、订阅队列还是接收消息，这些动作都是通过信道完成。因为对于操作系统来说建立和销毁 TCP 都是非常昂贵的开销，所以引入了信道的概念，以复用一条 TCP 连接。</li>
-<li><strong>Consumer</strong><br>消息的消费者，表示一个从消息队列中取得消息的客户端应用程序。</li>
-<li><strong>Virtual Host</strong><br>虚拟主机，表示一批交换器、消息队列和相关对象。虚拟主机是共享相同的身份认证和加密环境的独立服务器域。每个 vhost 本质上就是一个 mini 版的 RabbitMQ 服务器，拥有自己的队列、交换器、绑定和权限机制。vhost 是 AMQP 概念的基础，必须在连接时指定，RabbitMQ 默认的 vhost 是 / 。</li>
-<li><strong>Broker</strong><br>表示消息队列服务器实体。<h2 id="AMQP-中的消息路由"><a href="#AMQP-中的消息路由" class="headerlink" title="AMQP 中的消息路由"></a>AMQP 中的消息路由</h2>AMQP 中消息的路由过程和 Java 开发者熟悉的 JMS 存在一些差别，AMQP 中增加了 Exchange 和 Binding 的角色。生产者把消息发布到 Exchange 上，消息最终到达队列并被消费者接收，而 Binding 决定交换器的消息应该发送到那个队列。</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/5015984-7fd73af768f28704.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/484/format/webp" alt="在这里插入图片描述"></p>
-<h2 id="Exchange-类型"><a href="#Exchange-类型" class="headerlink" title="Exchange 类型"></a>Exchange 类型</h2><p>Exchange分发消息时根据类型的不同分发策略有区别，目前共四种类型：direct、fanout、topic、headers 。headers 匹配 AMQP 消息的 header 而不是路由键，此外 headers 交换器和 direct 交换器完全一致，但性能差很多，目前几乎用不到了，所以直接看另外三种类型：</p>
-<ol>
-<li><strong>direct</strong></li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/5015984-13db639d2c22f2aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/385/format/webp" alt="在这里插入图片描述"></p>
-<p>消息中的路由键（routing key）如果和 Binding 中的 binding key 一致， 交换器就将消息发到对应的队列中。路由键与队列名完全匹配，如果一个队列绑定到交换机要求路由键为“dog”，则只转发 routing key 标记为“dog”的消息，不会转发“dog.puppy”，也不会转发“dog.guard”等等。它是完全匹配、单播的模式。</p>
-<ol start="2">
-<li><strong>fanout</strong></li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/5015984-2f509b7f34c47170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/463/format/webp" alt="在这里插入图片描述"></p>
-<p>每个发到 fanout 类型交换器的消息都会分到所有绑定的队列上去。fanout 交换器不处理路由键，只是简单的将队列绑定到交换器上，每个发送到交换器的消息都会被转发到与该交换器绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。fanout 类型转发消息是最快的。</p>
-<ol start="3">
-<li><strong>topic</strong><br><img src="https://upload-images.jianshu.io/upload_images/5015984-275ea009bdf806a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/558/format/webp" alt="在这里插入图片描述"></li>
-</ol>
-<p>topic 交换器通过模式匹配分配消息的路由键属性，将路由键和某个模式进行匹配，此时队列需要绑定到一个模式上。它将路由键和绑定键的字符串切分成单词，这些单词之间用点隔开。它同样也会识别两个通配符：符号“#”和符号“”。#匹配0个或多个单词，匹配不多不少一个单词。</p>
+            <h1 id="Django-Restful-Framework-DRF-的开发思考（3）"><a href="#Django-Restful-Framework-DRF-的开发思考（3）" class="headerlink" title="Django Restful Framework(DRF)的开发思考（3）"></a>Django Restful Framework(DRF)的开发思考（3）</h1><p><strong>认证&amp;权限</strong>,<strong>限流</strong>,<strong>过滤&amp;排序 </strong>, <strong>分页 </strong>，<strong>异常</strong></p>
+<h2 id="1）认证-amp-权限"><a href="#1）认证-amp-权限" class="headerlink" title="1）认证&amp;权限"></a>1）认证&amp;权限</h2><h2 id="2）限流"><a href="#2）限流" class="headerlink" title="2）限流"></a>2）限流</h2><p>控制用户访问API接口的频率。</p>
+<p>针对匿名用户和认证用户分别进行限流。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 限流(针对匿名用户和认证用户分别进行限流控制)</span></span><br><span class="line"><span class="string">'DEFAULT_THROTTLE_CLASSES'</span>: (</span><br><span class="line">    <span class="string">'rest_framework.throttling.AnonRateThrottle'</span>, <span class="comment"># 针对匿名用户</span></span><br><span class="line">    <span class="string">'rest_framework.throttling.UserRateThrottle'</span> <span class="comment"># 针对认证用户</span></span><br><span class="line">),</span><br><span class="line"></span><br><span class="line"><span class="comment"># 限流频次设置</span></span><br><span class="line"><span class="string">'DEFAULT_THROTTLE_RATES'</span>: &#123;</span><br><span class="line">    <span class="string">'user'</span>: <span class="string">'5/minute'</span>, <span class="comment"># 认证用户5次每分钟</span></span><br><span class="line">	<span class="string">'anon'</span>: <span class="string">'3/minute'</span>, <span class="comment"># 匿名用户3次每分钟</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>针对匿名用户和认证用户统一进行限流。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 限流(针对匿名用户和认证用户进行统一限流控制)</span></span><br><span class="line"><span class="string">'DEFAULT_THROTTLE_CLASSES'</span>: (</span><br><span class="line">	<span class="string">'rest_framework.throttling.ScopedRateThrottle'</span>,</span><br><span class="line">),</span><br><span class="line"></span><br><span class="line"><span class="string">'DEFAULT_THROTTLE_RATES'</span>: &#123;</span><br><span class="line">    <span class="string">'contacts'</span>: <span class="string">'5/minute'</span>, </span><br><span class="line">    <span class="string">'upload'</span>: <span class="string">'3/minute'</span>,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="3）过滤-amp-排序"><a href="#3）过滤-amp-排序" class="headerlink" title="3）过滤&amp;排序"></a>3）过滤&amp;排序</h2><h2 id="4）分页"><a href="#4）分页" class="headerlink" title="4）分页"></a>4）分页</h2><p>两种分页方式<strong>PageNumberPagination</strong>和<strong>LimitOffsetPagination</strong>。</p>
+<p>使用<strong>PageNumberPagination</strong>分页时，获取分页数据时可以通过page传递页码参数。如果想要分页时指定页容量，需要自定义分页类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StandardResultPagination</span><span class="params">(PageNumberPagination)</span>:</span></span><br><span class="line">	<span class="comment"># 默认页容量</span></span><br><span class="line">	page_size = <span class="number">3</span></span><br><span class="line">	<span class="comment"># 指定页容量参数名称</span></span><br><span class="line">	page_size_query_param = <span class="string">'page_size'</span></span><br><span class="line">	<span class="comment"># 最大页容量</span></span><br><span class="line">	max_page_size = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>使用<strong>LimitOffsetPagination</strong>分页时，获取分页数据时可以传递参数offset(偏移量)和limit(限制条数)。</p>
+<p>注：如果使用的全局分页设置，某个列表视图如果不需要分页，直接在视图类中设置<code>pagination_class = None</code>。</p>
+<h2 id="5）异常"><a href="#5）异常" class="headerlink" title="5）异常"></a>5）异常</h2><p>DRF自带异常处理功能，可以对某些特定的异常进行处理并返回给客户端组织好的错误信息。能够处理的异常如下:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">APIException 所有异常的父类</span><br><span class="line">ParseError 解析错误</span><br><span class="line">AuthenticationFailed 认证失败</span><br><span class="line">NotAuthenticated 尚未认证</span><br><span class="line">PermissionDenied 权限决绝</span><br><span class="line">NotFound 未找到</span><br><span class="line">MethodNotAllowed 请求方式不支持</span><br><span class="line">NotAcceptable 要获取的数据格式不支持</span><br><span class="line">Throttled 超过限流次数</span><br><span class="line">ValidationError 校验失败</span><br></pre></td></tr></table></figure>
+<p>可以自定义DRF框架的异常处理函数(补充一些异常处理)并指定<code>EXCEPTION_HANDLER</code>配置项。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年10月19日 12:28</p>
-        <p>原始链接： <a class="post-url" href="/2018/10/19/RabbitMQ简介/" title="RabbitMQ简介">https://zem12345678.github.io/2018/10/19/RabbitMQ简介/</a></p>
+        <p>最后更新： 2019年03月14日 21:24</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/" title="Django Restful Framework(DRF)的开发思考（3）">https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
                 <img src="/images/logo.png" alt="Enmin">
@@ -299,7 +248,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2018/10/19/RabbitMQ简介/&title=《RabbitMQ简介》 — Enmin`s blog&pic=images/1.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/&title=《Django Restful Framework(DRF)的开发思考（3）》 — Enmin`s blog&pic=images/25.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -309,22 +258,22 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2018/10/19/RabbitMQ简介/&title=《RabbitMQ简介》 — Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/&title=《Django Restful Framework(DRF)的开发思考（3）》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2018/10/19/RabbitMQ简介/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RabbitMQ简介》 — Enmin`s blog&url=https://zem12345678.github.io/2018/10/19/RabbitMQ简介/&via=https://zem12345678.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django Restful Framework(DRF)的开发思考（3）》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/&via=https://zem12345678.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2018/10/19/RabbitMQ简介/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -334,7 +283,7 @@ ga('send', 'pageview');
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2018/10/19/RabbitMQ简介/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -346,11 +295,11 @@ ga('send', 'pageview');
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/消息队列/" class="color5">消息队列</a>
+    <a href="/tags/Django/" class="color2">Django</a>
       
-    <a href="/tags/分布式/" class="color4">分布式</a>
+    <a href="/tags/Restful/" class="color3">Restful</a>
       
-    <a href="/tags/RabbitMQ/" class="color4">RabbitMQ</a>
+    <a href="/tags/前后端分离/" class="color1">前后端分离</a>
       
   </li>
 
@@ -363,26 +312,16 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么叫消息队列-MQ"><span class="post-toc-text">什么叫消息队列(MQ)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#为何用消息队列-MQ"><span class="post-toc-text">为何用消息队列(MQ)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RabbitMQ-特点"><span class="post-toc-text">RabbitMQ 特点</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#RabbitMQ-中的概念模型"><span class="post-toc-text">RabbitMQ 中的概念模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#消息模型"><span class="post-toc-text">消息模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RabbitMQ-基本概念"><span class="post-toc-text">RabbitMQ 基本概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AMQP-中的消息路由"><span class="post-toc-text">AMQP 中的消息路由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Exchange-类型"><span class="post-toc-text">Exchange 类型</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Django-Restful-Framework-DRF-的开发思考（3）"><span class="post-toc-text">Django Restful Framework(DRF)的开发思考（3）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1）认证-amp-权限"><span class="post-toc-text">1）认证&amp;权限</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2）限流"><span class="post-toc-text">2）限流</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3）过滤-amp-排序"><span class="post-toc-text">3）过滤&amp;排序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4）分页"><span class="post-toc-text">4）分页</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5）异常"><span class="post-toc-text">5）异常</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2018/11/14/day01-springboot/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          day01-springboot
-        
-      </span>
-    </a>
   
-  
-    <a href="/2018/10/18/Hadoop、Storm、Spark/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Hadoop、Storm、Spark</span>
+    <a href="/2019/03/14/Django REST framework JWT/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Django REST framework JWT</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -391,7 +330,7 @@ ga('send', 'pageview');
 
 
     
-        <div id="SOHUCS" sid="RabbitMQ简介" ></div>
+        <div id="SOHUCS" sid="Django Restful Framework(DRF)的开发思考（3）" ></div>
 <script type="text/javascript">
     (function(){
         var appid = 'cytRXLIlH';
