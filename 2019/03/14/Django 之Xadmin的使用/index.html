@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Django 之Xadmin的使用 | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="Django 之Xadmin的使用xadmin是Django的第三方扩展，可是使Django的admin站点使用更方便。 1. 安装通过如下命令安装xadmin的最新版  pip install https://github.com/sshwsfc/xadmin/tarball/master 在配置文件中注册如下应用 1234567 INSTALLED_APPS = [    ...    &amp;ap">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django 之Xadmin的使用">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="Django 之Xadmin的使用xadmin是Django的第三方扩展，可是使Django的admin站点使用更方便。 1. 安装通过如下命令安装xadmin的最新版  pip install https://github.com/sshwsfc/xadmin/tarball/master 在配置文件中注册如下应用 1234567 INSTALLED_APPS = [    ...    &amp;ap">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12q59byxtj30mp0ahgmp.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12q99ibcqj30lw08xmy6.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12qcmm7i8j30lm02idfw.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12qdnpqujj30l307otal.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12qhrmk39j30lh08fwg1.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12qiewa2ij30my0ew0ud.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12qiyal4fj30ll0d3ab6.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12qjmt4mcj30mo05rq3j.jpg">
+<meta property="og:updated_time" content="2019-03-14T15:27:09.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django 之Xadmin的使用">
+<meta name="twitter:description" content="Django 之Xadmin的使用xadmin是Django的第三方扩展，可是使Django的admin站点使用更方便。 1. 安装通过如下命令安装xadmin的最新版  pip install https://github.com/sshwsfc/xadmin/tarball/master 在配置文件中注册如下应用 1234567 INSTALLED_APPS = [    ...    &amp;ap">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12q59byxtj30mp0ahgmp.jpg">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Django 之Xadmin的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Django 之Xadmin的使用
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Django/">Django</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-14
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="Django-之Xadmin的使用"><a href="#Django-之Xadmin的使用" class="headerlink" title="Django 之Xadmin的使用"></a>Django 之Xadmin的使用</h1><p><img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12q59byxtj30mp0ahgmp.jpg" alt="enter image description here"><br>xadmin是Django的第三方扩展，可是使Django的admin站点使用更方便。</p>
+<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>通过如下命令安装xadmin的最新版</p>
+<blockquote>
+<p>pip install <a href="https://github.com/sshwsfc/xadmin/tarball/master" target="_blank" rel="noopener">https://github.com/sshwsfc/xadmin/tarball/master</a><br> 在配置文件中注册如下应用<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> INSTALLED_APPS = [</span><br><span class="line">    ...</span><br><span class="line">    &apos;xadmin&apos;,</span><br><span class="line">    &apos;crispy_forms&apos;,</span><br><span class="line">    &apos;reversion&apos;,</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p> xadmin有建立自己的数据库模型类，需要进行数据库迁移</p>
+<blockquote>
+<p>python manage.py migrate<br>在总路由中添加xadmin的路由信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import xadmin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    # url(r&apos;^admin/&apos;, admin.site.urls),</span><br><span class="line">    url(r&apos;xadmin/&apos;, include(xadmin.site.urls)),</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h2><p><strong>xadmin不再使用Django的admin.py，而是需要编写代码在adminx.py文件中</strong>。<br><strong>xadmin的站点管理类不用继承admin.ModelAdmin，而是直接继承object即可</strong>。<br>在goods应用中创建adminx.py文件。</p>
+<h3 id="站点的全局配置"><a href="#站点的全局配置" class="headerlink" title="站点的全局配置"></a>站点的全局配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import xadmin</span><br><span class="line">from xadmin import views</span><br><span class="line"></span><br><span class="line">from goods import models</span><br><span class="line"></span><br><span class="line">class BaseSetting(object):</span><br><span class="line">    &quot;&quot;&quot;xadmin的基本配置&quot;&quot;&quot;</span><br><span class="line">    enable_themes = True  # 开启主题切换功能</span><br><span class="line">    use_bootswatch = True</span><br><span class="line"></span><br><span class="line">xadmin.site.register(views.BaseAdminView, BaseSetting)</span><br><span class="line"></span><br><span class="line">class GlobalSettings(object):</span><br><span class="line">    &quot;&quot;&quot;xadmin的全局配置&quot;&quot;&quot;</span><br><span class="line">    site_title = &quot;美多商城运营管理系统&quot;  # 设置站点标题</span><br><span class="line">    site_footer = &quot;美多商城集团有限公司&quot;  # 设置站点的页脚</span><br><span class="line">    menu_style = &quot;accordion&quot;  # 设置菜单折叠</span><br><span class="line"></span><br><span class="line">xadmin.site.register(views.CommAdminView, GlobalSettings)</span><br></pre></td></tr></table></figure>
+<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12q99ibcqj30lw08xmy6.jpg" alt="enter image description here"></p>
+<p>站点Model管理<br>xadmin可以使用的页面样式控制基本与Django原生的admin一直。</p>
+<p><strong>list_display</strong> 控制列表展示的字段<br><strong>search_fields</strong> 控制可以通过搜索框搜索的字段名称，xadmin使用的是模糊查询<br><strong>list_filter</strong> 可以进行过滤操作的列<br><strong>ordering</strong> 默认排序的字段<br><strong>readonly_fields</strong> 在编辑页面的只读字段<br><strong>exclude</strong> 在编辑页面隐藏的字段<br><strong>list_editable</strong> 在列表页可以快速直接编辑的字段<br><strong>show_detail_fileds</strong> 在列表页提供快速显示详情信息<br><strong>refresh_times</strong> 指定列表页的定时刷新<br><strong>list_export</strong> 控制列表页导出数据的可选格式<br><strong>data_charts *</strong>控制显示图标的样式<br><strong>model_icon</strong> 控制菜单的图标<br>1）model_icon<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class SKUAdmin(object):</span><br><span class="line">    model_icon = &apos;fa fa-gift&apos;</span><br><span class="line"></span><br><span class="line">xadmin.site.register(models.SKU, SKUAdmin)</span><br></pre></td></tr></table></figure></p>
+<p>可选的图标样式参考<a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">http://fontawesome.dashgame.com/</a><br>2） list_display<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_display = [&apos;id&apos;, &apos;name&apos;, &apos;price&apos;, &apos;stock&apos;, &apos;sales&apos;, &apos;comments&apos;]</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12qcmm7i8j30lm02idfw.jpg" alt="enter image description here"><br>3）search_fields<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search_fields = [&apos;id&apos;,&apos;name&apos;]</span><br></pre></td></tr></table></figure></p>
+<p> <img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12qdnpqujj30l307otal.jpg" alt="enter image description here"><br> 4）list_filter<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_filter = [&apos;category&apos;]</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12qhrmk39j30lh08fwg1.jpg" alt="enter image description here"><br>  5）list_editable<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_editable = [&apos;price&apos;, &apos;stock&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12qiewa2ij30my0ew0ud.jpg" alt="enter image description here"><br>  6）show_detail_fields<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show_detail_fields = [&apos;name&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12qiyal4fj30ll0d3ab6.jpg" alt="enter image description here"><br>  7）list_export<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_export = [&apos;xls&apos;, &apos;csv&apos;, &apos;xml&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12qjmt4mcj30mo05rq3j.jpg" alt="enter image description here"><br>  8）refresh_times<br>        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lass OrderAdmin(object):</span><br><span class="line">   list_display = [&apos;order_id&apos;, &apos;create_time&apos;, &apos;total_amount&apos;, &apos;pay_method&apos;, &apos;status&apos;]</span><br><span class="line">   refresh_times = [3, 5]  # 可选以支持按多长时间(秒)刷新页面</span><br><span class="line">```  </span><br><span class="line">![enter image description here](https://ww1.sinaimg.cn/large/007rAy9hly1g12qk7eyyuj30lq04dt9e.jpg)</span><br><span class="line">9）data_charts</span><br></pre></td></tr></table></figure></p>
+<pre><code>data_charts = {
+    &quot;order_amount&quot;: {&apos;title&apos;: &apos;订单金额&apos;, &quot;x-field&quot;: &quot;create_time&quot;, &quot;y-field&quot;: (&apos;total_amount&apos;,),
+                   &quot;order&quot;: (&apos;create_time&apos;,)},
+    &quot;order_count&quot;: {&apos;title&apos;: &apos;订单量&apos;, &quot;x-field&quot;: &quot;create_time&quot;, &quot;y-field&quot;: (&apos;total_count&apos;,),
+                   &quot;order&quot;: (&apos;create_time&apos;,)},
+}
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;title 控制图标名称</span><br><span class="line">x-field 控制x轴字段</span><br><span class="line">y-field 控制y轴字段，可以是多个值</span><br><span class="line">order 控制默认排序</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![enter image description here](https://ww1.sinaimg.cn/large/007rAy9hgy1g12qld0x5qj30la07vjru.jpg)</span><br><span class="line">10）readonly_fields</span><br></pre></td></tr></table></figure>
+</code></pre><p>class SKUAdmin(object):<br>    …<br>    readonly_fields = [‘sales’, ‘comments’]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">![enter image description here](https://ww1.sinaimg.cn/large/007rAy9hgy1g12qm5ep5sj30l704f744.jpg)</span><br><span class="line">站点保存对象数据方法重写</span><br><span class="line">在Django的原生admin站点中，如果想要在站点保存或删除数据时，补充自定义行为，可以重写如下方法：</span><br><span class="line"></span><br><span class="line">&gt;save_model(self, request, obj, form, change)</span><br><span class="line">delete_model(self, request, obj)</span><br><span class="line"></span><br><span class="line">而在xadmin中，需要重写如下方法：</span><br><span class="line"></span><br><span class="line">&gt;save_models(self)</span><br><span class="line">delete_model(self)</span><br><span class="line"></span><br><span class="line">在方法中，如果需要用到当前处理的模型类对象，需要通过self.obj来获取，如</span><br></pre></td></tr></table></figure></p>
+<p>class SKUSpecificationAdmin(object):<br>    def save_models(self):</p>
+<pre><code>    # 保存数据对象
+    obj = self.new_obj
+    obj.save()
+
+    # 补充自定义行为
+    from celery_tasks.html.tasks import generate_static_sku_detail_html
+    generate_static_sku_detail_html.delay(obj.sku.id)
+
+def delete_model(self):
+    # 删除数据对象
+    obj = self.obj
+    sku_id = obj.sku.id
+    obj.delete()
+
+    # 补充自定义行为
+    from celery_tasks.html.tasks import generate_static_sku_detail_html
+    generate_static_sku_detail_html.delay(sku_id)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">### 自定义用户管理</span><br><span class="line">xadmin会自动为admin站点添加用户User的管理配置</span><br><span class="line"></span><br><span class="line">xadmin使用xadmin.plugins.auth.UserAdmin来配置</span><br><span class="line"></span><br><span class="line">如果需要自定义User配置的话，需要先unregister(User)，在添加自己的User配置并注册</span><br></pre></td></tr></table></figure>
+<p>import xadmin</p>
+<h1 id="Register-your-models-here"><a href="#Register-your-models-here" class="headerlink" title="Register your models here."></a>Register your models here.</h1><p>from users.models import User<br>from xadmin.plugins import auth</p>
+<p>class UserAdmin(auth.UserAdmin):<br>    list_display = [‘id’, ‘username’, ‘mobile’, ‘email’, ‘date_joined’]<br>    readonly_fields = [‘last_login’, ‘date_joined’]<br>    search_fields = (‘username’, ‘first_name’, ‘last_name’, ‘email’, ‘mobile’)<br>    style_fields = {‘user_permissions’: ‘m2m_transfer’, ‘groups’: ‘m2m_transfer’}</p>
+<pre><code>def get_model_form(self, **kwargs):
+    if self.org_obj is None:
+        self.fields = [&apos;username&apos;, &apos;mobile&apos;, &apos;is_staff&apos;]
+
+    return super().get_model_form(**kwargs)
+</code></pre><p>xadmin.site.unregister(User)<br>xadmin.site.register(User, UserAdmin)<br><code>`</code></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年03月14日 23:27</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/14/Django 之Xadmin的使用/" title="Django 之Xadmin的使用">https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/&title=《Django 之Xadmin的使用》 — Enmin`s blog&pic=images/28.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/&title=《Django 之Xadmin的使用》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django 之Xadmin的使用》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/14/Django 之Xadmin的使用/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Django/" class="color2">Django</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Django-之Xadmin的使用"><span class="post-toc-text">Django 之Xadmin的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装"><span class="post-toc-text">1. 安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-使用"><span class="post-toc-text">2. 使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#站点的全局配置"><span class="post-toc-text">站点的全局配置</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Register-your-models-here"><span class="post-toc-text">Register your models here.</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/14/使用近似算法解决旅行商（TSP）问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">使用近似算法解决旅行商（TSP）问题</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Django 之Xadmin的使用" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 10px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据结构/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 11.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 10px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据结构/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 11.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
