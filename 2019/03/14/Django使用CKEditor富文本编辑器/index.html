@@ -3,23 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>flask-jwt-extended使用详解 | Enmin`s blog</title>
+  <title>Django使用CKEditor富文本编辑器 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="flask-jwt-extended使用详解 相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12access_">
-<meta name="keywords" content="前后端分离,Flask,Jwt">
+  <meta name="description" content="Django使用CKEditor富文本编辑器在运营后台，运营人员需要录入商品并编辑商品的详情信息，而商品的详情信息不是普通的文本，可以是包含了HTML语法格式的字符串。为了快速简单的让用户能够在页面中编辑带格式的文本，我们引入富文本编辑器。富文本即具备丰富样式格式的文本。 我们使用功能强大的CKEditor富文本编辑器。  1. 安装 pip install django-ckeditor  2.">
+<meta name="keywords" content="Django,Web,富文本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flask-jwt-extended使用详解">
-<meta property="og:url" content="https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/index.html">
+<meta property="og:title" content="Django使用CKEditor富文本编辑器">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="flask-jwt-extended使用详解 相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12access_">
+<meta property="og:description" content="Django使用CKEditor富文本编辑器在运营后台，运营人员需要录入商品并编辑商品的详情信息，而商品的详情信息不是普通的文本，可以是包含了HTML语法格式的字符串。为了快速简单的让用户能够在页面中编辑带格式的文本，我们引入富文本编辑器。富文本即具备丰富样式格式的文本。 我们使用功能强大的CKEditor富文本编辑器。  1. 安装 pip install django-ckeditor  2.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-14T06:30:57.770Z">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12gvfe6e2j30jx09ita9.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12gz1mff1j30lm0a80y8.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12h03e62vj30lh0fbdks.jpg">
+<meta property="og:updated_time" content="2019-03-14T09:56:27.558Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flask-jwt-extended使用详解">
-<meta name="twitter:description" content="flask-jwt-extended使用详解 相关配置注册jwt123app.config[&amp;apos;JWT_SECRET_KEY&amp;apos;] = &amp;apos;jwt-secret-attendance&amp;apos;jwt = JWTManager(app)app.config[&amp;apos;JWT_BLACKLIST_ENABLED&amp;apos;] = False 产生token12access_">
+<meta name="twitter:title" content="Django使用CKEditor富文本编辑器">
+<meta name="twitter:description" content="Django使用CKEditor富文本编辑器在运营后台，运营人员需要录入商品并编辑商品的详情信息，而商品的详情信息不是普通的文本，可以是包含了HTML语法格式的字符串。为了快速简单的让用户能够在页面中编辑带格式的文本，我们引入富文本编辑器。富文本即具备丰富样式格式的文本。 我们使用功能强大的CKEditor富文本编辑器。  1. 安装 pip install django-ckeditor  2.">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12gvfe6e2j30jx09ita9.jpg">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -137,14 +141,14 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-flask-jwt-extended使用详解" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-Django使用CKEditor富文本编辑器" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      flask-jwt-extended使用详解
+      Django使用CKEditor富文本编辑器
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -152,7 +156,7 @@ ga('send', 'pageview');
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/Flask/">Flask</a>
+                      <a href="/categories/django/">django</a>
                   
               </li>
           
@@ -173,27 +177,32 @@ ga('send', 'pageview');
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h1 id="flask-jwt-extended使用详解"><a href="#flask-jwt-extended使用详解" class="headerlink" title="flask-jwt-extended使用详解"></a>flask-jwt-extended使用详解</h1><hr>
-<h2 id="相关配置注册jwt"><a href="#相关配置注册jwt" class="headerlink" title="相关配置注册jwt"></a>相关配置注册jwt</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.config[&apos;JWT_SECRET_KEY&apos;] = &apos;jwt-secret-attendance&apos;</span><br><span class="line">jwt = JWTManager(app)</span><br><span class="line">app.config[&apos;JWT_BLACKLIST_ENABLED&apos;] = False</span><br></pre></td></tr></table></figure>
-<h2 id="产生token"><a href="#产生token" class="headerlink" title="产生token"></a>产生token</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access_token = create_access_token(identity=username)</span><br><span class="line">return jsonify(msg=&quot;登录成功&quot;,access_token=access_token)</span><br></pre></td></tr></table></figure>
-<h2 id="获取当前用户"><a href="#获取当前用户" class="headerlink" title="获取当前用户"></a>获取当前用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username = get_jwt_identity()</span><br></pre></td></tr></table></figure>
-<h2 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h2><h3 id="自定义密钥和加秘方式"><a href="#自定义密钥和加秘方式" class="headerlink" title="自定义密钥和加秘方式"></a>自定义密钥和加秘方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">access_token = encode_access_token(identity=jwt_manager._user_identity_callback(username),</span><br><span class="line">            secret=<span class="string">'revoked-secret'</span>,</span><br><span class="line">            algorithm=config.algorithm,</span><br><span class="line">            expires_delta=<span class="keyword">None</span>,</span><br><span class="line">            fresh=<span class="keyword">False</span>,</span><br><span class="line">            user_claims=jwt_manager._user_claims_callback(username),</span><br><span class="line">            csrf=config.csrf_protect,</span><br><span class="line">            identity_claim_key=config.identity_claim_key,</span><br><span class="line">            user_claims_key=config.user_claims_key,</span><br><span class="line">            json_encoder=config.json_encoder)</span><br></pre></td></tr></table></figure>
-<h2 id="令牌撤销"><a href="#令牌撤销" class="headerlink" title="令牌撤销"></a>令牌撤销</h2><blockquote>
-<p>app.config[‘JWT_BLACKLIST_TOKEN_CHECKS’] = [‘access’, ‘refresh’]</p>
+            <h1 id="Django使用CKEditor富文本编辑器"><a href="#Django使用CKEditor富文本编辑器" class="headerlink" title="Django使用CKEditor富文本编辑器"></a>Django使用CKEditor富文本编辑器</h1><p>在运营后台，运营人员需要录入商品并编辑商品的详情信息，而商品的详情信息不是普通的文本，可以是包含了HTML语法格式的字符串。为了快速简单的让用户能够在页面中编辑带格式的文本，我们引入富文本编辑器。富文本即具备丰富样式格式的文本。</p>
+<p>我们使用功能强大的CKEditor富文本编辑器。</p>
+<p><img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12gvfe6e2j30jx09ita9.jpg" alt="enter image description here"></p>
+<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><blockquote>
+<p>pip install django-ckeditor</p>
 </blockquote>
-<p>创建我们的函数以检查令牌是否已被列入黑名单。在这简单情况下，我们将只存储在Redis的令JTI（唯一标识符）每当我们创建一个新令牌时（撤销状态为’false’）。这个 function将返回令牌的撤销状态。如果令牌没有 存在于这个商店，我们不知道它来自哪里（因为我们正在新添加 创建令牌到我们的商店，撤销状态为’false’）。在这种情况下 出于安全考虑，我们会考虑撤销令牌。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">revoked_store = redis.StrictRedis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>,</span><br><span class="line">                                  decode_responses=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@jwt.token_in_blacklist_loader</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_if_token_is_revoked</span><span class="params">(decrypted_token)</span>:</span></span><br><span class="line">    jti = decrypted_token[<span class="string">'jti'</span>]</span><br><span class="line">    entry = revoked_store.get(jti)</span><br><span class="line">    <span class="keyword">if</span> entry <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> entry == <span class="string">'true'</span></span><br></pre></td></tr></table></figure>
-<p>产生token<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">access_token = create_access_token(identity=username)</span><br><span class="line">将令牌存储在redis中，状态目前未被撤销。</span><br><span class="line">我们可以使用`get_jti（）`方法获取唯一标识符字符串</span><br><span class="line">每个令牌。我们还可以在redis中设置这些令牌的到期时间，所以它们会在到期后自动删除。</span><br><span class="line">我们将设定令牌过期后不久将自动删除的所有内容</span><br><span class="line">access_jti = get_jti(encoded_token=access_token)</span><br><span class="line">revoked_store.set(access_jti, <span class="string">'false'</span>, ACCESS_EXPIRES * <span class="number">1.2</span>)</span><br></pre></td></tr></table></figure></p>
-<p>撤销视图<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route('/auth/access_revoke', methods=['DELETE'])</span></span><br><span class="line"><span class="meta">@jwt_required</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span><span class="params">()</span>:</span></span><br><span class="line">    jti = get_raw_jwt()[<span class="string">'jti'</span>]</span><br><span class="line">    revoked_store.set(jti, <span class="string">'true'</span>, ACCESS_EXPIRES * <span class="number">1.2</span>)</span><br><span class="line">    <span class="keyword">return</span> jsonify(&#123;<span class="string">"msg"</span>: <span class="string">"Access token revoked"</span>&#125;), <span class="number">200</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="在令牌中存储和获取数据"><a href="#在令牌中存储和获取数据" class="headerlink" title="在令牌中存储和获取数据"></a>在令牌中存储和获取数据</h2><p>自定义一个基类存储角色和用户id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class UserObject:</span><br><span class="line">    def __init__(self,id,username, role):</span><br><span class="line">        self.id = id</span><br><span class="line">        self.username = username</span><br><span class="line">        self.role = role</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">创建一个将在create_access_token时调用的函数</span><br><span class="line">用来。它将采取任何传递到的对象create_access_token方法，让我们定义什么是自定义声明应添加到访问令牌中</span><br><span class="line"><span class="meta"> @jwt.user_claims_loader</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_claims_to_access_token</span><span class="params">(user)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">'role'</span>: user.role,<span class="string">'id'</span>:user.id&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">创建一个将在create_access_token时调用的函数用来。它将采取任何传递到的对象create_access_token方法，让我们定义什么标识应该是访问令牌的</span><br><span class="line"><span class="meta">    @jwt.user_identity_loader</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">user_identity_lookup</span><span class="params">(user)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> user.username</span><br></pre></td></tr></table></figure>
-<p>产生令牌<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = UserObject(id=user.id,username=username,role=user.role)</span><br><span class="line">expires = datetime.timedelta(days=<span class="number">2</span>)</span><br><span class="line">access_token = create_access_token(identity=data, expires_delta=expires)</span><br></pre></td></tr></table></figure></p>
-<p>如何获取数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">username = get_jwt_claims()</span><br><span class="line">user_id = get_jwt_claims()[<span class="string">'id'</span>]</span><br><span class="line">user_role = get_jwt_claims()[<span class="string">'role'</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-添加应用"><a href="#2-添加应用" class="headerlink" title="2. 添加应用"></a>2. 添加应用</h2><p>在INSTALLED_APPS中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...</span><br><span class="line">    &apos;ckeditor&apos;,  # 富文本编辑器</span><br><span class="line">    &apos;ckeditor_uploader&apos;,  # 富文本编辑器上传图片模块</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-添加CKEditor设置"><a href="#3-添加CKEditor设置" class="headerlink" title="3. 添加CKEditor设置"></a>3. 添加CKEditor设置</h2><p>在settings/dev.py中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 富文本编辑器ckeditor配置</span><br><span class="line">CKEDITOR_CONFIGS = &#123;</span><br><span class="line">    &apos;default&apos;: &#123;</span><br><span class="line">        &apos;toolbar&apos;: &apos;full&apos;,  # 工具条功能</span><br><span class="line">        &apos;height&apos;: 300,  # 编辑器高度</span><br><span class="line">        # &apos;width&apos;: 300,  # 编辑器宽</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">CKEDITOR_UPLOAD_PATH = &apos;&apos;  # 上传图片保存路径，使用了FastDFS，所以此处设为&apos;&apos;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-添加ckeditor路由"><a href="#4-添加ckeditor路由" class="headerlink" title="4. 添加ckeditor路由"></a>4. 添加ckeditor路由</h2><p>在总路由中添加</p>
+<blockquote>
+<p>url(r’^ckeditor/‘, include(‘ckeditor_uploader.urls’)),</p>
+</blockquote>
+<h2 id="5-为模型类添加字段"><a href="#5-为模型类添加字段" class="headerlink" title="5. 为模型类添加字段"></a>5. 为模型类添加字段</h2><p>ckeditor提供了两种类型的Django模型类字段</p>
+<p><strong>ckeditor.fields.RichTextField 不支持上传文件的富文本字段</strong><br><strong>ckeditor_uploader.fields.RichTextUploadingField 支持上传文件的富文本字段</strong><br>在商品模型类（SPU）中，要保存商品的详细介绍、包装信息、售后服务，这三个字段需要作为富文本字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from ckeditor.fields import RichTextField</span><br><span class="line">from ckeditor_uploader.fields import RichTextUploadingField</span><br><span class="line"></span><br><span class="line">class Goods(BaseModel):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    商品SPU</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    ...</span><br><span class="line">    desc_detail = RichTextUploadingField(default=&apos;&apos;, verbose_name=&apos;详细介绍&apos;)</span><br><span class="line">    desc_pack = RichTextField(default=&apos;&apos;, verbose_name=&apos;包装信息&apos;)</span><br><span class="line">    desc_service = RichTextUploadingField(default=&apos;&apos;, verbose_name=&apos;售后服务&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="6-修改Bug"><a href="#6-修改Bug" class="headerlink" title="6. 修改Bug"></a>6. 修改Bug</h2><p>我们将通过Django上传的图片保存到了FastDFS中，而保存在FastDFS中的文件名没有后缀名，ckeditor在处理上传后的文件名按照有后缀名来处理，所以会出现bug错误，<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12gz1mff1j30lm0a80y8.jpg" alt="enter image description here"></p>
+<p>修正方法<br>找到虚拟环境目录中的ckeditor_uploader/views.py文件，如</p>
+<blockquote>
+<p>~/.virtualenvs/meiduo/lib/python3.5/site-packages/ckeditor_uploader/views.py</p>
+</blockquote>
+<p>将第95行代码修改如下<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12h03e62vj30lh0fbdks.jpg" alt="enter image description here"></p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年03月14日 14:30</p>
-        <p>原始链接： <a class="post-url" href="/2019/03/14/flask-jwt-extended使用详解/" title="flask-jwt-extended使用详解">https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/</a></p>
+        <p>最后更新： 2019年03月14日 17:56</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/14/Django使用CKEditor富文本编辑器/" title="Django使用CKEditor富文本编辑器">https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
                 <img src="/images/logo.png" alt="Enmin">
@@ -250,7 +259,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/&title=《flask-jwt-extended使用详解》 — Enmin`s blog&pic=images/13.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/&title=《Django使用CKEditor富文本编辑器》 — Enmin`s blog&pic=images/22.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -260,22 +269,22 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/&title=《flask-jwt-extended使用详解》 — Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/&title=《Django使用CKEditor富文本编辑器》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《flask-jwt-extended使用详解》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/&via=https://zem12345678.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django使用CKEditor富文本编辑器》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/&via=https://zem12345678.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -285,7 +294,7 @@ ga('send', 'pageview');
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/14/flask-jwt-extended使用详解/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/14/Django使用CKEditor富文本编辑器/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -297,11 +306,11 @@ ga('send', 'pageview');
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/前后端分离/" class="color1">前后端分离</a>
+    <a href="/tags/Django/" class="color2">Django</a>
       
-    <a href="/tags/Flask/" class="color1">Flask</a>
+    <a href="/tags/Web/" class="color4">Web</a>
       
-    <a href="/tags/Jwt/" class="color4">Jwt</a>
+    <a href="/tags/富文本/" class="color4">富文本</a>
       
   </li>
 
@@ -314,26 +323,16 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#flask-jwt-extended使用详解"><span class="post-toc-text">flask-jwt-extended使用详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关配置注册jwt"><span class="post-toc-text">相关配置注册jwt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#产生token"><span class="post-toc-text">产生token</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取当前用户"><span class="post-toc-text">获取当前用户</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#高级用法"><span class="post-toc-text">高级用法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义密钥和加秘方式"><span class="post-toc-text">自定义密钥和加秘方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#令牌撤销"><span class="post-toc-text">令牌撤销</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在令牌中存储和获取数据"><span class="post-toc-text">在令牌中存储和获取数据</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Django使用CKEditor富文本编辑器"><span class="post-toc-text">Django使用CKEditor富文本编辑器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装"><span class="post-toc-text">1. 安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-添加应用"><span class="post-toc-text">2. 添加应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-添加CKEditor设置"><span class="post-toc-text">3. 添加CKEditor设置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-添加ckeditor路由"><span class="post-toc-text">4. 添加ckeditor路由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-为模型类添加字段"><span class="post-toc-text">5. 为模型类添加字段</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-修改Bug"><span class="post-toc-text">6. 修改Bug</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2019/03/14/flask项目使用 Gunicorn + Nginx 进行布署/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          flask项目使用 Gunicorn + Nginx 进行布署
-        
-      </span>
-    </a>
   
-  
-    <a href="/2019/03/14/神兽保佑,代码无bug/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">神兽保佑,代码无bug　</span>
+    <a href="/2019/03/14/使用Docker安装FastDFS/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">使用Docker安装FastDFS</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -342,7 +341,7 @@ ga('send', 'pageview');
 
 
     
-        <div id="SOHUCS" sid="flask-jwt-extended使用详解" ></div>
+        <div id="SOHUCS" sid="Django使用CKEditor富文本编辑器" ></div>
 <script type="text/javascript">
     (function(){
         var appid = 'cytRXLIlH';
