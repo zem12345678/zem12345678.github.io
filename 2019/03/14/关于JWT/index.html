@@ -17,7 +17,7 @@
 <meta property="og:description" content="关于JWT在用户注册或登录后，我们想记录用户的登录状态，或者为用户创建身份认证的凭证。我们不再使用Session认证机制，而使用Json Web Token认证机制。  [TOC] 什么是JWT Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g12arggn8yj31120ksta9.jpg">
-<meta property="og:updated_time" content="2019-03-14T06:23:12.596Z">
+<meta property="og:updated_time" content="2019-03-14T06:25:48.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于JWT">
 <meta name="twitter:description" content="关于JWT在用户注册或登录后，我们想记录用户的登录状态，或者为用户创建身份认证的凭证。我们不再使用Session认证机制，而使用Json Web Token认证机制。  [TOC] 什么是JWT Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO">
@@ -188,7 +188,7 @@ ga('send', 'pageview');
 <p>###基于session认证所显露的问题<br><strong>Session: </strong>每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以方便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着认证用户的增多，服务端的开销会明显增大。</p>
 <p><strong>扩展性: </strong>用户认证之后，服务端做认证记录，如果认证的记录被保存在内存中的话，这意味着用户下次请求还必须要请求在这台服务器上,这样才能拿到授权的资源，这样在分布式的应用上，相应的限制了负载均衡器的能力。这也意味着限制了应用的扩展能力。</p>
 <p><strong>CSRF: </strong>因为是基于cookie来进行用户识别的, cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。</p>
-<p>##基于token的鉴权机制<br>基于token的鉴权机制类似于http协议也是无状态的，它不需要在服务端去保留用户的认证信息或者会话信息。这就意味着基于token认证机制的应用不需要去考虑用户在哪一台服务器登录了，这就为应用的扩展提供了便利。</p>
+<h2 id="基于token的鉴权机制"><a href="#基于token的鉴权机制" class="headerlink" title="基于token的鉴权机制"></a>基于token的鉴权机制</h2><p>基于token的鉴权机制类似于http协议也是无状态的，它不需要在服务端去保留用户的认证信息或者会话信息。这就意味着基于token认证机制的应用不需要去考虑用户在哪一台服务器登录了，这就为应用的扩展提供了便利。</p>
 <p>流程上是这样的：</p>
 <p>用户使用用户名密码来请求服务器<br>服务器进行验证用户的信息<br>服务器通过验证发送给用户一个token<br>客户端存储token，并在每次请求时附送上这个token值<br>服务端验证token值，并返回数据<br>这个token必须要在每次请求时传递给服务端，它应该保存在请求头里， 另外，服务端要支持CORS(跨来源资源共享)策略，一般我们在服务端这么做就可以了Access-Control-Allow-Origin: *。</p>
 <p>那么我们现在回到JWT的主题上。</p>
@@ -233,7 +233,7 @@ ga('send', 'pageview');
 <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</p>
 </blockquote>
 <p><strong>注意：secret是保存在服务器端的，jwt的签发生成也是在服务器端的，secret就是用来进行jwt的签发和jwt的验证，所以，它就是你服务端的私钥，在任何场景都不应该流露出去。一旦客户端得知这个secret, 那就意味着客户端是可以自我签发jwt了。</strong></p>
-<p>##如何应用<br>一般是在请求头里加入Authorization，并加上Bearer标注：</p>
+<h2 id="如何应用"><a href="#如何应用" class="headerlink" title="如何应用"></a>如何应用</h2><p>一般是在请求头里加入Authorization，并加上Bearer标注：</p>
 <blockquote>
 <p>fetch(‘api/user/1’, {<br>  headers: {<br>    ‘Authorization’: ‘Bearer ‘ + token<br>  }<br>})<br>服务端会验证token，如果验证通过就会返回相应的资源。整个流程就是这样的:<br><img src="https://ww1.sinaimg.cn/large/007rAy9hly1g12arggn8yj31120ksta9.jpg" alt="enter image description here"><br>总结<br>优点<br>因为json的通用性，所以JWT是可以进行跨语言支持的，像JAVA,JavaScript,NodeJS,PHP等很多语言都可以使用。<br>因为有了payload部分，所以JWT可以在自身存储一些其他业务逻辑所必要的非敏感信息。<br>便于传输，jwt的构成非常简单，字节占用很小，所以它是非常便于传输的。<br>它不需要在服务端保存会话信息, 所以它易于应用的扩展</p>
 </blockquote>
@@ -244,7 +244,7 @@ ga('send', 'pageview');
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年03月14日 14:23</p>
+        <p>最后更新： 2019年03月14日 14:25</p>
         <p>原始链接： <a class="post-url" href="/2019/03/14/关于JWT/" title="关于JWT">https://zem12345678.github.io/2019/03/14/关于JWT/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
@@ -366,7 +366,7 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关于JWT"><span class="post-toc-text">关于JWT</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是JWT"><span class="post-toc-text">什么是JWT</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#起源"><span class="post-toc-text">起源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JWT长什么样？"><span class="post-toc-text">JWT长什么样？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#header"><span class="post-toc-text">header</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#payload"><span class="post-toc-text">payload</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#signature"><span class="post-toc-text">signature</span></a></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关于JWT"><span class="post-toc-text">关于JWT</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是JWT"><span class="post-toc-text">什么是JWT</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#起源"><span class="post-toc-text">起源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基于token的鉴权机制"><span class="post-toc-text">基于token的鉴权机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JWT长什么样？"><span class="post-toc-text">JWT长什么样？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#header"><span class="post-toc-text">header</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#payload"><span class="post-toc-text">payload</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#signature"><span class="post-toc-text">signature</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何应用"><span class="post-toc-text">如何应用</span></a></li></ol></li></ol>
         </nav>
     </aside>
     

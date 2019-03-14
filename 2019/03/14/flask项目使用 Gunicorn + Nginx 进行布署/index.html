@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g129yhwcw4j31gy0h0tc9.jpg">
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g129z1pu6tj308o06dwel.jpg">
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hly1g129zhl83cj30rz0i9tak.jpg">
-<meta property="og:updated_time" content="2019-03-14T05:51:38.975Z">
+<meta property="og:updated_time" content="2019-03-14T06:26:08.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flask项目使用 Gunicorn + Nginx 进行布署">
 <meta name="twitter:description" content="flask项目使用 Gunicorn + Nginx 进行布署基于ubuntu 16.04系统，使用 Gunicorn + Nginx 进行布署，云服务器为阿里云  [TOC] Markdown简介 选择云服务器:阿里云服务器。(https://zh.wikipedia.org/wiki/Markdown)个人免费获取 [https://free.aliyun.com/]   创建服务器选择ubu">
@@ -226,8 +226,7 @@ ga('send', 'pageview');
 <blockquote>
 <p>sudo apt-get build-dep python-mysqldb</p>
 </blockquote>
-<p>##Nginx</p>
-<p>采用 C 语言编写<br>实现分流、转发、负载均衡<br>相关操作<br>安装</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>采用 C 语言编写<br>实现分流、转发、负载均衡<br>相关操作<br>安装</p>
 <blockquote>
 <p>$ sudo apt-get install nginx<br>运行及停止</p>
 </blockquote>
@@ -238,11 +237,10 @@ ga('send', 'pageview');
 <blockquote>
 <p>编辑文件:/etc/nginx/sites-available/default<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 如果是多台服务器的话，则在此配置，并修改 location 节点下面的 proxy_pass </span><br><span class="line">upstream flask &#123;</span><br><span class="line">        server 127.0.0.1:5000;</span><br><span class="line">        server 127.0.0.1:5001;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">        # 监听80端口</span><br><span class="line">        listen 80 default_server;</span><br><span class="line">        listen [::]:80 default_server;</span><br><span class="line"></span><br><span class="line">        root /var/www/html;</span><br><span class="line"></span><br><span class="line">        index index.html index.htm index.nginx-debian.html;</span><br><span class="line"></span><br><span class="line">        server_name _;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">                # 请求转发到gunicorn服务器</span><br><span class="line">                proxy_pass http://127.0.0.1:5000;</span><br><span class="line">                # 请求转发到多个gunicorn服务器</span><br><span class="line">                # proxy_pass http://flask;</span><br><span class="line">                # 设置请求头，并将头信息传递给服务器端 </span><br><span class="line">                proxy_set_header Host $host;</span><br><span class="line">                # 设置请求头，传递原始请求ip给 gunicorn 服务器</span><br><span class="line">                proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>##Gunicorn</p>
-<blockquote>
+<h2 id="Gunicorn"><a href="#Gunicorn" class="headerlink" title="Gunicorn"></a>Gunicorn</h2><blockquote>
 <p>Gunicorn（绿色独角兽）是一个Python WSGI的HTTP服务器<br>从Ruby的独角兽（Unicorn ）项目移植<br>该Gunicorn服务器与各种Web框架兼容，实现非常简单，轻量级的资源消耗<br>Gunicorn直接用命令启动，不需要编写配置文件</p>
 </blockquote>
-<p>###相关操作<br>安装</p>
+<h3 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h3><p>安装</p>
 <blockquote>
 <p>pip install gunicorn</p>
 </blockquote>
@@ -255,14 +253,14 @@ ga('send', 'pageview');
 <p>-w: 表示进程（worker） -b：表示绑定ip地址和端口号（bind）<br>gunicorn -w 2 -b 127.0.0.1:5000 运行文件名称:Flask程序实例名</p>
 </blockquote>
 <p>参考阅读： Gunicorn相关配置：<a href="https://blog.csdn.net/y472360651/article/details/78538188" target="_blank" rel="noopener">https://blog.csdn.net/y472360651/article/details/78538188</a></p>
-<p>###其他操作<br>拷贝本地代码到远程</p>
+<h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><p>拷贝本地代码到远程</p>
 <blockquote>
 <p>scp -r 本地文件路径 <a href="mailto:root@39.106.21.198" target="_blank" rel="noopener">root@39.106.21.198</a>:远程保存路径</p>
 </blockquote>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年03月14日 13:51</p>
+        <p>最后更新： 2019年03月14日 14:26</p>
         <p>原始链接： <a class="post-url" href="/2019/03/14/flask项目使用 Gunicorn + Nginx 进行布署/" title="flask项目使用 Gunicorn + Nginx 进行布署">https://zem12345678.github.io/2019/03/14/flask项目使用 Gunicorn + Nginx 进行布署/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
@@ -384,7 +382,7 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#flask项目使用-Gunicorn-Nginx-进行布署"><span class="post-toc-text">flask项目使用 Gunicorn + Nginx 进行布署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Markdown简介"><span class="post-toc-text">Markdown简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#requirements文件"><span class="post-toc-text">requirements文件</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#flask项目使用-Gunicorn-Nginx-进行布署"><span class="post-toc-text">flask项目使用 Gunicorn + Nginx 进行布署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Markdown简介"><span class="post-toc-text">Markdown简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#requirements文件"><span class="post-toc-text">requirements文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nginx"><span class="post-toc-text">Nginx</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Gunicorn"><span class="post-toc-text">Gunicorn</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#相关操作"><span class="post-toc-text">相关操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他操作"><span class="post-toc-text">其他操作</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
     

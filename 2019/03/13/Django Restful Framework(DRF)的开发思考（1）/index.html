@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Enmin`s blog">
 <meta property="og:description" content="Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支持快于请求的一种方式，全称是“跨域资源共享“(Cross-origin resource sharing),当使用XMLHttpRequest发送请求时，浏览器发现该请求不符">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-13T15:15:18.691Z">
+<meta property="og:updated_time" content="2019-03-14T06:29:15.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django Restful Framework(DRF)的开发思考（1）">
 <meta name="twitter:description" content="Restful一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制： CORS CORS是现代浏览亲支持快于请求的一种方式，全称是“跨域资源共享“(Cross-origin resource sharing),当使用XMLHttpRequest发送请求时，浏览器发现该请求不符">
@@ -178,8 +178,7 @@ ga('send', 'pageview');
 <p> <strong>JWT</strong> ：Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密；</p>
 <p><strong>FastDFS</strong> ：FastDFS 是用 c 语言编写的一款开源的分布式文件系统。FastDFS 为互联网量身定制， 充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用 FastDFS 很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。FastDFS 架构包括 Tracker server 和 Storage server。客户端请求 Tracker server 进行文 件上传、下载，通过 Tracker server 调度最终由 Storage server 完成文件上传和下载。</p>
 <hr>
-<p>##Web网站中开发模式（前后端分离&amp;前后端不分离）</p>
-<h3 id="web开发模式"><a href="#web开发模式" class="headerlink" title="web开发模式"></a>web开发模式</h3><table>
+<h2 id="Web网站中开发模式（前后端分离-amp-前后端不分离）"><a href="#Web网站中开发模式（前后端分离-amp-前后端不分离）" class="headerlink" title="Web网站中开发模式（前后端分离&amp;前后端不分离）"></a>Web网站中开发模式（前后端分离&amp;前后端不分离）</h2><h3 id="web开发模式"><a href="#web开发模式" class="headerlink" title="web开发模式"></a>web开发模式</h3><table>
 <thead>
 <tr>
 <th style="text-align:left">开发模式</th>
@@ -209,7 +208,7 @@ ga('send', 'pageview');
 <p>200：获取或修改<br>​201：新建<br>​204：删除<br>​400：客户端请求有误<br>​404：客户端请求的资源找不到<br>​500：服务器出错</p>
 </blockquote>
 <p><strong>响应数据返回json</strong>。</p>
-<p>###使用Django知识自定义RestAPI接口<br>准备工作-&gt;创建应用-&gt;定义模板类-&gt;生成数据表-&gt;添加测试数据。</p>
+<h3 id="使用Django知识自定义RestAPI接口"><a href="#使用Django知识自定义RestAPI接口" class="headerlink" title="使用Django知识自定义RestAPI接口"></a>使用Django知识自定义RestAPI接口</h3><p>准备工作-&gt;创建应用-&gt;定义模板类-&gt;生成数据表-&gt;添加测试数据。</p>
 <blockquote>
 <p>使用Django知识自定义RestAPI接口:</p>
 <ol>
@@ -220,8 +219,7 @@ ga('send', 'pageview');
 <li>删除指定的图书信息 DELETE /books/(?P<pk>\d+)/</pk></li>
 </ol>
 </blockquote>
-<p>###RestAPI接口开发时的工作(序列化和反序列化)</p>
-<table>
+<h3 id="RestAPI接口开发时的工作-序列化和反序列化"><a href="#RestAPI接口开发时的工作-序列化和反序列化" class="headerlink" title="RestAPI接口开发时的工作(序列化和反序列化)"></a>RestAPI接口开发时的工作(序列化和反序列化)</h3><table>
 <thead>
 <tr>
 <th style="text-align:left">开发模式</th>
@@ -242,9 +240,7 @@ ga('send', 'pageview');
 <p>主要工作</p>
 <p>​ 1）将请求数据保存在模型对象中(反序列化)。<br>​ 2）操作数据库。<br>​ 3）将模型对象转换为前端所需的格式(序列化)。</p>
 <p>## </p>
-<p>##序列化器|视图类|拓展类</p>
-<p>###序列化类的功能：进行序列化和反序列化</p>
-<blockquote>
+<h2 id="序列化器-视图类-拓展类"><a href="#序列化器-视图类-拓展类" class="headerlink" title="序列化器|视图类|拓展类"></a>序列化器|视图类|拓展类</h2><h3 id="序列化类的功能：进行序列化和反序列化"><a href="#序列化类的功能：进行序列化和反序列化" class="headerlink" title="序列化类的功能：进行序列化和反序列化"></a>序列化类的功能：进行序列化和反序列化</h3><blockquote>
 <p>序列化：将对象转化为字典数据<br>反序列化：1）数据校验<br>                2）数据保存(新增&amp;更新)。<br>定义序列化器类：<br>继承Serializer或ModelSerializer</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">from rest_framework import serializers</span><br><span class="line"></span><br><span class="line"># serializers.Serializer：定义任何序列化器类时，都可以直接继承于Serializer</span><br><span class="line"># serializers.ModelSerializer：如果定义的序列化器类针对的是一个模型类，可以直接继承ModelSerializer</span><br><span class="line"></span><br><span class="line">class User(object):</span><br><span class="line">    def __init__(self, username, age):</span><br><span class="line">        self.username = username</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">class UserSerializer(serializers.Serializer):</span><br><span class="line">    &quot;&quot;&quot;序列化器类&quot;&quot;&quot;</span><br><span class="line">    # 序列化器字段 = serializers.字段类型(选项参数)</span><br><span class="line">    username = serializers.CharField()</span><br><span class="line">    age = serializers.IntegerField()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    user = User(&apos;smart&apos;, 18)</span><br><span class="line">    # &#123;</span><br><span class="line">    #    &quot;username&quot;: &quot;smart&quot;,</span><br><span class="line">    #    &quot;age&quot;: 18</span><br><span class="line">    # &#125;</span><br><span class="line"></span><br><span class="line">    serializer = UserSerializer(user)</span><br><span class="line">    # 获取序列化之后的字典数据</span><br><span class="line">    serializer.data</span><br><span class="line"></span><br><span class="line">	&quot;hello&quot;</span><br></pre></td></tr></table></figure>
@@ -254,8 +250,7 @@ ga('send', 'pageview');
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">books = BookInfo.objects.all()</span><br><span class="line">serializer = BookInfoSerializer(books, many=<span class="keyword">True</span>)</span><br><span class="line">serializer.data</span><br></pre></td></tr></table></figure>
 <p>3）关联对象的序列化</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 将关联对象序列化为关联对象主键 PrimaryKeyRelatedFieldå</span><br><span class="line"><span class="number">2.</span> 将关联对象使用指定的序列化器进行序列化</span><br><span class="line"><span class="number">3.</span> 将关联对象序列化为关联对象模型类__str__方法的返回值 StringRelatedField</span><br><span class="line"></span><br><span class="line">注意：如果关联对象有多个，定义字段时，需要添加many=<span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-<p>###2. 序列化器-反序列化</p>
-<p>1）反序列化之数据校验</p>
+<h3 id="2-序列化器-反序列化"><a href="#2-序列化器-反序列化" class="headerlink" title="2. 序列化器-反序列化"></a>2. 序列化器-反序列化</h3><p>1）反序列化之数据校验</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;<span class="string">'btitle'</span>: <span class="string">'python'</span>&#125;</span><br><span class="line"></span><br><span class="line">serializer = BookInfoSerializer(data=data)</span><br><span class="line">serializer.is_valid() <span class="comment"># 调用此方法会对传递的data数据内容进行校验，校验成功返回True, 否则返回False</span></span><br><span class="line">serializer.errors <span class="comment"># 获取校验失败的错误信息</span></span><br><span class="line">serializer.validated_data <span class="comment"># 获取校验之后的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 补充验证行为</span></span><br><span class="line"><span class="number">1.</span> 对对应的字段指定validators</span><br><span class="line"><span class="number">2.</span> 序列化器类中定义对应的方法validate_&lt;field_name&gt;对指定的字段进行校验</span><br><span class="line"><span class="number">3.</span> 如果校验需要结合多个字段内容，定义validate方法</span><br></pre></td></tr></table></figure>
 <p>2）反序列化之数据保存(新增或更新)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据校验之后，调用此方法可以进行数据保存，可能会调用序列化器类中的create或update</span></span><br><span class="line">serializer.save() </span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用create，创建序列化器对象时只传递了data</span></span><br><span class="line">data = &#123;<span class="string">'btitle'</span>: <span class="string">'python'</span>&#125;</span><br><span class="line">serializer = BookInfoSerializer(data=data)</span><br><span class="line">serializer.is_valid()</span><br><span class="line">serializer.save()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用update，创建序列化器对象时传递了data和对象</span></span><br><span class="line">book = BookInfo.objects.get(id=<span class="number">1</span>)</span><br><span class="line">data = &#123;<span class="string">'btitle'</span>: <span class="string">'python'</span>&#125;</span><br><span class="line">serializer = BookInfoSerializer(book, data=data)</span><br><span class="line">serializer.is_valid()</span><br><span class="line">serializer.save()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意: Serializer类中create和update没有进行实现，需要自己实现代码。</span></span><br></pre></td></tr></table></figure>
@@ -279,8 +274,7 @@ ga('send', 'pageview');
 <p>get_serializer_class: 返回当前视图使用的序列化器类<br>​get_serializer: 创建一个序列化器类的对象<br>​get_queryset: 获取当前视图使用的查询集<br>​get_object: 获取单个对象，默认根据主键进行查询</p>
 </blockquote>
 <p>##子类视图类|视图集|路由Router<br>| 类名           | 说明                                                         |<br>| ————– | ———————————————————— |<br>| APIView        | 1）继承自View，封装了Django 本身的HttpRequest对象为Request对象。2）统一的异常处理。 3）认证&amp;权限&amp;限流。 |<br>| GenericAPIView | 1）继承自APIView，提供了操作序列化器和数据库数据的方法，通常和Mixin扩展类配合使用。2）过滤&amp;分页。 |</p>
-<p>###1. Mixin扩展类</p>
-<p>DRF提供了5个扩展类，封装了5个通用的操作流程。</p>
+<h3 id="1-Mixin扩展类"><a href="#1-Mixin扩展类" class="headerlink" title="1. Mixin扩展类"></a>1. Mixin扩展类</h3><p>DRF提供了5个扩展类，封装了5个通用的操作流程。</p>
 <table>
 <thead>
 <tr>
@@ -311,8 +305,7 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<p>###2. 子类视图</p>
-<p>为了方便我们开发RestAPI，DRF框架除了提供APIView和GenericAPIView视图类之外，还提供了一些子类视图类，这些子类视图类同时继承了<code>GenericAPIView</code>和对应的Mixin扩展类，并且提供了对应的请求方法。</p>
+<h3 id="2-子类视图"><a href="#2-子类视图" class="headerlink" title="2. 子类视图"></a>2. 子类视图</h3><p>为了方便我们开发RestAPI，DRF框架除了提供APIView和GenericAPIView视图类之外，还提供了一些子类视图类，这些子类视图类同时继承了<code>GenericAPIView</code>和对应的Mixin扩展类，并且提供了对应的请求方法。</p>
 <table>
 <thead>
 <tr>
@@ -361,8 +354,7 @@ ga('send', 'pageview');
 </table>
 <p>示例1：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需求1：写一个视图，提供一个接口</span></span><br><span class="line">	<span class="number">1.</span> 获取一组图书数据 GET /books/</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BookListView</span><span class="params">(ListAPIView)</span>:</span></span><br><span class="line">        queryset = BookInfo.objects.all()</span><br><span class="line">        serializer_class = BookInfoSerializer</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 需求2：写一个视图，提供一个接口</span></span><br><span class="line">	1. 获取指定的图书数据 GET /books/(?P&lt;pk&gt;\d+)/</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BookDetailView</span><span class="params">(RetrieveAPIView)</span>:</span></span><br><span class="line">        queryset = BookInfo.objects.all()</span><br><span class="line">        serializer_class = BookInfoSerializer</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 需求3：写一个视图，提供两个接口</span></span><br><span class="line">	1. 获取指定的图书数据 GET /books/(?P&lt;pk&gt;\d+)/</span><br><span class="line">    2. 更新指定的图书数据 PUT /books/(?P&lt;pk&gt;\d+)/</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BookDetailView</span><span class="params">(RetrieveUpdateAPIView)</span>:</span></span><br><span class="line">        queryset = BookInfo.objects.all()</span><br><span class="line">        serializer_class = BookInfoSerializer</span><br></pre></td></tr></table></figure>
-<p>###3. 视图集类</p>
-<p>将操作同一资源的处理方法放在同一个类中(视图集)，处理方法不要以请求方式命名，而是以对应的action命名，</p>
+<h3 id="3-视图集类"><a href="#3-视图集类" class="headerlink" title="3. 视图集类"></a>3. 视图集类</h3><p>将操作同一资源的处理方法放在同一个类中(视图集)，处理方法不要以请求方式命名，而是以对应的action命名，</p>
 <p>​    list: 提供一组数据</p>
 <p>​    create: 创建一条新数据</p>
 <p>​    retrieve: 获取指定的数据</p>
@@ -398,11 +390,9 @@ ga('send', 'pageview');
 <p>示例1：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需求1：写一个视图集，提供以下两种操作</span></span><br><span class="line">	<span class="number">1.</span> 获取一组图书信息(list) GET /books/</span><br><span class="line">    <span class="number">2.</span> 新建一本图书信息(create) POST /books/</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BookInfoViewSet</span><span class="params">(ListModelMixin, CreateModelMixin, GenericViewSet)</span>:</span></span><br><span class="line">        queryset = BookInfo.objects.all()</span><br><span class="line">        serializer_class = BookInfoSerializer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需求2：写一个视图集，提供以下两种操作</span></span><br><span class="line">	<span class="number">1.</span> 获取一组图书信息(list) GET /books/</span><br><span class="line">    2. 获取指定图书信息(retrieve) GET /books/(?P&lt;pk&gt;\d+)/</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BookInfoViewSet</span><span class="params">(ReadOnlyModelViewSet)</span>:</span></span><br><span class="line">        queryset = BookInfo.objects.all()</span><br><span class="line">        serializer_class = BookInfoSerializer</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 需求3：写一个视图集，提供以下三种操作</span></span><br><span class="line">	<span class="number">1.</span> 获取一组图书信息(list) GET /books/</span><br><span class="line">    2. 获取指定图书信息(retrieve) GET /books/(?P&lt;pk&gt;\d+)/</span><br><span class="line">    3. 更新指定图书信息(update) PUT /books/(?P&lt;pk&gt;\d+)/</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BookInfoViewSet</span><span class="params">(UpdateModelMixin, ReadOnlyModelViewSet)</span>:</span></span><br><span class="line">        queryset = BookInfo.objects.all()</span><br><span class="line">        serializer_class = BookInfoSerializer</span><br></pre></td></tr></table></figure>
 <p>注: 除了常见的5种基本操作之外，如果想给一个视图集中添加其他处理方法，直接在视图集中定义即可。</p>
-<p>###4. 路由Router</p>
-<p>1）路由Router是专门配合视图集来使用的，可以使用Router自动生成视图集中相应处理函数对应的URL配置项。</p>
+<h3 id="4-路由Router"><a href="#4-路由Router" class="headerlink" title="4. 路由Router"></a>4. 路由Router</h3><p>1）路由Router是专门配合视图集来使用的，可以使用Router自动生成视图集中相应处理函数对应的URL配置项。</p>
 <p>2）使用Router自动生成视图集中相应处理函数对应的URL配置项时，除了常见的5种基本操作之外，如果视图集中有添加的其他处理方法，则需要给这些方法加上action装饰器之后，才会动态生成其对应的URL配置项。</p>
-<p>##其他功能</p>
-<p>1）认证&amp;权限</p>
+<h2 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h2><p>1）认证&amp;权限</p>
 <p>2）限流</p>
 <p>控制用户访问API接口的频率。</p>
 <p>针对匿名用户和认证用户分别进行限流。</p>
@@ -424,7 +414,7 @@ ga('send', 'pageview');
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年03月13日 23:15</p>
+        <p>最后更新： 2019年03月14日 14:29</p>
         <p>原始链接： <a class="post-url" href="/2019/03/13/Django Restful Framework(DRF)的开发思考（1）/" title="Django Restful Framework(DRF)的开发思考（1）">https://zem12345678.github.io/2019/03/13/Django Restful Framework(DRF)的开发思考（1）/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
@@ -546,7 +536,7 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web开发模式"><span class="post-toc-text">web开发模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RestAPI接口风格"><span class="post-toc-text">RestAPI接口风格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-序列化器-序列化"><span class="post-toc-text">1. 序列化器-序列化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-使用Serializer改写Django自定义RestAPI接口"><span class="post-toc-text">3. 使用Serializer改写Django自定义RestAPI接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-APIView视图类-amp-Request对象-amp-Response对象"><span class="post-toc-text">4. APIView视图类&amp;Request对象&amp;Response对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-使用APIView改写Django自定义RestAPI接口"><span class="post-toc-text">5. 使用APIView改写Django自定义RestAPI接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-GenericAPIView视图类"><span class="post-toc-text">6. GenericAPIView视图类</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Web网站中开发模式（前后端分离-amp-前后端不分离）"><span class="post-toc-text">Web网站中开发模式（前后端分离&amp;前后端不分离）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web开发模式"><span class="post-toc-text">web开发模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RestAPI接口风格"><span class="post-toc-text">RestAPI接口风格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用Django知识自定义RestAPI接口"><span class="post-toc-text">使用Django知识自定义RestAPI接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RestAPI接口开发时的工作-序列化和反序列化"><span class="post-toc-text">RestAPI接口开发时的工作(序列化和反序列化)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#序列化器-视图类-拓展类"><span class="post-toc-text">序列化器|视图类|拓展类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#序列化类的功能：进行序列化和反序列化"><span class="post-toc-text">序列化类的功能：进行序列化和反序列化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-序列化器-序列化"><span class="post-toc-text">1. 序列化器-序列化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-序列化器-反序列化"><span class="post-toc-text">2. 序列化器-反序列化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-使用Serializer改写Django自定义RestAPI接口"><span class="post-toc-text">3. 使用Serializer改写Django自定义RestAPI接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-APIView视图类-amp-Request对象-amp-Response对象"><span class="post-toc-text">4. APIView视图类&amp;Request对象&amp;Response对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-使用APIView改写Django自定义RestAPI接口"><span class="post-toc-text">5. 使用APIView改写Django自定义RestAPI接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-GenericAPIView视图类"><span class="post-toc-text">6. GenericAPIView视图类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Mixin扩展类"><span class="post-toc-text">1. Mixin扩展类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-子类视图"><span class="post-toc-text">2. 子类视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-视图集类"><span class="post-toc-text">3. 视图集类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-路由Router"><span class="post-toc-text">4. 路由Router</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他功能"><span class="post-toc-text">其他功能</span></a></li></ol>
         </nav>
     </aside>
     
