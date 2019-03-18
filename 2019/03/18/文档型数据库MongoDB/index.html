@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>文档型数据库MongoDB | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="文档型数据库MongoDBMongoDB简介MongoDB 是一个跨平台的，面向文档的数据库，是当前 NoSQL 数据库产品中最热门 的一种。它介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库的产品。它支持的数据结构非常松散，是类似 JSON 的 BSON 格式，因此可以存 储比较复杂的数据类型。​ MongoDB 的官方网站地址是：http://www.mongod">
+<meta name="keywords" content="MongoDB,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文档型数据库MongoDB">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="文档型数据库MongoDBMongoDB简介MongoDB 是一个跨平台的，面向文档的数据库，是当前 NoSQL 数据库产品中最热门 的一种。它介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库的产品。它支持的数据结构非常松散，是类似 JSON 的 BSON 格式，因此可以存 储比较复杂的数据类型。​ MongoDB 的官方网站地址是：http://www.mongod">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g179jp26d3j30f70d4djf.jpg">
+<meta property="og:updated_time" content="2019-03-18T14:22:57.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文档型数据库MongoDB">
+<meta name="twitter:description" content="文档型数据库MongoDBMongoDB简介MongoDB 是一个跨平台的，面向文档的数据库，是当前 NoSQL 数据库产品中最热门 的一种。它介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库的产品。它支持的数据结构非常松散，是类似 JSON 的 BSON 格式，因此可以存 储比较复杂的数据类型。​ MongoDB 的官方网站地址是：http://www.mongod">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g179jp26d3j30f70d4djf.jpg">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-文档型数据库MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      文档型数据库MongoDB
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据库/">数据库</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-18
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="文档型数据库MongoDB"><a href="#文档型数据库MongoDB" class="headerlink" title="文档型数据库MongoDB"></a>文档型数据库MongoDB</h1><h2 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h2><p>MongoDB 是一个跨平台的，面向文档的数据库，是当前 NoSQL 数据库产品中最热<br>门 的一种。它介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最<br>像关系数据库的产品。它支持的数据结构非常松散，是类似 JSON 的 BSON 格式，因此可以<br>存 储比较复杂的数据类型。<br>​ MongoDB 的官方网站地址是：<a href="http://www.mongodb.org/" target="_blank" rel="noopener">http://www.mongodb.org/</a></p>
+<h2 id="MongoDB特点"><a href="#MongoDB特点" class="headerlink" title="MongoDB特点"></a>MongoDB特点</h2><p>MongoDB 最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象<br>的查<br>询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建<br>立索<br>引。它是一个面向集合的,模式自由的文档型数据库。<br>具体特点总结如下：</p>
+<blockquote>
+<p>（1）面向集合存储，易于存储对象类型的数据<br>（2）模式自由<br>（3）支持动态查询<br>（4）支持完全索引，包含内部对象<br>（5）支持复制和故障恢复<br>（6）使用高效的二进制数据存储，包括大型对象（如视频等）<br>（7）自动处理碎片，以支持云计算层次的扩展性<br>（8）支持 Python，PHP，Ruby，Java，C，C#，Javascript，Perl 及 C++语言的驱动程<br>序，<br>社区中也提供了对 Erlang 及.NET 等平台的驱动程序<br>（9） 文件存储格式为 BSON（一种 JSON 的扩展）</p>
+</blockquote>
+<h2 id="MongoDB体系结构"><a href="#MongoDB体系结构" class="headerlink" title="MongoDB体系结构"></a>MongoDB体系结构</h2><p>MongoDB 的逻辑结构是一种层次结构。主要由：<br>文档(document)、集合(collection)、数据库(database)这三部分组成的。逻辑结构是面<br>向用户的，用户使用 MongoDB 开发应用程序使用的就是逻辑结构。</p>
+<blockquote>
+<p>（1）MongoDB 的文档（document），相当于关系数据库中的一行记录。<br>（2）多个文档组成一个集合（collection），相当于关系数据库的表。<br>（3）多个集合（collection），逻辑上组织在一起，就是数据库（database）。<br>（4）一个 MongoDB 实例支持多个数据库（database）。<br>文档(document)、集合(collection)、数据库(database)的层次结构如下图:<br>北京市昌平区建材城西路金燕龙办公楼一层 电话<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g179jp26d3j30f70d4djf.jpg" alt="enter image description here"><br>| MongoDb      |    关系型数据库Mysql  |<br>| :——– | ——–:| :–: |<br>| 数据库(databases)  | 数据库(databases) |<br>| 集合(collections)     |   表(table) |<br>| 文档(document)      |     行(row) | </p>
+</blockquote>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><h4 id="null："><a href="#null：" class="headerlink" title="null："></a>null：</h4><p>用于表示空值或者不存在的字段，{“x”:null}</p>
+<h4 id="布尔型："><a href="#布尔型：" class="headerlink" title="布尔型："></a>布尔型：</h4><p>布尔类型有两个值true和false，{“x”:true}</p>
+<h4 id="数值："><a href="#数值：" class="headerlink" title="数值："></a>数值：</h4><p>shell默认使用64为浮点型数值。{“x”：3.14}或{“x”：3}。对于整型值，可以使 NumberInt（4字节符号整数）或NumberLong（8字节符号整数）{“x”:NumberInt(“3”)}{“x”:NumberLong(“3”)}</p>
+<h4 id="字符串："><a href="#字符串：" class="headerlink" title="字符串："></a>字符串：</h4><p>UTF-8字符串都可以表示为字符串类型的数据，{“x”：“呵呵”}</p>
+<h4 id="日期："><a href="#日期：" class="headerlink" title="日期："></a>日期：</h4><p>日期被存储为自新纪元依赖经过的毫秒数，不存储时区，{“x”:new Date()}</p>
+<h4 id="正则表达式："><a href="#正则表达式：" class="headerlink" title="正则表达式："></a>正则表达式：</h4><p>查询时，使用正则表达式作为限定条件，语法与JavaScript的正则表达式相<br>同，{“x”:/[abc]/}</p>
+<h4 id="数组："><a href="#数组：" class="headerlink" title="数组："></a>数组：</h4><p>数据列表或数据集可以表示为数组，{“x”： [“a“，“b”,”c”]}</p>
+<h4 id="内嵌文档："><a href="#内嵌文档：" class="headerlink" title="内嵌文档："></a>内嵌文档：</h4><p>文档可以嵌套其他文档，被嵌套的文档作为值来处理，{“x”:{“y”:3 }}</p>
+<h4 id="对象Id："><a href="#对象Id：" class="headerlink" title="对象Id："></a>对象Id：</h4><p>对象id是一个12字节的字符串，是文档的唯一标识，{“x”: objectId() }</p>
+<h4 id="二进制数据："><a href="#二进制数据：" class="headerlink" title="二进制数据："></a>二进制数据：</h4><p>二进制数据是一个任意字节的字符串。它不能直接在shell中使用。如果要<br>将非utf-字符保存到数据库中，二进制数据是唯一的方式。<br>代码：查询和文档中可以包括任何JavaScript代码，{“x”:function(){/…/}}</p>
+<h2 id="走进MongoDB"><a href="#走进MongoDB" class="headerlink" title="走进MongoDB"></a>走进MongoDB</h2><h3 id="MongoDB安装与启动"><a href="#MongoDB安装与启动" class="headerlink" title="MongoDB安装与启动"></a>MongoDB安装与启动</h3><h4 id="window系统MongoDB安装"><a href="#window系统MongoDB安装" class="headerlink" title="window系统MongoDB安装"></a>window系统MongoDB安装</h4><p>安装<br>双击“mongodb-win32-x86_64-2008plusssl-3.2.10-signed.msi” 按照提示步骤安装即可。安装完成后，软件会安装在C:\ProgramFiles\MongoDB 目录中。我们要启动的服务程序就是C:\Program Files\MongoDB\Server\3.2\bin目录下的mongod.exe，为了方便我们每次启动，我将C:\ProgramFiles\MongoDB\Server\3.2\bin 设置到环境变量path中。<br>启动<br>（1）首先打开命令提示符，创建一个用于存放数据的目录</p>
+<blockquote>
+<p>md d:\data</p>
+</blockquote>
+<p>（2）启动服务</p>
+<blockquote>
+<p>mongod ‐‐dbpath=d:\data</p>
+</blockquote>
+<p>我们在启动信息中可以看到，mongoDB的默认端口是27017<br>如果我们想改变默认的启动端口，可以通过–port来指定端口<br>在命令提示符输入以下命令即可完成登陆</p>
+<blockquote>
+<p>mongo</p>
+</blockquote>
+<p>退出mongodb</p>
+<blockquote>
+<p>exit</p>
+</blockquote>
+<p>2 Docker 环境下MongoDB安装<br>在宿主机创建mongo容器</p>
+<blockquote>
+<p>docker run ‐di ‐‐name=tensquare_mongo ‐p 27017:27017 mongo</p>
+</blockquote>
+<p>远程登陆</p>
+<blockquote>
+<p>mongo 192.168.184.134</p>
+</blockquote>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="选择和创建数据库"><a href="#选择和创建数据库" class="headerlink" title="选择和创建数据库"></a>选择和创建数据库</h3><p>选择和创建数据库的语法格式：</p>
+<blockquote>
+<p>use 数据库名称</p>
+</blockquote>
+<p>如果数据库不存在则自动创建<br>以下语句创建spit数据库</p>
+<blockquote>
+<p>use spitdb</p>
+</blockquote>
+<h3 id="插入与查询文档"><a href="#插入与查询文档" class="headerlink" title="插入与查询文档"></a>插入与查询文档</h3><p>插入文档的语法格式：</p>
+<blockquote>
+<p>db.集合名称.insert(数据);</p>
+</blockquote>
+<p>我们这里可以插入以下测试数据：</p>
+<blockquote>
+<p>db.spit.insert({content:”听说Python很给力呀”,userid:”1011”,nickname:”小<br>雅”,visits:NumberInt(902)})</p>
+</blockquote>
+<p>查询集合的语法格式：</p>
+<blockquote>
+<p>db.集合名称.find()</p>
+</blockquote>
+<p>如果我们要查询spit集合的所有文档，我们输入以下命令</p>
+<blockquote>
+<p>db.spit.find()</p>
+</blockquote>
+<p>这里你会发现每条文档会有一个叫_id的字段，这个相当于我们原来关系数据库中表的主<br>键，当你在插入文档记录时没有指定该字段，MongoDB会自动创建，其类型是ObjectID<br>类型。如果我们在插入文档记录时指定该字段也可以，其类型可以是ObjectID类型，也<br>可以是MongoDB支持的任意类型。<br>输入以下测试语句:</p>
+<blockquote>
+<p>db.spit.insert({_id:”1”,content:”我还是没有想明白到底为啥出<br>错”,userid:”1012”,nickname:”小明”,visits:NumberInt(2020)});<br>db.spit.insert({_id:”2”,content:”加班到半夜”,userid:”1013”,nickname:”凯<br>撒”,visits:NumberInt(1023)});<br>db.spit.insert({_id:”3”,content:”手机流量超了咋<br>办？”,userid:”1013”,nickname:”凯撒”,visits:NumberInt(111)});<br>db.spit.insert({_id:”4”,content:”坚持就是胜利”,userid:”1014”,nickname:”诺<br>诺”,visits:NumberInt(1223)});</p>
+</blockquote>
+<p>如果我想按一定条件来查询，比如我想查询userid为1013的记录，怎么办？很简单！只<br>要在find()中添加参数即可，参数也是json格式，如下：</p>
+<blockquote>
+<p>db.spit.find({userid:’1013’})<br>如果你只需要返回符合条件的第一条数据，我们可以使用findOne命令来实现<br>db.spit.findOne({userid:’1013’})</p>
+</blockquote>
+<p>如果你想返回指定条数的记录，可以在find方法后调用limit来返回结果，例如：</p>
+<blockquote>
+<p>db.spit.find().limit(3)</p>
+</blockquote>
+<h3 id="修改与删除文档"><a href="#修改与删除文档" class="headerlink" title="修改与删除文档"></a>修改与删除文档</h3><p>修改文档的语法结构：</p>
+<blockquote>
+<p>db.集合名称.update(条件,修改后的数据)</p>
+</blockquote>
+<p>如果我们想修改_id为1的记录，浏览量为1000，输入以下语句：</p>
+<blockquote>
+<p>db.spit.update({_id:”1”},{visits:NumberInt(1000)})</p>
+</blockquote>
+<p>执行后，我们会发现，这条文档除了visits字段其它字段都不见了，为了解决这个问题，<br>我们需要使用修改器$set来实现，命令如下：</p>
+<blockquote>
+<p>db.spit.update({_id:”1”},{visits:NumberInt(1000)})</p>
+</blockquote>
+<p>这样就OK啦。<br>删除文档的语法结构：</p>
+<blockquote>
+<p>db.集合名称.remove(条件)</p>
+</blockquote>
+<p>以下语句可以将数据全部删除，请慎用</p>
+<blockquote>
+<p>db.spit.remove({})</p>
+</blockquote>
+<p>如果删除visits=1000的记录，输入以下语句</p>
+<blockquote>
+<p>db.spit.remove({visits:1000})</p>
+</blockquote>
+<h3 id="统计条数"><a href="#统计条数" class="headerlink" title="统计条数"></a>统计条数</h3><p>统计记录条件使用count()方法。以下语句统计spit集合的记录数</p>
+<blockquote>
+<p>db.spit.count()</p>
+</blockquote>
+<p>如果按条件统计 ，例如：统计userid为1013的记录条数</p>
+<blockquote>
+<p>db.spit.count({userid:”1013”})</p>
+</blockquote>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><p>MongoDB的模糊查询是通过正则表达式的方式实现的。格式为：</p>
+<blockquote>
+<p>/模糊查询字符串/</p>
+</blockquote>
+<p>例如，我要查询吐槽内容包含“流量”的所有文档，代码如下：</p>
+<blockquote>
+<p>db.spit.find({content:/流量/})</p>
+</blockquote>
+<p>如果要查询吐槽内容中以“加班”开头的，代码如下：</p>
+<blockquote>
+<p>db.spit.find({content:/^加班/})</p>
+</blockquote>
+<h3 id="大于-小于-不等于"><a href="#大于-小于-不等于" class="headerlink" title="大于 小于 不等于"></a>大于 小于 不等于</h3><p>&lt;, &lt;=, &gt;, &gt;= 这个操作符也是很常用的，格式如下:</p>
+<blockquote>
+<p>db.集合名称.find({ “field” : { $gt: value }}) // 大于: field &gt; value<br>db.集合名称.find({ “field” : { $lt: value }}) // 小于: field &lt; value<br>db.集合名称.find({ “field” : { $gte: value }}) // 大于等于: field &gt;= value<br>db.集合名称.find({ “field” : { $lte: value }}) // 小于等于: field &lt;= value<br>db.集合名称.find({ “field” : { $ne: value }}) // 不等于</p>
+</blockquote>
+<p>示例：查询吐槽浏览量大于1000的记录</p>
+<blockquote>
+<p>db.spit.find({visits:{$gt:1000}})</p>
+</blockquote>
+<h3 id="包含与不包含"><a href="#包含与不包含" class="headerlink" title="包含与不包含"></a>包含与不包含</h3><p>包含使用$in操作符。<br>示例：查询吐槽集合中userid字段包含1013和1014的文档</p>
+<blockquote>
+<p>db.spit.find({userid:{$in:[“1013”,”1014”]}})</p>
+</blockquote>
+<p>不包含使用$nin操作符。<br>示例：查询吐槽集合中userid字段不包含1013和1014的文档</p>
+<blockquote>
+<p>db.spit.find({userid:{$nin:[“1013”,”1014”]}})</p>
+</blockquote>
+<h3 id="条件连接"><a href="#条件连接" class="headerlink" title="条件连接"></a>条件连接</h3><p>我们如果需要查询同时满足两个以上条件，需要使用$and操作符将条件进行关联。（相<br>当于SQL的and）<br>格式为：</p>
+<blockquote>
+<p>$and:[ { },{ },{ } ]</p>
+</blockquote>
+<p>示例：查询吐槽集合中visits大于等于1000 并且小于2000的文档</p>
+<blockquote>
+<p>db.spit.find({$and:[ {visits:{$gte:1000}} ,{visits:{$lt:2000} }]})</p>
+</blockquote>
+<p>如果两个以上条件之间是或者的关系，我们使用 操作符进行关联，与前面and的使用<br>方式相同<br>格式为：$or:[ { },{ },{ } ]<br>示例：查询吐槽集合中userid为1013，或者浏览量小于2000的文档记录</p>
+<blockquote>
+<p>db.spit.find({$or:[ {userid:”1013”} ,{visits:{$lt:2000} }]})</p>
+</blockquote>
+<h3 id="列值增长"><a href="#列值增长" class="headerlink" title="列值增长"></a>列值增长</h3><p>如果我们想实现对某列值在原有值的基础上进行增加或减少，可以使用$inc运算符来实现</p>
+<blockquote>
+<p>db.spit.update({_id:”2”},{$inc:{visits:NumberInt(1)}} )</p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年03月18日 22:22</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/18/文档型数据库MongoDB/" title="文档型数据库MongoDB">https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/&title=《文档型数据库MongoDB》 — Enmin`s blog&pic=images/37.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/&title=《文档型数据库MongoDB》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《文档型数据库MongoDB》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/18/文档型数据库MongoDB/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/MongoDB/" class="color3">MongoDB</a>
+      
+    <a href="/tags/数据库/" class="color4">数据库</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#文档型数据库MongoDB"><span class="post-toc-text">文档型数据库MongoDB</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MongoDB简介"><span class="post-toc-text">MongoDB简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MongoDB特点"><span class="post-toc-text">MongoDB特点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MongoDB体系结构"><span class="post-toc-text">MongoDB体系结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据类型"><span class="post-toc-text">数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本数据类型"><span class="post-toc-text">基本数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#null："><span class="post-toc-text">null：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#布尔型："><span class="post-toc-text">布尔型：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数值："><span class="post-toc-text">数值：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#字符串："><span class="post-toc-text">字符串：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#日期："><span class="post-toc-text">日期：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#正则表达式："><span class="post-toc-text">正则表达式：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数组："><span class="post-toc-text">数组：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内嵌文档："><span class="post-toc-text">内嵌文档：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#对象Id："><span class="post-toc-text">对象Id：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二进制数据："><span class="post-toc-text">二进制数据：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#走进MongoDB"><span class="post-toc-text">走进MongoDB</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MongoDB安装与启动"><span class="post-toc-text">MongoDB安装与启动</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#window系统MongoDB安装"><span class="post-toc-text">window系统MongoDB安装</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用命令"><span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择和创建数据库"><span class="post-toc-text">选择和创建数据库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#插入与查询文档"><span class="post-toc-text">插入与查询文档</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改与删除文档"><span class="post-toc-text">修改与删除文档</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计条数"><span class="post-toc-text">统计条数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模糊查询"><span class="post-toc-text">模糊查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#大于-小于-不等于"><span class="post-toc-text">大于 小于 不等于</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#包含与不包含"><span class="post-toc-text">包含与不包含</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#条件连接"><span class="post-toc-text">条件连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#列值增长"><span class="post-toc-text">列值增长</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/03/18/分布式搜索引擎ElasticSearch/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          分布式搜索引擎ElasticSearch
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/03/18/LeedCode15：三数之和/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">LeedCode15：三数之和</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="文档型数据库MongoDB" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Redis/">Redis</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

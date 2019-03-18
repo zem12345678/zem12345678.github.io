@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>分布式搜索引擎ElasticSearch | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="分布式搜索引擎ElasticSearchElasticSearch简介什么是ElasticSearch​ Elasticsearch是一个实时的分布式搜索和分析引擎。它可以帮助你用前所未有的速度去处理大规模数据。ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发的，并作">
+<meta name="keywords" content="分布式,ElasticSearch,搜索引擎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式搜索引擎ElasticSearch">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="分布式搜索引擎ElasticSearchElasticSearch简介什么是ElasticSearch​ Elasticsearch是一个实时的分布式搜索和分析引擎。它可以帮助你用前所未有的速度去处理大规模数据。ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发的，并作">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17akern16j30n506bgn7.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17al1x35sj30oe06wjsb.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17ap5h815j30g1078t9p.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17almlfp5j30o70ak3zg.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17am9043mj30p2079jsz.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17amsziv7j30md07cq51.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17anc3v0zj30fa07mwg7.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17aol0xklj30g607tgmh.jpg">
+<meta property="og:updated_time" content="2019-03-18T14:24:02.266Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式搜索引擎ElasticSearch">
+<meta name="twitter:description" content="分布式搜索引擎ElasticSearchElasticSearch简介什么是ElasticSearch​ Elasticsearch是一个实时的分布式搜索和分析引擎。它可以帮助你用前所未有的速度去处理大规模数据。ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发的，并作">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g17akern16j30n506bgn7.jpg">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-分布式搜索引擎ElasticSearch" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      分布式搜索引擎ElasticSearch
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据库/">数据库</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-18
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="分布式搜索引擎ElasticSearch"><a href="#分布式搜索引擎ElasticSearch" class="headerlink" title="分布式搜索引擎ElasticSearch"></a>分布式搜索引擎ElasticSearch</h1><h2 id="ElasticSearch简介"><a href="#ElasticSearch简介" class="headerlink" title="ElasticSearch简介"></a>ElasticSearch简介</h2><h3 id="什么是ElasticSearch"><a href="#什么是ElasticSearch" class="headerlink" title="什么是ElasticSearch"></a>什么是ElasticSearch</h3><p>​ Elasticsearch是一个实时的分布式搜索和分析引擎。它可以帮助你用前所未有的速<br>度去处理大规模数据。ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分<br>布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发<br>的，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用<br>于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。</p>
+<h3 id="ElasticSearch特点"><a href="#ElasticSearch特点" class="headerlink" title="ElasticSearch特点"></a>ElasticSearch特点</h3><p>（1）可以作为一个大型分布式集群（数百台服务器）技术，处理PB级数据，服务大公<br>司；也可以运行在单机上<br>（2）将全文检索、数据分析以及分布式技术，合并在了一起，才形成了独一无二的ES；<br>（3）开箱即用的，部署简单<br>（4）全文检索，同义词处理，相关度排名，复杂数据分析，海量数据的近实时处理</p>
+<h3 id="ElasticSearch体系结构"><a href="#ElasticSearch体系结构" class="headerlink" title="ElasticSearch体系结构"></a>ElasticSearch体系结构</h3><h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">Elasticsearch</th>
+<th style="text-align:right">关系型数据库Mysql</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">索引(index)</td>
+<td style="text-align:right">数据库(databases)</td>
+</tr>
+<tr>
+<td style="text-align:left">类型(type)</td>
+<td style="text-align:right">表(table)</td>
+</tr>
+<tr>
+<td style="text-align:left">文档(document)</td>
+<td style="text-align:right">行(row)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="走进ElasticSearch"><a href="#走进ElasticSearch" class="headerlink" title="走进ElasticSearch"></a>走进ElasticSearch</h2><h3 id="ElasticSearch部署与启动"><a href="#ElasticSearch部署与启动" class="headerlink" title="ElasticSearch部署与启动"></a>ElasticSearch部署与启动</h3><p>下载ElasticSearch 5.6.8版本<br><a href="https://www.elastic.co/downloads/past-releases/elasticsearch-5-6-8" target="_blank" rel="noopener">https://www.elastic.co/downloads/past-releases/elasticsearch-5-6-8</a><br>在命令提示符下，进入ElasticSearch安装目录下的bin目录,执行命令<br>即可启动。<br>我们打开浏览器，在地址栏输入<a href="http://127.0.0.1:9200/" target="_blank" rel="noopener">http://127.0.0.1:9200/</a> 即可看到输出结果</p>
+<blockquote>
+<p>{<br>“name” : “uV2glMR”,<br>“cluster_name” : “elasticsearch”,<br>“cluster_uuid” : “RdV7UTQZT1‐Jnka9dDPsFg”,<br>“version” : {<br>“number” : “5.6.8”,<br>“build_hash” : “688ecce”,<br>“build_date” : “2018‐02‐16T16:46:30.010Z”,<br>“build_snapshot” : false,<br>“lucene_version” : “6.6.1”<br>},<br>“tagline” : “You Know, for Search”<br>}</p>
+</blockquote>
+<h3 id="Postman调用RestAPI"><a href="#Postman调用RestAPI" class="headerlink" title="Postman调用RestAPI"></a>Postman调用RestAPI</h3><h4 id="新建索引"><a href="#新建索引" class="headerlink" title="新建索引"></a>新建索引</h4><p>例如我们要创建一个叫articleindex的索引 ,就以put方式提交<br><a href="http://127.0.0.1:9200/articleindex/" target="_blank" rel="noopener">http://127.0.0.1:9200/articleindex/</a></p>
+<h4 id="新建文档"><a href="#新建文档" class="headerlink" title="新建文档"></a>新建文档</h4><p>新建文档：<br>以post方式提交 <a href="http://127.0.0.1:9200/articleindex/article" target="_blank" rel="noopener">http://127.0.0.1:9200/articleindex/article</a><br>body:</p>
+<blockquote>
+<p>{<br>“title”:”SpringBoot2.0”,<br>“content”:”发布啦”<br>}</p>
+</blockquote>
+<p>返回结果如下：</p>
+<blockquote>
+<p>{<br>“_index”: “articleindex”,<br>“_type”: “article”,<br>“_id”: “AWPKsdh0FdLZnId5S_F9”,<br>“_version”: 1,<br>“result”: “created”,<br>“_shards”: {<br>“total”: 2,<br>“successful”: 1,<br>“failed”: 0<br>},<br>“created”: true<br>}</p>
+</blockquote>
+<p>_id是由系统自动生成的。 为了方便之后的演示，我们再次录入几条测试数据</p>
+<p>####<br>查询全部文档<br>查询某索引某类型的全部数据，以get方式请求<br><a href="http://127.0.0.1:9200/articleindex/article/_search" target="_blank" rel="noopener">http://127.0.0.1:9200/articleindex/article/_search</a> 返回结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;took&quot;: 5,</span><br><span class="line">&quot;timed_out&quot;: false,</span><br><span class="line">&quot;_shards&quot;: &#123;</span><br><span class="line">&quot;total&quot;: 5,</span><br><span class="line">&quot;successful&quot;: 5,</span><br><span class="line">&quot;skipped&quot;: 0,</span><br><span class="line">&quot;failed&quot;: 0</span><br><span class="line">&#125;,</span><br><span class="line">&quot;hits&quot;: &#123;</span><br><span class="line">&quot;total&quot;: 2,</span><br><span class="line">&quot;max_score&quot;: 1,</span><br><span class="line">&quot;hits&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;_index&quot;: &quot;articleindex&quot;,</span><br><span class="line">&quot;_type&quot;: &quot;article&quot;,</span><br><span class="line">&quot;_id&quot;: &quot;AWPKrI4pFdLZnId5S_F7&quot;,</span><br><span class="line">&quot;_score&quot;: 1,</span><br><span class="line">&quot;_source&quot;: &#123;</span><br><span class="line">&quot;title&quot;: &quot;SpringBoot2.0&quot;,</span><br><span class="line">&quot;content&quot;: &quot;发布啦&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;_index&quot;: &quot;articleindex&quot;,</span><br><span class="line">&quot;_type&quot;: &quot;article&quot;,</span><br><span class="line">&quot;_id&quot;: &quot;AWPKsdh0FdLZnId5S_F9&quot;,</span><br><span class="line">&quot;_score&quot;: 1,</span><br><span class="line">&quot;_source&quot;: &#123;</span><br><span class="line">&quot;title&quot;: &quot;elasticsearch入门&quot;,</span><br><span class="line">&quot;content&quot;: &quot;零基础入门&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="修改文档"><a href="#修改文档" class="headerlink" title="修改文档"></a>修改文档</h4><p>以put形式提交以下地址<br><a href="http://192.168.184.134:9200/articleindex/article/AWPKrI4pFdLZnId5S_F7" target="_blank" rel="noopener">http://192.168.184.134:9200/articleindex/article/AWPKrI4pFdLZnId5S_F7</a><br>body:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;title&quot;:&quot;SpringBoot2.0正式版&quot;,</span><br><span class="line">&quot;content&quot;:&quot;发布了吗&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>返回结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;_index&quot;: &quot;articleindex&quot;,</span><br><span class="line">&quot;_type&quot;: &quot;article&quot;,</span><br><span class="line">&quot;_id&quot;: &quot;AWPKsdh0FdLZnId5S_F9&quot;,</span><br><span class="line">&quot;_version&quot;: 2,</span><br><span class="line">&quot;result&quot;: &quot;updated&quot;,</span><br><span class="line">&quot;_shards&quot;: &#123;</span><br><span class="line">&quot;total&quot;: 2,</span><br><span class="line">&quot;successful&quot;: 1,</span><br><span class="line">&quot;failed&quot;: 0</span><br><span class="line">&#125;,</span><br><span class="line">&quot;created&quot;: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果我们在地址中的ID不存在，则会创建新文档<br>以put形式提交以下地址：<br><a href="http://192.168.184.134:9200/articleindex/article/1" target="_blank" rel="noopener">http://192.168.184.134:9200/articleindex/article/1</a><br>body:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">&quot;title&quot;:&quot;AI牛逼&quot;,</span><br><span class="line">&quot;content&quot;:&quot;备注&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>返回信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;_index&quot;: &quot;articleindex&quot;,</span><br><span class="line">&quot;_type&quot;: &quot;article&quot;,</span><br><span class="line">&quot;_id&quot;: &quot;1&quot;,</span><br><span class="line">&quot;_version&quot;: 1,</span><br><span class="line">&quot;result&quot;: &quot;created&quot;,</span><br><span class="line">&quot;_shards&quot;: &#123;</span><br><span class="line">&quot;total&quot;: 2,</span><br><span class="line">&quot;successful&quot;: 1,</span><br><span class="line">&quot;failed&quot;: 0</span><br><span class="line">&#125;,</span><br><span class="line">&quot;created&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再次查询，看是否有新增的这条文档</p>
+<h4 id="按ID查询文档"><a href="#按ID查询文档" class="headerlink" title="按ID查询文档"></a>按ID查询文档</h4><p>GET方式请求<br><a href="http://192.168.184.134:9200/articleindex/article/1" target="_blank" rel="noopener">http://192.168.184.134:9200/articleindex/article/1</a><br>2.2.6 基本匹配查询<br>根据某列进行查询 get方式提交下列地址：<br><a href="http://192.168.184.134:9200/articleindex/article/_search?q=title:好给力" target="_blank" rel="noopener">http://192.168.184.134:9200/articleindex/article/_search?q=title:好给力</a><br>以上为按标题查询，返回结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;took&quot;: 10,</span><br><span class="line">&quot;timed_out&quot;: false,</span><br><span class="line">&quot;_shards&quot;: &#123;</span><br><span class="line">&quot;total&quot;: 5,</span><br><span class="line">&quot;successful&quot;: 5,</span><br><span class="line">&quot;skipped&quot;: 0,</span><br><span class="line">&quot;failed&quot;: 0</span><br><span class="line">&#125;,</span><br><span class="line">&quot;hits&quot;: &#123;</span><br><span class="line">&quot;total&quot;: 1,</span><br><span class="line">&quot;max_score&quot;: 2.0649285,</span><br><span class="line">&quot;hits&quot;: [</span><br><span class="line">&#123;</span><br><span class="line">&quot;_index&quot;: &quot;articleindex&quot;,</span><br><span class="line">&quot;_type&quot;: &quot;article&quot;,</span><br><span class="line">&quot;_id&quot;: &quot;1&quot;,</span><br><span class="line">&quot;_score&quot;: 2.0649285,</span><br><span class="line">&quot;_source&quot;: &#123;</span><br><span class="line">&quot;title&quot;: &quot;好给力&quot;,</span><br><span class="line">&quot;content&quot;: &quot;备注&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><p>我们可以用*代表任意字符：</p>
+<blockquote>
+<p><a href="http://192.168.184.134:9200/articleindex/article/_search?q=title:*s" target="_blank" rel="noopener">http://192.168.184.134:9200/articleindex/article/_search?q=title:*s</a>*</p>
+</blockquote>
+<h4 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h4><p>根据ID删除文档,删除ID为1的文档 DELETE方式提交</p>
+<blockquote>
+<p><a href="http://192.168.184.134:9200/articleindex/article/1" target="_blank" rel="noopener">http://192.168.184.134:9200/articleindex/article/1</a></p>
+</blockquote>
+<p>返回结果如下：</p>
+<blockquote>
+<p>{<br>“found”: true,<br>“_index”: “articleindex”,<br>“_type”: “article”,<br>“_id”: “1”,<br>“_version”: 2,<br>“result”: “deleted”,<br>“_shards”: {<br>“total”: 2,<br>“successful”: 1,<br>“failed”: 0<br>}<br>}<br>再次查看全部是否还存在此记录</p>
+</blockquote>
+<h2 id="Head插件的安装与使用"><a href="#Head插件的安装与使用" class="headerlink" title="Head插件的安装与使用"></a>Head插件的安装与使用</h2><h3 id="Head插件安装"><a href="#Head插件安装" class="headerlink" title="Head插件安装"></a>Head插件安装</h3><p>如果都是通过rest请求的方式使用Elasticsearch，未免太过麻烦，而且也不够人性化。我<br>们一般都会使用图形化界面来实现Elasticsearch的日常管理，最常用的就是Head插件<br>步骤1：</p>
+<blockquote>
+<p>下载head插件：<a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="noopener">https://github.com/mobz/elasticsearch-head</a></p>
+</blockquote>
+<p>步骤2：</p>
+<blockquote>
+<p>解压到任意目录，但是要和elasticsearch的安装目录区别开。</p>
+</blockquote>
+<p>步骤3：<br>安装node js ,安装cnpm</p>
+<blockquote>
+<p>npm install ‐g cnpm ‐‐registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>步骤4：</p>
+<blockquote>
+<p>将grunt安装为全局命令 。Grunt是基于Node.js的项目构建工具。它可以自动运行你所<br>设定的任务</p>
+</blockquote>
+<p>步骤5：安装依赖</p>
+<blockquote>
+<p>cnpm install</p>
+</blockquote>
+<p>步骤6：</p>
+<blockquote>
+<p>进入head目录启动head，在命令提示符下输入命令</p>
+</blockquote>
+<p>步骤7：</p>
+<blockquote>
+<p>打开浏览器，输入 <a href="http://localhost:9100" target="_blank" rel="noopener">http://localhost:9100</a></p>
+</blockquote>
+<p>步骤8：</p>
+<blockquote>
+<p>点击连接按钮没有任何相应，按F12发现有如下错误<br>No ‘Access-Control-Allow-Origin’ header is present on the requested resource</p>
+</blockquote>
+<p>这个错误是由于elasticsearch默认不允许跨域调用，而elasticsearch-head是属于前端工<br>程，所以报错。<br>我们这时需要修改elasticsearch的配置，让其允许跨域访问。<br>修改elasticsearch配置文件：elasticsearch.yml，增加以下两句命令：</p>
+<blockquote>
+<p>http.cors.enabled: true<br>http.cors.allow‐origin:  “*”<br>此步为允许elasticsearch跨越访问 点击连接即可看到相关信息<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17akern16j30n506bgn7.jpg" alt="enter image description here"></p>
+</blockquote>
+<h3 id="Head插件操作"><a href="#Head插件操作" class="headerlink" title="Head插件操作"></a>Head插件操作</h3><h4 id="新建索引-1"><a href="#新建索引-1" class="headerlink" title="新建索引"></a>新建索引</h4><p>选择“索引”选项卡，点击“新建索引”按钮<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17al1x35sj30oe06wjsb.jpg" alt="enter image description here"><br> 输入索引名称点击OK</p>
+<h4 id="新建或修改文档"><a href="#新建或修改文档" class="headerlink" title="新建或修改文档"></a>新建或修改文档<img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17ap5h815j30g1078t9p.jpg" alt="enter image description here"></h4><p>在复合查询中提交地址，输入内容，提交方式为PUT<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17almlfp5j30o70ak3zg.jpg" alt="enter image description here"><br>点击数据浏览 ,点击要查询的索引名称，右侧窗格中显示文档信息<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17am9043mj30p2079jsz.jpg" alt="enter image description here"><br>点击文档信息：<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17amsziv7j30md07cq51.jpg" alt="enter image description here"><br>修改数据后重新提交请求 , 此时因为ID已经存在，所以执行的是修改操作。<br>重新查询此记录，发现版本为2 。也就是说每次修改后版本都会增加1.<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17anc3v0zj30fa07mwg7.jpg" alt="enter image description here"></p>
+<h4 id="搜索文档"><a href="#搜索文档" class="headerlink" title="搜索文档"></a>搜索文档</h4><p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g17aol0xklj30g607tgmh.jpg" alt="enter image description here"></p>
+<h4 id="删除文档-1"><a href="#删除文档-1" class="headerlink" title="删除文档"></a>删除文档</h4><h2 id="IK分词器"><a href="#IK分词器" class="headerlink" title="IK分词器"></a>IK分词器</h2><h3 id="什么是IK分词器"><a href="#什么是IK分词器" class="headerlink" title="什么是IK分词器"></a>什么是IK分词器</h3><p>我们在浏览器地址栏输入<a href="http://127.0.0.1:9200/_analyze" target="_blank" rel="noopener">http://127.0.0.1:9200/_analyze</a>?<br>analyzer=chinese&amp;pretty=true&amp;text=我是程序员，浏览器显示效果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;tokens&quot; : [</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;我&quot;,</span><br><span class="line">&quot;start_offset&quot; : 0,</span><br><span class="line">&quot;end_offset&quot; : 1,</span><br><span class="line">&quot;type&quot; : &quot;&lt;IDEOGRAPHIC&gt;&quot;,</span><br><span class="line">&quot;position&quot; : 0</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;是&quot;,</span><br><span class="line">&quot;start_offset&quot; : 1,</span><br><span class="line">&quot;end_offset&quot; : 2,</span><br><span class="line">&quot;type&quot; : &quot;&lt;IDEOGRAPHIC&gt;&quot;,</span><br><span class="line">&quot;position&quot; : 1</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;程&quot;,</span><br><span class="line">&quot;start_offset&quot; : 2,</span><br><span class="line">&quot;end_offset&quot; : 3,</span><br><span class="line">&quot;type&quot; : &quot;&lt;IDEOGRAPHIC&gt;&quot;,</span><br><span class="line">&quot;position&quot; : 2</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;序&quot;,</span><br><span class="line">&quot;start_offset&quot; : 3,</span><br><span class="line">&quot;end_offset&quot; : 4,</span><br><span class="line">&quot;type&quot; : &quot;&lt;IDEOGRAPHIC&gt;&quot;,</span><br><span class="line">&quot;position&quot; : 3</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;员&quot;,</span><br><span class="line">&quot;start_offset&quot; : 4,</span><br><span class="line">&quot;end_offset&quot; : 5,</span><br><span class="line">&quot;type&quot; : &quot;&lt;IDEOGRAPHIC&gt;&quot;,</span><br><span class="line">&quot;position&quot; : 4</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>默认的中文分词是将每个字看成一个词，这显然是不符合要求的，所以我们需要安装中<br>文分词器来解决这个问题。<br>IK分词是一款国人开发的相对简单的中文分词器。虽然开发者自2012年之后就不在维护<br>了，但在工程应用中IK算是比较流行的一款！我们今天就介绍一下IK中文分词器的使用。</p>
+<h3 id="IK分词器安装"><a href="#IK分词器安装" class="headerlink" title="IK分词器安装"></a>IK分词器安装</h3><p>下载地址：<a href="https://github.com/medcl/elasticsearch-analysis-ik/releases" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases</a> 下载5.6.8版<br>本 </p>
+<blockquote>
+<p>（1）先将其解压，将解压后的elasticsearch文件夹重命名文件夹为ik<br>（2）将ik文件夹拷贝到elasticsearch/plugins 目录下。<br>（3）重新启动，即可加载IK分词器</p>
+</blockquote>
+<h3 id="IK分词器测试"><a href="#IK分词器测试" class="headerlink" title="IK分词器测试"></a>IK分词器测试</h3><p>IK提供了两个分词算法ik_smart 和 ik_max_word<br>其中 ik_smart 为最少切分，ik_max_word为最细粒度划分<br>我们分别来试一下<br>（1）最小切分：在浏览器地址栏输入地址<br><a href="http://127.0.0.1:9200/_analyze?analyzer=ik_smart&amp;pretty=true&amp;text=我是程序员" target="_blank" rel="noopener">http://127.0.0.1:9200/_analyze?analyzer=ik_smart&amp;pretty=true&amp;text=我是程序员</a><br>输出的结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;tokens&quot; : [</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;我&quot;,</span><br><span class="line">&quot;start_offset&quot; : 0,</span><br><span class="line">&quot;end_offset&quot; : 1,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 0</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;是&quot;,</span><br><span class="line">&quot;start_offset&quot; : 1,</span><br><span class="line">&quot;end_offset&quot; : 2,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 1</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;程序员&quot;,</span><br><span class="line">&quot;start_offset&quot; : 2,</span><br><span class="line">&quot;end_offset&quot; : 5,</span><br><span class="line">&quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">&quot;position&quot; : 2</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>（2）最细切分：在浏览器地址栏输入地址<br><a href="http://127.0.0.1:9200/_analyze?analyzer=ik_max_word&amp;pretty=true&amp;text=我是程序" target="_blank" rel="noopener">http://127.0.0.1:9200/_analyze?analyzer=ik_max_word&amp;pretty=true&amp;text=我是程序</a><br>员 输<br>出的结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;tokens&quot; : [</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;我&quot;,</span><br><span class="line">&quot;start_offset&quot; : 0,</span><br><span class="line">&quot;end_offset&quot; : 1,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 0</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;是&quot;,</span><br><span class="line">&quot;start_offset&quot; : 1,</span><br><span class="line">&quot;end_offset&quot; : 2,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 1</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;程序员&quot;,</span><br><span class="line">&quot;start_offset&quot; : 2,</span><br><span class="line">&quot;end_offset&quot; : 5,</span><br><span class="line">&quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">&quot;position&quot; : 2</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;程序&quot;,</span><br><span class="line">&quot;start_offset&quot; : 2,</span><br><span class="line">&quot;end_offset&quot; : 4,</span><br><span class="line">&quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">&quot;position&quot; : 3</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;员&quot;,</span><br><span class="line">&quot;start_offset&quot; : 4,</span><br><span class="line">&quot;end_offset&quot; : 5,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 4</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.4 自定义词库<br>我们现在测试”品如秀儿”，浏览器的测试效果如下：<br><a href="http://127.0.0.1:9200/_analyze?analyzer=ik_smart&amp;pretty=true&amp;text=品如秀儿" target="_blank" rel="noopener">http://127.0.0.1:9200/_analyze?analyzer=ik_smart&amp;pretty=true&amp;text=品如秀儿</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;tokens&quot; : [</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;品&quot;,</span><br><span class="line">&quot;start_offset&quot; : 0,</span><br><span class="line">&quot;end_offset&quot; : 1,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 0</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;如&quot;,</span><br><span class="line">&quot;start_offset&quot; : 1,</span><br><span class="line">&quot;end_offset&quot; : 2,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 1</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;秀&quot;,</span><br><span class="line">&quot;start_offset&quot; : 2,</span><br><span class="line">&quot;end_offset&quot; : 3,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 2</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;儿&quot;,</span><br><span class="line">&quot;start_offset&quot; : 3,</span><br><span class="line">&quot;end_offset&quot; : 4,</span><br><span class="line">&quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">&quot;position&quot; : 3</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>默认的分词并没有识别“传智播客”是一个词。如果我们想让系统识别“传智播客”是一个<br>词，需要编辑自定义词库。<br>步骤：<br>（1）进入elasticsearch/plugins/ik/config目录<br>（2）新建一个my.dic文件，编辑内容：</p>
+<blockquote>
+<p>品如秀儿</p>
+</blockquote>
+<p>修改IKAnalyzer.cfg.xml（在ik/config目录下）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">&lt;comment&gt;IK Analyzer 扩展配置&lt;/comment&gt;</span><br><span class="line">&lt;!‐‐用户可以在这里配置自己的扩展字典 ‐‐&gt;</span><br><span class="line">&lt;entry key=&quot;ext_dict&quot;&gt;my.dic&lt;/entry&gt;</span><br><span class="line">&lt;!‐‐用户可以在这里配置自己的扩展停止词字典‐‐&gt;</span><br><span class="line">&lt;entry key=&quot;ext_stopwords&quot;&gt;&lt;/entry&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure></p>
+<p>重新启动elasticsearch,通过浏览器测试分词效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;tokens&quot; : [</span><br><span class="line">&#123;</span><br><span class="line">&quot;token&quot; : &quot;品如秀儿&quot;,</span><br><span class="line">&quot;start_offset&quot; : 0,</span><br><span class="line">&quot;end_offset&quot; : 4,</span><br><span class="line">&quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">&quot;position&quot; : 0</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年03月18日 22:24</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/18/分布式搜索引擎ElasticSearch/" title="分布式搜索引擎ElasticSearch">https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/&title=《分布式搜索引擎ElasticSearch》 — Enmin`s blog&pic=images/38.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/&title=《分布式搜索引擎ElasticSearch》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《分布式搜索引擎ElasticSearch》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/18/分布式搜索引擎ElasticSearch/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/分布式/" class="color4">分布式</a>
+      
+    <a href="/tags/ElasticSearch/" class="color4">ElasticSearch</a>
+      
+    <a href="/tags/搜索引擎/" class="color5">搜索引擎</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#分布式搜索引擎ElasticSearch"><span class="post-toc-text">分布式搜索引擎ElasticSearch</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ElasticSearch简介"><span class="post-toc-text">ElasticSearch简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是ElasticSearch"><span class="post-toc-text">什么是ElasticSearch</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ElasticSearch特点"><span class="post-toc-text">ElasticSearch特点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ElasticSearch体系结构"><span class="post-toc-text">ElasticSearch体系结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#表格"><span class="post-toc-text">表格</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#走进ElasticSearch"><span class="post-toc-text">走进ElasticSearch</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ElasticSearch部署与启动"><span class="post-toc-text">ElasticSearch部署与启动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Postman调用RestAPI"><span class="post-toc-text">Postman调用RestAPI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#新建索引"><span class="post-toc-text">新建索引</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#新建文档"><span class="post-toc-text">新建文档</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#修改文档"><span class="post-toc-text">修改文档</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#按ID查询文档"><span class="post-toc-text">按ID查询文档</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#模糊查询"><span class="post-toc-text">模糊查询</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#删除文档"><span class="post-toc-text">删除文档</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Head插件的安装与使用"><span class="post-toc-text">Head插件的安装与使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Head插件安装"><span class="post-toc-text">Head插件安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Head插件操作"><span class="post-toc-text">Head插件操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#新建索引-1"><span class="post-toc-text">新建索引</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#新建或修改文档"><span class="post-toc-text">新建或修改文档</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#搜索文档"><span class="post-toc-text">搜索文档</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#删除文档-1"><span class="post-toc-text">删除文档</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IK分词器"><span class="post-toc-text">IK分词器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是IK分词器"><span class="post-toc-text">什么是IK分词器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IK分词器安装"><span class="post-toc-text">IK分词器安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IK分词器测试"><span class="post-toc-text">IK分词器测试</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/03/18/elasticsearch与MySQL数据同步/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          elasticsearch与MySQL数据同步
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/03/18/文档型数据库MongoDB/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">文档型数据库MongoDB</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="分布式搜索引擎ElasticSearch" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Redis/">Redis</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
