@@ -3,27 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Logistic回归对鸾尾花进行分类 | Enmin`s blog</title>
+  <title>LeedCode15：三数之和 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="逻辑斯蒂回归对鸾尾花进行分类Sigmoid函数逻辑回归也被称为广义线性回归模型，它与线性回归模型的形式基本上相同，都具有 ax+b，其中a和b是待求参数，其区别在于他们的因变量不同，多重线性回归直接将ax+b作为因变量，即y = ax+b，而logistic回归则通过函数S将ax+b对应到一个隐状态p，p = S(ax+b)，然后根据p与1-p的大小决定因变量的值。这里的函数S就是Sigmoid函">
-<meta name="keywords" content="算法,回归分类,Machine learning">
+  <meta name="description" content="LeedCode15：三数之和给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。  例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1, 2]]  解题思路">
+<meta name="keywords" content="Python,算法,LeetCood,数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Logistic回归对鸾尾花进行分类">
-<meta property="og:url" content="https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/index.html">
+<meta property="og:title" content="LeedCode15：三数之和">
+<meta property="og:url" content="https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="逻辑斯蒂回归对鸾尾花进行分类Sigmoid函数逻辑回归也被称为广义线性回归模型，它与线性回归模型的形式基本上相同，都具有 ax+b，其中a和b是待求参数，其区别在于他们的因变量不同，多重线性回归直接将ax+b作为因变量，即y = ax+b，而logistic回归则通过函数S将ax+b对应到一个隐状态p，p = S(ax+b)，然后根据p与1-p的大小决定因变量的值。这里的函数S就是Sigmoid函">
+<meta property="og:description" content="LeedCode15：三数之和给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。  例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1, 2]]  解题思路">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12ojpvozzj30dj0amaaa.jpg">
-<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12ok8odrbj30hv03rq32.jpg">
-<meta property="og:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12orqyvrjj30i00dgq4c.jpg">
-<meta property="og:updated_time" content="2019-03-15T01:11:54.870Z">
+<meta property="og:updated_time" content="2019-03-18T09:28:42.965Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Logistic回归对鸾尾花进行分类">
-<meta name="twitter:description" content="逻辑斯蒂回归对鸾尾花进行分类Sigmoid函数逻辑回归也被称为广义线性回归模型，它与线性回归模型的形式基本上相同，都具有 ax+b，其中a和b是待求参数，其区别在于他们的因变量不同，多重线性回归直接将ax+b作为因变量，即y = ax+b，而logistic回归则通过函数S将ax+b对应到一个隐状态p，p = S(ax+b)，然后根据p与1-p的大小决定因变量的值。这里的函数S就是Sigmoid函">
-<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/007rAy9hgy1g12ojpvozzj30dj0amaaa.jpg">
+<meta name="twitter:title" content="LeedCode15：三数之和">
+<meta name="twitter:description" content="LeedCode15：三数之和给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。  例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1, 2]]  解题思路">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -141,14 +137,14 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-Logistic回归对鸾尾花进行分类" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-LeedCode15：三数之和" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      Logistic回归对鸾尾花进行分类
+      LeedCode15：三数之和
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -156,12 +152,12 @@ ga('send', 'pageview');
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/Machinelearning/">Machine learning</a>
+                      <a href="/categories/算法/">算法</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2019-03-14
+          <i class="fa fa-calendar"></i>  2019-03-18
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -177,19 +173,22 @@ ga('send', 'pageview');
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h1 id="逻辑斯蒂回归对鸾尾花进行分类"><a href="#逻辑斯蒂回归对鸾尾花进行分类" class="headerlink" title="逻辑斯蒂回归对鸾尾花进行分类"></a>逻辑斯蒂回归对鸾尾花进行分类</h1><h2 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h2><p>逻辑回归也被称为广义线性回归模型，它与线性回归模型的形式基本上相同，都具有 ax+b，其中a和b是待求参数，其区别在于他们的因变量不同，多重线性回归直接将ax+b作为因变量，即y = ax+b，而logistic回归则通过函数S将ax+b对应到一个隐状态p，p = S(ax+b)，然后根据p与1-p的大小决定因变量的值。这里的函数S就是Sigmoid函数<br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12ojpvozzj30dj0amaaa.jpg" alt="enter image description here"><br><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12ok8odrbj30hv03rq32.jpg" alt="enter image description here"></p>
-<h2 id="IRIS数据集介绍"><a href="#IRIS数据集介绍" class="headerlink" title="IRIS数据集介绍"></a>IRIS数据集介绍</h2><p>Iris也称鸢尾花卉数据集,是常用的分类实验数据集，由R.A. Fisher于1936年收集整理的。其中包含3种植物种类，分别是山鸢尾（setosa）变色鸢尾（versicolor）和维吉尼亚鸢尾（virginica），每类50个样本，共150个样本。</p>
-<p>该数据集包含4个特征变量，1个类别变量。iris每个样本都包含了4个特征：花萼长度，花萼宽度，花瓣长度，花瓣宽度，以及1个类别变量（label）。我们需要建立一个分类器，分类器可以通过这4个特征来预测鸢尾花卉种类是属于山鸢尾，变色鸢尾还是维吉尼亚鸢尾。其中有一个类别是线性可分的，其余两个类别线性不可分，这在最后的分类结果绘制图中可观察到。</p>
-<h2 id="导入所需的包"><a href="#导入所需的包" class="headerlink" title="导入所需的包"></a>导入所需的包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import matplotlib as mpl</span><br><span class="line">from sklearn import preprocessing</span><br><span class="line">import pandas as pd</span><br><span class="line">from sklearn.preprocessing import StandardScaler</span><br><span class="line">from sklearn.pipeline import Pipeline</span><br></pre></td></tr></table></figure>
-<h2 id="pandas进行数据预处理"><a href="#pandas进行数据预处理" class="headerlink" title="pandas进行数据预处理"></a>pandas进行数据预处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data = pd.read_csv(path, header=None)</span><br><span class="line">   iris_types = data[4].unique()</span><br><span class="line">   for i, type in enumerate(iris_types):</span><br><span class="line">       data.set_value(data[4] == type, 4, i)</span><br><span class="line">   x, y = np.split(data.values, (4,), axis=1)</span><br><span class="line">   x = x.astype(np.float)</span><br><span class="line">   y = y.astype(np.int)</span><br><span class="line">   # 仅使用前两列特征</span><br></pre></td></tr></table></figure>
-<h2 id="导入模型，调用逻辑回归LogisticRegression-函数。"><a href="#导入模型，调用逻辑回归LogisticRegression-函数。" class="headerlink" title="导入模型，调用逻辑回归LogisticRegression()函数。"></a>导入模型，调用逻辑回归LogisticRegression()函数。</h2><h2 id="训练LogisticRegression分类器"><a href="#训练LogisticRegression分类器" class="headerlink" title="训练LogisticRegression分类器"></a>训练LogisticRegression分类器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x = x[:, :2]</span><br><span class="line">   lr = Pipeline([(&apos;sc&apos;, StandardScaler()),</span><br><span class="line">                  (&apos;clf&apos;, LogisticRegression()) ])</span><br><span class="line">   lr.fit(x, y.ravel())</span><br><span class="line">   y_hat = lr.predict(x)</span><br><span class="line">   y_hat_prob = lr.predict_proba(x)</span><br><span class="line">   np.set_printoptions(suppress=True)</span><br><span class="line">   print (&apos;y_hat = \n&apos;, y_hat)</span><br><span class="line">   print (&apos;y_hat_prob = \n&apos;, y_hat_prob)</span><br><span class="line">   print (u&apos;准确度：%.2f%%&apos; % (100*np.mean(y_hat == y.ravel())))</span><br><span class="line">   # 画图</span><br><span class="line">   N, M = 500, 500     # 横纵各采样多少个值</span><br><span class="line">   x1_min, x1_max = x[:, 0].min(), x[:, 0].max()   # 第0列的范围</span><br><span class="line">   x2_min, x2_max = x[:, 1].min(), x[:, 1].max()   # 第1列的范围</span><br><span class="line">   t1 = np.linspace(x1_min, x1_max, N)</span><br><span class="line">   t2 = np.linspace(x2_min, x2_max, M)</span><br><span class="line">   x1, x2 = np.meshgrid(t1, t2)                    # 生成网格采样点</span><br><span class="line">   x_test = np.stack((x1.flat, x2.flat), axis=1)   # 测试点</span><br></pre></td></tr></table></figure>
-<h2 id="训练结果可视化"><a href="#训练结果可视化" class="headerlink" title="训练结果可视化"></a>训练结果可视化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mpl.rcParams[&apos;font.sans-serif&apos;] = [u&apos;simHei&apos;]</span><br><span class="line">    mpl.rcParams[&apos;axes.unicode_minus&apos;] = False</span><br><span class="line">    cm_light = mpl.colors.ListedColormap([&apos;#77E0A0&apos;, &apos;#FF8080&apos;, &apos;#A0A0FF&apos;])</span><br><span class="line">    cm_dark = mpl.colors.ListedColormap([&apos;g&apos;, &apos;r&apos;, &apos;b&apos;])</span><br><span class="line">    y_hat = lr.predict(x_test)                  # 预测值</span><br><span class="line">    y_hat = y_hat.reshape(x1.shape)                 # 使之与输入的形状相同</span><br><span class="line">    plt.figure(facecolor=&apos;w&apos;)</span><br><span class="line">    plt.pcolormesh(x1, x2, y_hat, cmap=cm_light)     # 预测值的显示</span><br><span class="line">    plt.scatter(x[:, 0], x[:, 1], c=np.squeeze(y), edgecolors=&apos;k&apos;, s=50, cmap=cm_dark)    # 样本的显示</span><br><span class="line">    plt.xlabel(u&apos;花萼长度&apos;, fontsize=14)</span><br><span class="line">    plt.ylabel(u&apos;花萼宽度&apos;, fontsize=14)</span><br><span class="line">    plt.xlim(x1_min, x1_max)</span><br><span class="line">    plt.ylim(x2_min, x2_max)</span><br><span class="line">    plt.grid()</span><br><span class="line">    plt.title(u&apos;鸢尾花Logistic回归分类效果 - 标准化&apos;, fontsize=17)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="https://ww1.sinaimg.cn/large/007rAy9hgy1g12orqyvrjj30i00dgq4c.jpg" alt="enter image description here"></p>
+            <h1 id="LeedCode15：三数之和"><a href="#LeedCode15：三数之和" class="headerlink" title="LeedCode15：三数之和"></a>LeedCode15：三数之和</h1><p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。<br><strong>注意：答案中不可以包含重复的三元组。</strong></p>
+<blockquote>
+<p>例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，<br>满足要求的三元组集合为：<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p>
+</blockquote>
+<h2 id="解题思路一："><a href="#解题思路一：" class="headerlink" title="解题思路一："></a>解题思路一：</h2><p>暴力算法（不应该称之为算法）:<br>三层循环找到符合条件的数时间复杂度为 $ O(N^3) $</p>
+<p>##解题思路二：<br>$  c = -(a+b)  $  =&gt; 申请一个一个set集合将nums中所有的元素存进去，用双层loops很容易找a<br>和b，再在set集合中便利找到c复杂度为 $ O(N^2) +O(1) = O(N^2)$ ，但是这样会多开辟一块空间。</p>
+<p>##解题思路三：<br>先将整个数组排序python中可以直接用sort()方法进行排序，基于快排时间复杂度为$ O(N\log N）$  例如nums = [-1, 0, 1, 2, -1, -4]</p>
+<blockquote>
+<p>[-4, -1, -1 , 0, 1, 2 ] </p>
+</blockquote>
+<p> 先枚举找打a 一层loop在从剩下的元素中[-1, -1 , 0, 1, 2 ] 找b和c<br> 因a之后的元素是有序的那么我们就可以同时头和尾开始找<br><strong>假设b从头开始，c从尾开始，如果a+b+c大于零，那么c需要变小c往左移<br>如果a+b+c大于零，那么b需要变大b往右移</strong><br>c复杂度为 $O(N^2)$<br>完整代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution(object):</span><br><span class="line">    def threeSum(self, nums):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        res = []</span><br><span class="line">        nums.sort()</span><br><span class="line">        for i in range(len(nums)-2):</span><br><span class="line">            if i &gt; 0 and nums[i] == nums[i-1]:</span><br><span class="line">                continue</span><br><span class="line">            l,r = i+1,len(nums)-1</span><br><span class="line">            while l &lt; r:</span><br><span class="line">                s = nums[i] + nums[l] + nums[r]</span><br><span class="line">                if s &lt; 0: </span><br><span class="line">                    l += 1</span><br><span class="line">                elif s &gt; 0:</span><br><span class="line">                    r -= 1</span><br><span class="line">                else:</span><br><span class="line">                    res.append([nums[i],nums[l],nums[r]])</span><br><span class="line">                    while l &lt; r and nums[l] == nums[l+1]:</span><br><span class="line">                        l += 1</span><br><span class="line">                    while l &gt; r and nums[r] == nums[r-1]:</span><br><span class="line">                        r -=1</span><br><span class="line">                    l += 1</span><br><span class="line">                    r -= 1</span><br><span class="line">        return res</span><br></pre></td></tr></table></figure></p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年03月15日 09:11</p>
-        <p>原始链接： <a class="post-url" href="/2019/03/14/Logistic回归对鸾尾花进行分类/" title="Logistic回归对鸾尾花进行分类">https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/</a></p>
+        <p>最后更新： 2019年03月18日 17:28</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/18/LeedCode15：三数之和/" title="LeedCode15：三数之和">https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
                 <img src="/images/logo.png" alt="Enmin">
@@ -246,7 +245,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/&title=《Logistic回归对鸾尾花进行分类》 — Enmin`s blog&pic=images/26.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/&title=《LeedCode15：三数之和》 — Enmin`s blog&pic=images/36.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -256,22 +255,22 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/&title=《Logistic回归对鸾尾花进行分类》 — Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/&title=《LeedCode15：三数之和》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Logistic回归对鸾尾花进行分类》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/&via=https://zem12345678.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LeedCode15：三数之和》 — Enmin`s blog&url=https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/&via=https://zem12345678.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -281,7 +280,7 @@ ga('send', 'pageview');
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/14/Logistic回归对鸾尾花进行分类/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/03/18/LeedCode15：三数之和/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -293,11 +292,13 @@ ga('send', 'pageview');
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
+    <a href="/tags/Python/" class="color2">Python</a>
+      
     <a href="/tags/算法/" class="color3">算法</a>
       
-    <a href="/tags/回归分类/" class="color5">回归分类</a>
+    <a href="/tags/LeetCood/" class="color4">LeetCood</a>
       
-    <a href="/tags/Machinelearning/" class="color2">Machine learning</a>
+    <a href="/tags/数据结构/" class="color5">数据结构</a>
       
   </li>
 
@@ -310,26 +311,16 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#逻辑斯蒂回归对鸾尾花进行分类"><span class="post-toc-text">逻辑斯蒂回归对鸾尾花进行分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Sigmoid函数"><span class="post-toc-text">Sigmoid函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IRIS数据集介绍"><span class="post-toc-text">IRIS数据集介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#导入所需的包"><span class="post-toc-text">导入所需的包</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#pandas进行数据预处理"><span class="post-toc-text">pandas进行数据预处理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#导入模型，调用逻辑回归LogisticRegression-函数。"><span class="post-toc-text">导入模型，调用逻辑回归LogisticRegression()函数。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#训练LogisticRegression分类器"><span class="post-toc-text">训练LogisticRegression分类器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#训练结果可视化"><span class="post-toc-text">训练结果可视化</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#LeedCode15：三数之和"><span class="post-toc-text">LeedCode15：三数之和</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解题思路一："><span class="post-toc-text">解题思路一：</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2019/03/14/使用近似算法解决旅行商（TSP）问题/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          使用近似算法解决旅行商（TSP）问题
-        
-      </span>
-    </a>
   
-  
-    <a href="/2019/03/14/Django Restful Framework(DRF)的开发思考（3）/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Django Restful Framework(DRF)的开发思考（3）</span>
+    <a href="/2019/03/15/使用随机森林对鸾尾花进行分类/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">使用随机森林对鸾尾花进行分类</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -338,7 +329,7 @@ ga('send', 'pageview');
 
 
     
-        <div id="SOHUCS" sid="Logistic回归对鸾尾花进行分类" ></div>
+        <div id="SOHUCS" sid="LeedCode15：三数之和" ></div>
 <script type="text/javascript">
     (function(){
         var appid = 'cytRXLIlH';
