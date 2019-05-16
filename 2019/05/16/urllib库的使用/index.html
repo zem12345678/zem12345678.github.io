@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>urllib库的使用 | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="urllib库的使用所谓网页抓取，就是把URL地址中指定的网络资源从网络流中读取出来，保存到本地。 在Python中有很多库可以用来抓取网页，我们先学习urllib。 在 python2 中，urllib 被分为urllib,urllib2等 urlopen我们先来段代码： 12345678910111213# urllib_request.py# 导入urllib.request 库import">
+<meta name="keywords" content="爬虫,Urllib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="urllib库的使用">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/16/urllib库的使用/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="urllib库的使用所谓网页抓取，就是把URL地址中指定的网络资源从网络流中读取出来，保存到本地。 在Python中有很多库可以用来抓取网页，我们先学习urllib。 在 python2 中，urllib 被分为urllib,urllib2等 urlopen我们先来段代码： 12345678910111213# urllib_request.py# 导入urllib.request 库import">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHnO78.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHuVNF.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHufuq.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHuHC4.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHKbo8.jpg">
+<meta property="og:updated_time" content="2019-05-16T03:51:17.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="urllib库的使用">
+<meta name="twitter:description" content="urllib库的使用所谓网页抓取，就是把URL地址中指定的网络资源从网络流中读取出来，保存到本地。 在Python中有很多库可以用来抓取网页，我们先学习urllib。 在 python2 中，urllib 被分为urllib,urllib2等 urlopen我们先来段代码： 12345678910111213# urllib_request.py# 导入urllib.request 库import">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/16/EHnO78.jpg">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-urllib库的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      urllib库的使用
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据挖掘/">数据挖掘</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-16
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="urllib库的使用"><a href="#urllib库的使用" class="headerlink" title="urllib库的使用"></a>urllib库的使用</h1><p>所谓网页抓取，就是把URL地址中指定的网络资源从网络流中读取出来，保存到本地。 在Python中有很多库可以用来抓取网页，我们先学习urllib。</p>
+<p><strong>在 python2 中，urllib 被分为urllib,urllib2等</strong></p>
+<h2 id="urlopen"><a href="#urlopen" class="headerlink" title="urlopen"></a>urlopen</h2><p>我们先来段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># urllib_request.py</span><br><span class="line"></span><br><span class="line"># 导入urllib.request 库</span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line"># 向指定的url发送请求，并返回服务器响应的类文件对象</span><br><span class="line">response = urllib.request.urlopen(&quot;http://www.baidu.com&quot;)</span><br><span class="line"></span><br><span class="line"># 类文件对象支持文件对象的操作方法，如read()方法读取文件全部内容，返回字符串</span><br><span class="line">html = response.read()</span><br><span class="line"></span><br><span class="line"># 打印字符串</span><br><span class="line">print (html)</span><br></pre></td></tr></table></figure>
+<p>执行写的python代码，将打印结果</p>
+<blockquote>
+<p>Power@PowerMac ~$: python urllib_request.py</p>
+</blockquote>
+<p><strong>实际上，如果我们在浏览器上打开百度主页， 右键选择“查看源代码”，你会发现，跟我们刚才打印出来的是一模一样。也就是说，上面的4行代码就已经帮我们把百度的首页的全部代码爬了下来。</strong></p>
+<p><strong>一个基本的url请求对应的python代码真的非常简单。</strong></p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><p>在我们第一个例子里，urlopen()的参数就是一个url地址；</p>
+<p>但是如果需要执行更复杂的操作，比如增加HTTP报头，必须创建一个 Request 实例来作为urlopen()的参数；而需要访问的url地址则作为 Request 实例的参数。</p>
+<p>我们编辑urllib_request.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># urllib_request.py</span><br><span class="line"></span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line"># url 作为Request()方法的参数，构造并返回一个Request对象</span><br><span class="line">request = urllib.request.Request(&quot;http://www.baidu.com&quot;)</span><br><span class="line"></span><br><span class="line"># Request对象作为urlopen()方法的参数，发送给服务器并接收响应</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">html = response.read().decode()</span><br><span class="line"></span><br><span class="line">print (html)</span><br></pre></td></tr></table></figure></p>
+<p>运行结果是完全一样的：</p>
+<blockquote>
+<p>新建Request实例，除了必须要有 url 参数之外，还可以设置另外两个参数：</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>data（默认空）：是伴随 url 提交的数据（比如要post的数据），同时 HTTP 请求将从 “GET”方式 改为 “POST”方式。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>headers（默认空）：是一个字典，包含了需要发送的HTTP报头的键值对。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>这两个参数下面会说到。</p>
+</blockquote>
+<h2 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h2><p>但是这样直接用urllib给一个网站发送请求的话，确实略有些唐突了，就好比，人家每家都有门，你以一个路人的身份直接闯进去显然不是很礼貌。而且有一些站点不喜欢被程序（非人为访问）访问，有可能会拒绝你的访问请求。</p>
+<p>但是如果我们用一个合法的身份去请求别人网站，显然人家就是欢迎的，所以我们就应该给我们的这个代码加上一个身份，就是所谓的<strong>User-Agent</strong>头。</p>
+<blockquote>
+<p>浏览器 就是互联网世界上公认被允许的身份，如果我们希望我们的爬虫程序更像一个真实用户，那我们第一步，就是需要伪装成一个被公认的浏览器。用不同的浏览器在发送请求的时候，会有不同的User-Agent头。 urllib默认的User-Agent头为：Python-urllib/x.y（x和y是Python主版本和次版本号,例如 Python-urllib/2.7）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#urllib_request.py</span><br><span class="line"></span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">url = &quot;http://www.itcast.cn&quot;</span><br><span class="line"></span><br><span class="line">#IE 9.0 的 User-Agent，包含在 ua_header里</span><br><span class="line">ua_header = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;&quot;&#125;</span><br><span class="line"></span><br><span class="line">#  url 连同 headers，一起构造Request请求，这个请求将附带 IE9.0 浏览器的User-Agent</span><br><span class="line">request = urllib.request.Request(url, headers = ua_header)</span><br><span class="line"></span><br><span class="line"># 向服务器发送这个请求</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">html = response.read()</span><br><span class="line">print (html)</span><br></pre></td></tr></table></figure>
+<h2 id="添加更多的Header信息"><a href="#添加更多的Header信息" class="headerlink" title="添加更多的Header信息"></a>添加更多的Header信息</h2><p>在 HTTP Request 中加入特定的 Header，来构造一个完整的HTTP请求消息。</p>
+<blockquote>
+<p>可以通过调用Request.add_header() 添加/修改一个特定的header 也可以通过调用Request.get_header()来查看已有的header。</p>
+</blockquote>
+<p>添加一个特定的header<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># urllib_headers.py</span><br><span class="line"></span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">url = &quot;http://www.itcast.cn&quot;</span><br><span class="line"></span><br><span class="line">#IE 9.0 的 User-Agent</span><br><span class="line">header = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;&quot;&#125;</span><br><span class="line">request = urllib.request.Request(url, headers = header)</span><br><span class="line"></span><br><span class="line">#也可以通过调用Request.add_header() 添加/修改一个特定的header</span><br><span class="line">request.add_header(&quot;Connection&quot;, &quot;keep-alive&quot;)</span><br><span class="line"></span><br><span class="line"># 也可以通过调用Request.get_header()来查看header信息</span><br><span class="line"># request.get_header(header_name=&quot;Connection&quot;)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">print (response.code) #可以查看响应状态码</span><br><span class="line">html = response.read().decode()</span><br><span class="line"></span><br><span class="line">print (html)</span><br></pre></td></tr></table></figure></p>
+<p>随机添加/修改User-Agent<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># urllib_add_headers.py</span><br><span class="line"></span><br><span class="line">import urllib</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line">url = &quot;http://www.itcast.cn&quot;</span><br><span class="line"></span><br><span class="line">ua_list = [</span><br><span class="line">    &quot;Mozilla/5.0 (Windows NT 6.1; ) Apple.... &quot;,</span><br><span class="line">    &quot;Mozilla/5.0 (X11; CrOS i686 2268.111.0)... &quot;,</span><br><span class="line">    &quot;Mozilla/5.0 (Macintosh; U; PPC Mac OS X.... &quot;,</span><br><span class="line">    &quot;Mozilla/5.0 (Macintosh; Intel Mac OS... &quot;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">user_agent = random.choice(ua_list)</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url)</span><br><span class="line"></span><br><span class="line">#也可以通过调用Request.add_header() 添加/修改一个特定的header</span><br><span class="line">request.add_header(&quot;User-Agent&quot;, user_agent)</span><br><span class="line"></span><br><span class="line"># get_header()的字符串参数，第一个字母大写，后面的全部小写</span><br><span class="line">request.get_header(&quot;User-agent&quot;)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(requestr)</span><br><span class="line"></span><br><span class="line">html = response.read()</span><br><span class="line">print (html)</span><br></pre></td></tr></table></figure></p>
+<h2 id="urllib默认只支持HTTP-HTTPS的GET和POST方法"><a href="#urllib默认只支持HTTP-HTTPS的GET和POST方法" class="headerlink" title="urllib默认只支持HTTP/HTTPS的GET和POST方法"></a>urllib默认只支持HTTP/HTTPS的GET和POST方法</h2><h3 id="urllib-parse-urlencode"><a href="#urllib-parse-urlencode" class="headerlink" title="urllib.parse.urlencode()"></a>urllib.parse.urlencode()</h3><blockquote>
+<p>编码工作使用urllib.parse的urlencode()函数，帮我们将key:value这样的键值对转换成”key=value”这样的字符串，解码工作可以使用urllib.parse的unquote()函数。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># IPython3 中的测试结果</span><br><span class="line">In [1]: import urllib.parse</span><br><span class="line"></span><br><span class="line">In [2]: word = &#123;&quot;wd&quot; : &quot;人生苦短&quot;&#125;</span><br><span class="line"></span><br><span class="line"># 通过urllib.urlencode()方法，将字典键值对按URL编码转换，从而能被web服务器接受。</span><br><span class="line">In [3]: urllib.parse.urlencode(word)  </span><br><span class="line">Out[3]: &quot;wd=%E4%BC%A0%E6%99%BA%E6%92%AD%E5%AE%A2&quot;</span><br><span class="line"></span><br><span class="line"># 通过urllib.unquote()方法，把 URL编码字符串，转换回原先字符串。</span><br><span class="line">In [4]: print urllib.parse.unquote(&quot;wd=%E4%BC%A0%E6%99%BA%E6%92%AD%E5%AE%A2&quot;)</span><br><span class="line">wd=人生苦短</span><br></pre></td></tr></table></figure>
+<p><strong>一般HTTP请求提交数据，需要编码成 URL编码格式，然后做为url的一部分，或者作为参数传到Request对象中。</strong></p>
+<h2 id="Get方式"><a href="#Get方式" class="headerlink" title="Get方式"></a>Get方式</h2><p>GET请求一般用于我们向服务器获取数据，比如说，我们用百度搜索传智播客：<a href="https://www.baidu.com/s?wd=传智播客" target="_blank" rel="noopener">https://www.baidu.com/s?wd=传智播客</a></p>
+<p>浏览器的url会跳转成如图所示:<br><img src="https://s2.ax1x.com/2019/05/16/EHnO78.jpg" alt="enter image description here"><br><a href="https://www.baidu.com/s?wd=%E4%BC%A0%E6%99%BA%E6%92%AD%E5%AE%A2" target="_blank" rel="noopener">https://www.baidu.com/s?wd=%E4%BC%A0%E6%99%BA%E6%92%AD%E5%AE%A2</a></p>
+<p>在其中我们可以看到在请求部分里，<a href="http://www.baidu.com/s" target="_blank" rel="noopener">http://www.baidu.com/s</a>? 之后出现一个长长的字符串，其中就包含我们要查询的关键词传智播客，于是我们可以尝试用默认的Get方式来发送请求。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># urllib_get.py</span><br><span class="line"></span><br><span class="line">url = &quot;http://www.baidu.com/s&quot;</span><br><span class="line">word = &#123;&quot;wd&quot;:&quot;传智播客&quot;&#125;</span><br><span class="line">word = urllib.parse.urlencode(word) #转换成url编码格式（字符串）</span><br><span class="line">newurl = url + &quot;?&quot; + word    # url首个分隔符就是 ?</span><br><span class="line"></span><br><span class="line">headers=&#123; &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36&quot;&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(newurl, headers=headers)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">print (response.read())</span><br></pre></td></tr></table></figure></p>
+<p>批量爬取贴吧页面数据<br>首先我们创建一个python文件, tiebaSpider.py，我们要完成的是，输入一个百度贴吧的地址，比如：</p>
+<p>百度贴吧LOL吧第一页：<a href="http://tieba.baidu.com/f?kw=lol&amp;ie=utf-8&amp;pn=0" target="_blank" rel="noopener">http://tieba.baidu.com/f?kw=lol&amp;ie=utf-8&amp;pn=0</a></p>
+<p>第二页： <a href="http://tieba.baidu.com/f?kw=lol&amp;ie=utf-8&amp;pn=50" target="_blank" rel="noopener">http://tieba.baidu.com/f?kw=lol&amp;ie=utf-8&amp;pn=50</a></p>
+<p>第三页： <a href="http://tieba.baidu.com/f?kw=lol&amp;ie=utf-8&amp;pn=100" target="_blank" rel="noopener">http://tieba.baidu.com/f?kw=lol&amp;ie=utf-8&amp;pn=100</a></p>
+<p>发现规律了吧，贴吧中每个页面不同之处，就是url最后的pn的值，其余的都是一样的，我们可以抓住这个规律。</p>
+<p><strong>简单写一个小爬虫程序，来爬取百度LOL吧的所有网页。*</strong><br>先写一个main，提示用户输入要爬取的贴吧名，并用urllib.urlencode()进行转码，然后组合url，假设是lol吧，那么组合后的url就是：<a href="http://tieba.baidu.com/f?kw=lol" target="_blank" rel="noopener">http://tieba.baidu.com/f?kw=lol</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 模拟 main 函数</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    kw = raw_input(&quot;请输入需要爬取的贴吧:&quot;)</span><br><span class="line">    # 输入起始页和终止页，str转成int类型</span><br><span class="line">    beginPage = int(raw_input(&quot;请输入起始页：&quot;))</span><br><span class="line">    endPage = int(raw_input(&quot;请输入终止页：&quot;))</span><br><span class="line"></span><br><span class="line">    url = &quot;http://tieba.baidu.com/f?&quot;</span><br><span class="line">    key = urllib.parse.urlencode(&#123;&quot;kw&quot; : kw&#125;)</span><br><span class="line"></span><br><span class="line">    # 组合后的url示例：http://tieba.baidu.com/f?kw=lol</span><br><span class="line">    url = url + key</span><br><span class="line">    tiebaSpider(url, beginPage, endPage)</span><br></pre></td></tr></table></figure></p>
+<p>接下来，我们写一个百度贴吧爬虫接口，我们需要传递3个参数给这个接口， 一个是main里组合的url地址，以及起始页码和终止页码，表示要爬取页码的范围。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def tiebaSpider(url, beginPage, endPage):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：负责处理url，分配每个url去发送请求</span><br><span class="line">        url：需要处理的第一个url</span><br><span class="line">        beginPage: 爬虫执行的起始页面</span><br><span class="line">        endPage: 爬虫执行的截止页面</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    for page in range(beginPage, endPage + 1):</span><br><span class="line">        pn = (page - 1) * 50</span><br><span class="line"></span><br><span class="line">        filename = &quot;第&quot; + str(page) + &quot;页.html&quot;</span><br><span class="line">        # 组合为完整的 url，并且pn值每次增加50</span><br><span class="line">        fullurl = url + &quot;&amp;pn=&quot; + str(pn)</span><br><span class="line">        #print fullurl</span><br><span class="line"></span><br><span class="line">        # 调用loadPage()发送请求获取HTML页面</span><br><span class="line">        html = loadPage(fullurl, filename)</span><br><span class="line">        # 将获取到的HTML页面写入本地磁盘文件</span><br><span class="line">        writeFile(html, filename)</span><br></pre></td></tr></table></figure></p>
+<p>我们已经之前写出一个爬取一个网页的代码。现在，我们可以将它封装成一个小函数loadPage，供我们使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def loadPage(url, filename):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">        作用：根据url发送请求，获取服务器响应文件</span><br><span class="line">        url：需要爬取的url地址</span><br><span class="line">        filename: 文件名</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    print (&quot;正在下载&quot; + filename)</span><br><span class="line"></span><br><span class="line">    headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0;&quot;&#125;</span><br><span class="line"></span><br><span class="line">    request = urllib.request.Request(url, headers = headers)</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line">    return response.read()</span><br></pre></td></tr></table></figure></p>
+<p>最后如果我们希望将爬取到了每页的信息存储在本地磁盘上，我们可以简单写一个存储文件的接口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def writeFile(html, filename):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">        作用：保存服务器响应文件到本地磁盘文件里</span><br><span class="line">        html: 服务器响应文件</span><br><span class="line">        filename: 本地磁盘文件名</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    print (&quot;正在存储&quot; + filename)</span><br><span class="line">    with open(filename, &apos;w&apos;) as f:</span><br><span class="line">        f.write(html)</span><br><span class="line">    print &quot;-&quot; * 20</span><br></pre></td></tr></table></figure></p>
+<p>其实很多网站都是这样的，同类网站下的html页面编号，分别对应网址后的网页序号，只要发现规律就可以批量爬取页面了。</p>
+<h2 id="POST方式："><a href="#POST方式：" class="headerlink" title="POST方式："></a>POST方式：</h2><p>上面我们说了Request请求对象的里有data参数，它就是用在POST里的，我们要传送的数据就是这个参数data，data是一个字典，里面要匹配键值对。</p>
+<h3 id="有道词典翻译网站："><a href="#有道词典翻译网站：" class="headerlink" title="有道词典翻译网站："></a>有道词典翻译网站：</h3><p>输入测试数据，再通过使用Fiddler观察，其中有一条是POST请求，而向服务器发送的请求数据并不是在url里，那么我们可以试着模拟这个POST请求。<br><img src="https://s2.ax1x.com/2019/05/16/EHuVNF.jpg" alt="enter image description here"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line"></span><br><span class="line"># POST请求的目标URL</span><br><span class="line">url = &quot;http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule&amp;smartresult=ugc&amp;sessionFrom=null&quot;</span><br><span class="line"></span><br><span class="line">headers=&#123;&quot;User-Agent&quot;: &quot;Mozilla....&quot;&#125;</span><br><span class="line"></span><br><span class="line">formdata = &#123;</span><br><span class="line">    &quot;type&quot;:&quot;AUTO&quot;,</span><br><span class="line">    &quot;i&quot;:&quot;i love python&quot;,</span><br><span class="line">    &quot;doctype&quot;:&quot;json&quot;,</span><br><span class="line">    &quot;xmlVersion&quot;:&quot;1.8&quot;,</span><br><span class="line">    &quot;keyfrom&quot;:&quot;fanyi.web&quot;,</span><br><span class="line">    &quot;ue&quot;:&quot;UTF-8&quot;,</span><br><span class="line">    &quot;action&quot;:&quot;FY_BY_ENTER&quot;,</span><br><span class="line">    &quot;typoResult&quot;:&quot;true&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data = urllib.parse.urlencode(formdata)</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url, data = data, headers = headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">print (response.read())</span><br></pre></td></tr></table></figure></p>
+<p><strong>发送POST请求时，需要特别注意headers的一些属性：</strong></p>
+<blockquote>
+<p>Content-Length: 144： 是指发送的表单数据长度为144，也就是字符个数是144个。</p>
+</blockquote>
+<ol>
+<li><p>Content-Type: application/x-www-form-urlencoded ： 表示浏览器提交 Web 表单时使用，表单数据会按照 name1=value1&amp;name2=value2 键值对形式进行编码。</p>
+</li>
+<li><p>X-Requested-With: XMLHttpRequest ：表示Ajax异步请求。</p>
+<h2 id="获取AJAX加载的内容"><a href="#获取AJAX加载的内容" class="headerlink" title="获取AJAX加载的内容"></a>获取AJAX加载的内容</h2><p>有些网页内容使用AJAX加载，这种数据无法直接对网页url进行获取。只要记得，AJAX一般返回的是JSON，只要对AJAX地址进行post或get，就能返回JSON数据了。</p>
+</li>
+</ol>
+<blockquote>
+<p>如果非要从HTML页面里获取展现出来的数据，也不是不可以。但是要记住，作为一名爬虫工程师，你更需要关注的是数据的来源。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line"></span><br><span class="line"># demo1</span><br><span class="line"></span><br><span class="line">url = &quot;https://movie.douban.com/j/chart/top_list?type=11&amp;interval_id=100%3A90&amp;action&quot;</span><br><span class="line"></span><br><span class="line">headers=&#123;&quot;User-Agent&quot;: &quot;Mozilla....&quot;&#125;</span><br><span class="line"></span><br><span class="line"># 变动的是这两个参数，从start开始往后显示limit个</span><br><span class="line">formdata = &#123;</span><br><span class="line">    &apos;start&apos;:&apos;0&apos;,</span><br><span class="line">    &apos;limit&apos;:&apos;10&apos;</span><br><span class="line">&#125;</span><br><span class="line">data = urllib.parse.urlencode(formdata)</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url, data = data, headers = headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">print (response.read())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># demo2</span><br><span class="line"></span><br><span class="line">url = &quot;https://movie.douban.com/j/chart/top_list?&quot;</span><br><span class="line">headers=&#123;&quot;User-Agent&quot;: &quot;Mozilla....&quot;&#125;</span><br><span class="line"></span><br><span class="line"># 处理所有参数</span><br><span class="line">formdata = &#123;</span><br><span class="line">    &apos;type&apos;:&apos;11&apos;,</span><br><span class="line">    &apos;interval_id&apos;:&apos;100:90&apos;,</span><br><span class="line">    &apos;action&apos;:&apos;&apos;,</span><br><span class="line">    &apos;start&apos;:&apos;0&apos;,</span><br><span class="line">    &apos;limit&apos;:&apos;10&apos;</span><br><span class="line">&#125;</span><br><span class="line">data = urllib.parse.urlencode(formdata)</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url, data = data, headers = headers)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">print (response.read())</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>GET方式是直接以链接形式访问，链接中包含了所有的参数，服务器端用Request.QueryString获取变量的值。如果包含了密码的话是一种不安全的选择，不过你可以直观地看到自己提交了什么内容。</p>
+</blockquote>
+<blockquote>
+<p>POST则不会在网址上显示所有的参数，服务器端用Request.Form获取提交的数据，在Form提交的时候。但是HTML代码里如果不指定 method 属性，则默认为GET请求，Form中提交的数据将会附加在url之后，以?分开与url分开。</p>
+</blockquote>
+<blockquote>
+<p>表单数据可以作为 URL 字段（method=”get”）或者 HTTP POST （method=”post”）的方式来发送。比如在下面的HTML代码中，表单数据将因为 （method=”get”） 而附加到 URL 上：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;form_action.asp&quot; method=&quot;get&quot;&gt;</span><br><span class="line">    &lt;p&gt;First name: &lt;input type=&quot;text&quot; name=&quot;fname&quot; /&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Last name: &lt;input type=&quot;text&quot; name=&quot;lname&quot; /&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.ax1x.com/2019/05/16/EHufuq.jpg" alt="enter image description here"></p>
+<h2 id="处理HTTPS请求-SSL证书验证"><a href="#处理HTTPS请求-SSL证书验证" class="headerlink" title="处理HTTPS请求 SSL证书验证"></a>处理HTTPS请求 SSL证书验证</h2><p>现在随处可见 https 开头的网站，urllib可以为 HTTPS 请求验证SSL证书，就像web浏览器一样，如果网站的SSL证书是经过CA认证的，则能够正常访问，如：<a href="https://www.baidu.com/等.." target="_blank" rel="noopener">https://www.baidu.com/等..</a>.</p>
+<p>如果SSL证书验证不通过，或者操作系统不信任服务器的安全证书，比如浏览器在访问12306网站如：<a href="https://www.12306.cn/mormhweb/的时候，会警告用户证书不受信任。（据说" target="_blank" rel="noopener">https://www.12306.cn/mormhweb/的时候，会警告用户证书不受信任。（据说</a> 12306 网站证书是自己做的，没有通过CA认证）<br><img src="https://s2.ax1x.com/2019/05/16/EHuHC4.jpg" alt="enter image description here"><br>urllib在访问的时候则会报出SSLError：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line"></span><br><span class="line">url = &quot;https://www.12306.cn/mormhweb/&quot;</span><br><span class="line"></span><br><span class="line">headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36&quot;&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url, headers = headers)</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line">print (response.read())</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：</p>
+<p>URLError: <urlopen error="" [ssl:="" certificate_verify_failed]="" certificate="" verify="" failed="" (_ssl.c:749)=""><br>所以，如果以后遇到这种网站，我们需要单独处理SSL证书，让程序忽略SSL证书验证错误，即可正常访问。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line"># 1. 导入Python SSL处理模块</span><br><span class="line">import ssl</span><br><span class="line"></span><br><span class="line"># 2. 表示忽略未经核实的SSL证书认证</span><br><span class="line">context = ssl._create_unverified_context()</span><br><span class="line"></span><br><span class="line">url = &quot;https://www.12306.cn/mormhweb/&quot;</span><br><span class="line"></span><br><span class="line">headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36&quot;&#125;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url, headers = headers)</span><br><span class="line"></span><br><span class="line"># 3. 在urlopen()方法里 指明添加 context 参数</span><br><span class="line">response = urllib.request.urlopen(request, context = context)</span><br><span class="line"></span><br><span class="line">print (response.read().decode())</span><br></pre></td></tr></table></figure></urlopen></p>
+<h2 id="关于CA"><a href="#关于CA" class="headerlink" title="关于CA"></a>关于CA</h2><p>CA(Certificate Authority)是数字证书认证中心的简称，是指发放、管理、废除数字证书的受信任的第三方机构，如北京数字认证股份有限公司、上海市数字证书认证中心有限公司等…</p>
+<p>CA的作用是检查证书持有者身份的合法性，并签发证书，以防证书被伪造或篡改，以及对证书和密钥进行管理。</p>
+<p>现实生活中可以用身份证来证明身份， 那么在网络世界里，数字证书就是身份证。和现实生活不同的是，并不是每个上网的用户都有数字证书的，往往只有当一个人需要证明自己的身份的时候才需要用到数字证书。</p>
+<p>普通用户一般是不需要，因为网站并不关心是谁访问了网站，现在的网站只关心流量。但是反过来，网站就需要证明自己的身份了。</p>
+<p>比如说现在钓鱼网站很多的，比如你想访问的是<a href="http://www.baidu.com，但其实你访问的是www.daibu.com”，所以在提交自己的隐私信息之前需要验证一下网站的身份，要求网站出示数字证书。" target="_blank" rel="noopener">www.baidu.com，但其实你访问的是www.daibu.com”，所以在提交自己的隐私信息之前需要验证一下网站的身份，要求网站出示数字证书。</a></p>
+<p>一般正常的网站都会主动出示自己的数字证书，来确保客户端和网站服务器之间的通信数据是加密安全的。</p>
+<h2 id="Handler处理器-和-自定义Opener"><a href="#Handler处理器-和-自定义Opener" class="headerlink" title="Handler处理器 和 自定义Opener"></a>Handler处理器 和 自定义Opener</h2><p>opener是 urllib.request.OpenerDirector 的实例，我们之前一直都在使用的urlopen，它是一个特殊的opener（也就是模块帮我们构建好的）。</p>
+<p>但是基本的urlopen()方法不支持代理、cookie等其他的HTTP/HTTPS高级功能。所以要支持这些功能：</p>
+<ol>
+<li>使用相关的 Handler处理器 来创建特定功能的处理器对象；</li>
+<li>然后通过 urllib.request.build_opener()方法使用这些处理器对象，创建自定义opener对象；</li>
+<li>使用自定义的opener对象，调用open()方法发送请求。</li>
+</ol>
+<p>如果程序里所有的请求都使用自定义的opener，可以使用urllib.request.install_opener() 将自定义的 opener 对象 定义为 全局opener，表示如果之后凡是调用urlopen，都将使用这个opener（根据自己的需求来选择）</p>
+<h3 id="简单的自定义opener"><a href="#简单的自定义opener" class="headerlink" title="简单的自定义opener()"></a>简单的自定义opener()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line"># 构建一个HTTPHandler 处理器对象，支持处理HTTP请求</span><br><span class="line">http_handler = urllib.request.HTTPHandler()</span><br><span class="line"></span><br><span class="line"># 构建一个HTTPHandler 处理器对象，支持处理HTTPS请求</span><br><span class="line"># http_handler = urllib.request.HTTPSHandler()</span><br><span class="line"></span><br><span class="line"># 调用urllib.request.build_opener()方法，创建支持处理HTTP请求的opener对象</span><br><span class="line">opener = urllib.request.build_opener(http_handler)</span><br><span class="line"></span><br><span class="line"># 构建 Request请求</span><br><span class="line">request = urllib.request.Request(&quot;http://www.baidu.com/&quot;)</span><br><span class="line"></span><br><span class="line"># 调用自定义opener对象的open()方法，发送request请求</span><br><span class="line">response = opener.open(request)</span><br><span class="line"></span><br><span class="line"># 获取服务器响应内容</span><br><span class="line">print (response.read().decode())</span><br></pre></td></tr></table></figure>
+<p>这种方式发送请求得到的结果，和使用urllib.request.urlopen()发送HTTP/HTTPS请求得到的结果是一样的。</p>
+<p>如果在 HTTPHandler()增加 debuglevel=1参数，还会将 Debug Log 打开，这样程序在执行的时候，会把收包和发包的报头在屏幕上自动打印出来，方便调试，有时可以省去抓包的工作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 仅需要修改的代码部分：</span><br><span class="line"></span><br><span class="line"># 构建一个HTTPHandler 处理器对象，支持处理HTTP请求，同时开启Debug Log，debuglevel 值默认 0</span><br><span class="line">http_handler = urllib.request.HTTPHandler(debuglevel=1)</span><br><span class="line"></span><br><span class="line"># 构建一个HTTPHSandler 处理器对象，支持处理HTTPS请求，同时开启Debug Log，debuglevel 值默认 0</span><br><span class="line">https_handler = urllib.request.HTTPSHandler(debuglevel=1)</span><br></pre></td></tr></table></figure></p>
+<h3 id="ProxyHandler处理器（代理使用代理IP，这是爬虫-反爬虫的第二大招，通常也是最好用的。"><a href="#ProxyHandler处理器（代理使用代理IP，这是爬虫-反爬虫的第二大招，通常也是最好用的。" class="headerlink" title="ProxyHandler处理器（代理使用代理IP，这是爬虫/反爬虫的第二大招，通常也是最好用的。"></a>ProxyHandler处理器（代理使用代理IP，这是爬虫/反爬虫的第二大招，通常也是最好用的。</h3><p>很多网站会检测某一段时间某个IP的访问次数(通过流量统计，系统日志等)，如果访问次数多的不像正常人，它会禁止这个IP的访问。</p>
+<p>所以我们可以设置一些代理服务器，每隔一段时间换一个代理，就算IP被禁止，依然可以换个IP继续爬取。</p>
+<p>urllib.request中通过ProxyHandler来设置使用代理服务器，下面代码说明如何使用自定义opener来使用代理：设置）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#urllib_proxy1.py</span><br><span class="line"></span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line"># 构建了两个代理Handler，一个有代理IP，一个没有代理IP</span><br><span class="line">httpproxy_handler = urllib.request.ProxyHandler(&#123;&quot;http&quot; : &quot;124.88.67.81:80&quot;&#125;)</span><br><span class="line">nullproxy_handler = urllib.request.ProxyHandler(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">proxySwitch = True #定义一个代理开关</span><br><span class="line"></span><br><span class="line"># 通过 urllib.request.build_opener()方法使用这些代理Handler对象，创建自定义opener对象</span><br><span class="line"># 根据代理开关是否打开，使用不同的代理模式</span><br><span class="line">if proxySwitch:  </span><br><span class="line">    opener = urllib.request.build_opener(httpproxy_handler)</span><br><span class="line">else:</span><br><span class="line">    opener = urllib.request.build_opener(nullproxy_handler)</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(&quot;http://www.baidu.com/&quot;)</span><br><span class="line"></span><br><span class="line"># 1. 如果这么写，只有使用opener.open()方法发送请求才使用自定义的代理，而urlopen()则不使用自定义代理。</span><br><span class="line">response = opener.open(request)</span><br><span class="line"></span><br><span class="line"># 2. 如果这么写，就是将opener应用到全局，之后所有的，不管是opener.open()还是urlopen() 发送请求，都将使用自定义代理。</span><br><span class="line"># urllib.request.install_opener(opener)</span><br><span class="line"># response = urlopen(request)</span><br><span class="line"></span><br><span class="line">print (response.read().decode())</span><br></pre></td></tr></table></figure></p>
+<p>免费的开放代理获取基本没有成本，我们可以在一些代理网站上收集这些免费代理，测试后如果可以用，就把它收集起来用在爬虫上面。</p>
+<p>免费短期代理网站举例：</p>
+<ol>
+<li>西刺免费代理IP <a href="https://www.xicidaili.com/" target="_blank" rel="noopener">https://www.xicidaili.com/</a></li>
+<li>快代理免费代理 <a href="https://www.kuaidaili.com/free/inha/" target="_blank" rel="noopener">https://www.kuaidaili.com/free/inha/</a></li>
+<li>Proxy360代理 <a href="http://www.proxy360.cn/" target="_blank" rel="noopener">http://www.proxy360.cn/</a></li>
+<li>全网代IP <a href="http://www.goubanjia.com/free/index.shtml" target="_blank" rel="noopener">http://www.goubanjia.com/free/index.shtml</a></li>
+</ol>
+<p>如果代理IP足够多，就可以像随机获取User-Agent一样，随机选择一个代理去访问网站。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line">proxy_list = [</span><br><span class="line">    &#123;&quot;http&quot; : &quot;124.88.67.81:80&quot;&#125;,</span><br><span class="line">    &#123;&quot;http&quot; : &quot;124.88.67.81:80&quot;&#125;,</span><br><span class="line">    &#123;&quot;http&quot; : &quot;124.88.67.81:80&quot;&#125;,</span><br><span class="line">    &#123;&quot;http&quot; : &quot;124.88.67.81:80&quot;&#125;,</span><br><span class="line">    &#123;&quot;http&quot; : &quot;124.88.67.81:80&quot;&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># 随机选择一个代理</span><br><span class="line">proxy = random.choice(proxy_list)</span><br><span class="line"># 使用选择的代理构建代理处理器对象</span><br><span class="line">httpproxy_handler = urllib.request.ProxyHandler(proxy)</span><br><span class="line"></span><br><span class="line">opener = urllib.request.build_opener(httpproxy_handler)</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(&quot;http://www.baidu.com/&quot;)</span><br><span class="line">response = opener.open(request)</span><br><span class="line">print (response.read())</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>但是，这些免费开放代理一般会有很多人都在使用，而且代理有寿命短，速度慢，匿名度不高，HTTP/HTTPS支持不稳定等缺点（免费没好货）。</p>
+</blockquote>
+<blockquote>
+<p>所以，专业爬虫工程师或爬虫公司会使用高品质的私密代理，这些代理通常需要找专门的代理供应商购买，再通过用户名/密码授权使用（舍不得孩子套不到狼）。</p>
+</blockquote>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>Cookie 是指某些网站服务器为了辨别用户身份和进行Session跟踪，而储存在用户浏览器上的文本文件，Cookie可以保持登录信息到用户下次与服务器的会话。</p>
+<h3 id="Cookie原理"><a href="#Cookie原理" class="headerlink" title="Cookie原理"></a>Cookie原理</h3><p>HTTP是无状态的面向连接的协议, 为了保持连接状态, 引入了Cookie机制 Cookie是http消息头中的一种属性，包括：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Cookie名字（Name）</span><br><span class="line">Cookie的值（Value）</span><br><span class="line">Cookie的过期时间（Expires/Max-Age）</span><br><span class="line">Cookie作用路径（Path）</span><br><span class="line">Cookie所在域名（Domain），</span><br><span class="line">使用Cookie进行安全连接（Secure）。</span><br><span class="line"></span><br><span class="line">前两个参数是Cookie应用的必要条件，另外，还包括Cookie大小（Size，不同浏览器对Cookie个数及大小限制是有差异的）。</span><br></pre></td></tr></table></figure></p>
+<p>Cookie由变量名和值组成，根据 Netscape公司的规定，Cookie格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set－Cookie: NAME=VALUE；Expires=DATE；Path=PATH；Domain=DOMAIN_NAME；SECURE</span><br></pre></td></tr></table></figure></p>
+<h3 id="Cookie应用"><a href="#Cookie应用" class="headerlink" title="Cookie应用"></a>Cookie应用</h3><p>Cookies在爬虫方面最典型的应用是判定注册用户是否已经登录网站，用户可能会得到提示，是否在下一次进入此网站时保留用户信息以便简化登录手续。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># 获取一个有登录信息的Cookie模拟登陆</span><br><span class="line"></span><br><span class="line">import urllib</span><br><span class="line"></span><br><span class="line"># 1. 构建一个已经登录过的用户的headers信息</span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;Host&quot;:&quot;www.renren.com&quot;,</span><br><span class="line">    &quot;Connection&quot;:&quot;keep-alive&quot;,</span><br><span class="line">    &quot;Upgrade-Insecure-Requests&quot;:&quot;1&quot;,</span><br><span class="line">    &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36&quot;,</span><br><span class="line">    &quot;Accept&quot;:&quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&quot;,</span><br><span class="line">    &quot;Accept-Language&quot;:&quot;zh-CN,zh;q=0.8,en;q=0.6&quot;,</span><br><span class="line">    &quot;Referer&quot;:&quot;http://www.renren.com/SysHome.do&quot;,</span><br><span class="line">    # 便于终端阅读，表示不支持压缩文件</span><br><span class="line">    # Accept-Encoding: gzip, deflate, sdch,</span><br><span class="line"></span><br><span class="line">    # 重点：这个Cookie是保存了密码无需重复登录的用户的Cookie，这个Cookie里记录了用户名，密码(通常经过RAS加密)</span><br><span class="line">    &quot;Cookie&quot;: &quot;anonymid=j3jxk555-nrn0wh; depovince=BJ; _r01_=1; JSESSIONID=abcnLjz9MSvBa-3lJK3Xv; ick=3babfba4-e0ed-4e9f-9312-8e833e4cb826; jebecookies=764bacbd-0e4a-4534-b8e8-37c10560770c|||||; ick_login=84f70f68-7ebd-4c5c-9c0f-d1d9aac778e0; _de=7A7A02E9254501DA6278B9C75EAEEB7A; p=91063de8b39ac5e0d2a57500de7e34077; first_login_flag=1; ln_uact=13146128763; ln_hurl=http://head.xiaonei.com/photos/0/0/men_main.gif; t=39fca09219c06df42604435129960e1f7; societyguester=39fca09219c06df42604435129960e1f7; id=941954027; xnsid=8868df75; ver=7.0; loginfrom=null; XNESSESSIONID=a6da759fe858; WebOnLineNotice_941954027=1; wp_fold=0&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 2. 通过headers里的报头信息（主要是Cookie信息），构建Request对象</span><br><span class="line">urllib.request.Request(&quot;http://www.renren.com/941954027#&quot;, headers = headers)</span><br><span class="line"></span><br><span class="line"># 3. 直接访问renren主页，服务器会根据headers报头信息（主要是Cookie信息），判断这是一个已经登录的用户，并返回相应的页面</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line"></span><br><span class="line"># 4. 打印响应内容</span><br><span class="line">print (response.read().decode())</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://s2.ax1x.com/2019/05/16/EHKbo8.jpg" alt="enter image description here"><br>但是这样做太过复杂，我们先需要在浏览器登录账户，并且设置保存密码，并且通过抓包才能获取这个Cookie，那有么有更简单方便的方法呢？</p>
+<h3 id="cookiejar库-和-HTTPCookieProcessor处理器"><a href="#cookiejar库-和-HTTPCookieProcessor处理器" class="headerlink" title="cookiejar库 和 HTTPCookieProcessor处理器"></a>cookiejar库 和 HTTPCookieProcessor处理器</h3><p>在Python处理Cookie，一般是通过cookiejar模块和 urllib模块的HTTPCookieProcessor处理器类一起使用。</p>
+<blockquote>
+<p>cookiejar模块：主要作用是提供用于存储cookie的对象</p>
+</blockquote>
+<blockquote>
+<p>HTTPCookieProcessor处理器：主要作用是处理这些cookie对象，并构建handler对象。</p>
+</blockquote>
+<h3 id="cookiejar-库"><a href="#cookiejar-库" class="headerlink" title="cookiejar 库"></a>cookiejar 库</h3><p>该模块主要的对象有CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar。</p>
+<blockquote>
+<p>CookieJar：管理HTTP cookie值、存储HTTP请求生成的cookie、向传出的HTTP请求添加cookie的对象。整个cookie都存储在内存中，对CookieJar实例进行垃圾回收后cookie也将丢失。</p>
+</blockquote>
+<p>我们来做几个案例：</p>
+<p>1）获取Cookie，并保存到CookieJar()对象中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># urllib_cookiejar_test1.py</span><br><span class="line"></span><br><span class="line">import urllib</span><br><span class="line">from http import cookiejar</span><br><span class="line"></span><br><span class="line"># 构建一个CookieJar对象实例来保存cookie</span><br><span class="line">cookiejar = cookiejar.CookieJar()</span><br><span class="line"></span><br><span class="line"># 使用HTTPCookieProcessor()来创建cookie处理器对象，参数为CookieJar()对象</span><br><span class="line">handler=urllib.request.HTTPCookieProcessor(cookiejar)</span><br><span class="line"></span><br><span class="line"># 通过 build_opener() 来构建opener</span><br><span class="line">opener = urllib.request.build_opener(handler)</span><br><span class="line"></span><br><span class="line"># 4. 以get方法访问页面，访问之后会自动保存cookie到cookiejar中</span><br><span class="line">opener.open(&quot;http://www.baidu.com&quot;)</span><br><span class="line"></span><br><span class="line">## 可以按标准格式将保存的Cookie打印出来</span><br><span class="line">cookieStr = &quot;&quot;</span><br><span class="line">for item in cookiejar:</span><br><span class="line">    cookieStr = cookieStr + item.name + &quot;=&quot; + item.value + &quot;;&quot;</span><br><span class="line"></span><br><span class="line">## 舍去最后一位的分号</span><br><span class="line">print (cookieStr[:-1])</span><br></pre></td></tr></table></figure></p>
+<p>我们使用以上方法将Cookie保存到cookiejar对象中，然后打印出了cookie中的值，也就是访问百度首页的Cookie值。</p>
+<p>运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BAIDUID=4327A58E63A92B73FF7A297FB3B2B4D0:FG=1;BIDUPSID=4327A58E63A92B73FF7A297FB3B2B4D0;H_PS_PSSID=1429_21115_17001_21454_21409_21554_21398;PSTM=1480815736;BDSVRTM=0;BD_HOME=0</span><br></pre></td></tr></table></figure></p>
+<h3 id="利用cookiejar和post登录人人网"><a href="#利用cookiejar和post登录人人网" class="headerlink" title="利用cookiejar和post登录人人网"></a>利用cookiejar和post登录人人网</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">from http import cookiejar</span><br><span class="line"></span><br><span class="line"># 1. 构建一个CookieJar对象实例来保存cookie</span><br><span class="line">cookie = cookiejar.CookieJar()</span><br><span class="line"></span><br><span class="line"># 2. 使用HTTPCookieProcessor()来创建cookie处理器对象，参数为CookieJar()对象</span><br><span class="line">cookie_handler = urllib.request.HTTPCookieProcessor(cookie)</span><br><span class="line"></span><br><span class="line"># 3. 通过 build_opener() 来构建opener</span><br><span class="line">opener = urllib.request.build_opener(cookie_handler)</span><br><span class="line"></span><br><span class="line"># 4. addheaders 接受一个列表，里面每个元素都是一个headers信息的元祖, opener将附带headers信息</span><br><span class="line">opener.addheaders = [(&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36&quot;)]</span><br><span class="line"></span><br><span class="line"># 5. 需要登录的账户和密码</span><br><span class="line">data = &#123;&quot;email&quot;:&quot;13****46**8763&quot;, &quot;password&quot;:&quot;****&quot;&#125;  </span><br><span class="line"></span><br><span class="line"># 6. 通过urlencode()转码</span><br><span class="line">postdata = urllib.parse.urlencode(data).encode()</span><br><span class="line"></span><br><span class="line"># 7. 构建Request请求对象，包含需要发送的用户名和密码</span><br><span class="line">request = urllib.request.Request(&quot;http://www.renren.com/PLogin.do&quot;, data = postdata)</span><br><span class="line"></span><br><span class="line"># 8. 通过opener发送这个请求，并获取登录后的Cookie值，</span><br><span class="line">opener.open(request)                                              </span><br><span class="line"></span><br><span class="line"># 9. opener包含用户登录后的Cookie值，可以直接访问那些登录后才可以访问的页面</span><br><span class="line">response = opener.open(&quot;http://www.renren.com/410043129/profile&quot;)  </span><br><span class="line"></span><br><span class="line"># 10. 打印响应内容</span><br><span class="line">print (response.read().decode())</span><br></pre></td></tr></table></figure>
+<p>模拟登录要注意几点：</p>
+<blockquote>
+<ol>
+<li>登录一般都会先有一个HTTP GET，用于拉取一些信息及获得Cookie，然后再HTTP POST登录。</li>
+<li>HTTP POST登录的链接有可能是动态的，从GET返回的信息中获取。</li>
+<li>password 有些是明文发送，有些是加密后发送。有些网站甚至采用动态加密的，同时包括了很多其他数据的加密信息，只能通过查看JS源码获得加密算法，再去破解加密，非常困难。</li>
+<li>大多数网站的登录整体流程是类似的，可能有些细节不一样，所以不能保证其他网站登录成功。</li>
+</ol>
+</blockquote>
+<p>这个测试案例中，为了想让大家快速理解知识点，我们使用的人人网登录接口是人人网改版前的隐藏接口(嘘….)，登录比较方便。<br>当然，我们也可以直接发送账号密码到登录界面模拟登录，但是当网页采用JavaScript动态技术以后，想封锁基于 HttpClient 的模拟登录就太容易了，甚至可以根据你的鼠标活动的特征准确地判断出是不是真人在操作。<br>所以，想做通用的模拟登录还得选别的技术，比如用内置浏览器引擎的爬虫(关键词：Selenium ，PhantomJS)</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月16日 11:51</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/16/urllib库的使用/" title="urllib库的使用">https://zem12345678.github.io/2019/05/16/urllib库的使用/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/16/urllib库的使用/&title=《urllib库的使用》 — Enmin`s blog&pic=images/7.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/16/urllib库的使用/&title=《urllib库的使用》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/16/urllib库的使用/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《urllib库的使用》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/16/urllib库的使用/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/16/urllib库的使用/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/16/urllib库的使用/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/爬虫/" class="color3">爬虫</a>
+      
+    <a href="/tags/Urllib/" class="color2">Urllib</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#urllib库的使用"><span class="post-toc-text">urllib库的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#urlopen"><span class="post-toc-text">urlopen</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Request"><span class="post-toc-text">Request</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#User-Agent"><span class="post-toc-text">User-Agent</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加更多的Header信息"><span class="post-toc-text">添加更多的Header信息</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#urllib默认只支持HTTP-HTTPS的GET和POST方法"><span class="post-toc-text">urllib默认只支持HTTP/HTTPS的GET和POST方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#urllib-parse-urlencode"><span class="post-toc-text">urllib.parse.urlencode()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Get方式"><span class="post-toc-text">Get方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#POST方式："><span class="post-toc-text">POST方式：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#有道词典翻译网站："><span class="post-toc-text">有道词典翻译网站：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取AJAX加载的内容"><span class="post-toc-text">获取AJAX加载的内容</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#处理HTTPS请求-SSL证书验证"><span class="post-toc-text">处理HTTPS请求 SSL证书验证</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于CA"><span class="post-toc-text">关于CA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Handler处理器-和-自定义Opener"><span class="post-toc-text">Handler处理器 和 自定义Opener</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简单的自定义opener"><span class="post-toc-text">简单的自定义opener()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ProxyHandler处理器（代理使用代理IP，这是爬虫-反爬虫的第二大招，通常也是最好用的。"><span class="post-toc-text">ProxyHandler处理器（代理使用代理IP，这是爬虫/反爬虫的第二大招，通常也是最好用的。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Cookie"><span class="post-toc-text">Cookie</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Cookie原理"><span class="post-toc-text">Cookie原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Cookie应用"><span class="post-toc-text">Cookie应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#cookiejar库-和-HTTPCookieProcessor处理器"><span class="post-toc-text">cookiejar库 和 HTTPCookieProcessor处理器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#cookiejar-库"><span class="post-toc-text">cookiejar 库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用cookiejar和post登录人人网"><span class="post-toc-text">利用cookiejar和post登录人人网</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/16/Requests的使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Requests的使用</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="urllib库的使用" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Redis/">Redis</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/数据挖掘/">数据挖掘</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/网络原理/">网络原理</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.67px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/python/" style="font-size: 11.67px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 16.67px;">爬虫</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/编码/" style="font-size: 11.67px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.67px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/python/" style="font-size: 11.67px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 16.67px;">爬虫</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/编码/" style="font-size: 11.67px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

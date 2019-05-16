@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTTP/HTTPS的请求与响应 | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="HTTP/HTTPS的请求与响应HTTP和HTTPSHTTP协议（HyperText Transfer Protocol，超文本传输协议）：是一种发布和接收 HTML页面的方法。 HTTPS（Hypertext Transfer Protocol over Secure Socket Layer）简单讲是HTTP的安全版，在HTTP下加入SSL层。 SSL（Secure Sockets Layer">
+<meta name="keywords" content="爬虫,HTTP&#x2F;HTTPS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP&#x2F;HTTPS的请求与响应">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="HTTP/HTTPS的请求与响应HTTP和HTTPSHTTP协议（HyperText Transfer Protocol，超文本传输协议）：是一种发布和接收 HTML页面的方法。 HTTPS（Hypertext Transfer Protocol over Secure Socket Layer）简单讲是HTTP的安全版，在HTTP下加入SSL层。 SSL（Secure Sockets Layer">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHkN5R.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHkDKO.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHkoqg.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EHAWTJ.jpg">
+<meta property="og:updated_time" content="2019-05-16T03:46:33.816Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP&#x2F;HTTPS的请求与响应">
+<meta name="twitter:description" content="HTTP/HTTPS的请求与响应HTTP和HTTPSHTTP协议（HyperText Transfer Protocol，超文本传输协议）：是一种发布和接收 HTML页面的方法。 HTTPS（Hypertext Transfer Protocol over Secure Socket Layer）简单讲是HTTP的安全版，在HTTP下加入SSL层。 SSL（Secure Sockets Layer">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/16/EHkN5R.jpg">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-HTTPS的请求与响应" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      HTTP/HTTPS的请求与响应
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/网络原理/">网络原理</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-16
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="HTTP-HTTPS的请求与响应"><a href="#HTTP-HTTPS的请求与响应" class="headerlink" title="HTTP/HTTPS的请求与响应"></a>HTTP/HTTPS的请求与响应</h1><h2 id="HTTP和HTTPS"><a href="#HTTP和HTTPS" class="headerlink" title="HTTP和HTTPS"></a>HTTP和HTTPS</h2><p><strong>HTTP协议</strong>（HyperText Transfer Protocol，超文本传输协议）：是一种发布和接收 HTML页面的方法。</p>
+<p><strong>HTTPS</strong>（Hypertext Transfer Protocol over Secure Socket Layer）简单讲是HTTP的安全版，在HTTP下加入SSL层。</p>
+<p><strong>SSL</strong>（Secure Sockets Layer 安全套接层）主要用于Web的安全传输协议，在传输层对网络连接进行加密，保障在Internet上数据传输的安全。</p>
+<blockquote>
+<p>HTTP的端口号为80，<br>HTTPS的端口号为443</p>
+</blockquote>
+<h2 id="HTTP的请求与响应"><a href="#HTTP的请求与响应" class="headerlink" title="HTTP的请求与响应"></a>HTTP的请求与响应</h2><p>HTTP通信由两部分组成： 客户端请求消息 与 服务器响应消息<br><img src="https://s2.ax1x.com/2019/05/16/EHkN5R.jpg" alt="enter image description here"></p>
+<h2 id="浏览器发送HTTP请求的过程："><a href="#浏览器发送HTTP请求的过程：" class="headerlink" title="浏览器发送HTTP请求的过程："></a>浏览器发送HTTP请求的过程：</h2><ol>
+<li><p>当用户在浏览器的地址栏中输入一个URL并按回车键之后，浏览器会向HTTP服务器发送HTTP请求。HTTP请求主要分为“Get”和“Post”两种方法。</p>
+</li>
+<li><p>当我们在浏览器输入URL <a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> 的时候，浏览器发送一个Request请求去获取 <a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> 的html文件，服务器把Response文件对象发送回给浏览器。</p>
+</li>
+<li><p>浏览器分析Response中的 HTML，发现其中引用了很多其他文件，比如Images文件，CSS文件，JS文件。 浏览器会自动再次发送Request去获取图片，CSS文件，或者JS文件。</p>
+</li>
+<li><p>当所有的文件都下载成功后，网页会根据HTML语法结构，完整的显示出来了。</p>
+</li>
+</ol>
+<p>URL（Uniform / Universal Resource Locator的缩写）：统一资源定位符，是用于完整地描述Internet上网页和其他资源的地址的一种标识方法。<br><img src="https://s2.ax1x.com/2019/05/16/EHkDKO.jpg" alt="enter image description here"></p>
+<p>基本格式：<strong>scheme://host[:port#]/path/…/[?query-string][#anchor]</strong></p>
+<blockquote>
+<p>scheme：协议(例如：http, https, ftp)<br>host：服务器的IP地址或者域名<br>port#：服务器的端口（如果是走协议默认端口，缺省端口80）<br>path：访问资源的路径<br>query-string：参数，发送给http服务器的数据<br>anchor：锚（跳转到网页的指定锚点位置）</p>
+</blockquote>
+<p>例如：</p>
+<p><a href="ftp://192.168.0.116:8080/index" target="_blank" rel="noopener">ftp://192.168.0.116:8080/index</a></p>
+<p><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+<p><a href="http://item.jd.com/11936238.html#product-detail" target="_blank" rel="noopener">http://item.jd.com/11936238.html#product-detail</a></p>
+<h2 id="客户端HTTP请求"><a href="#客户端HTTP请求" class="headerlink" title="客户端HTTP请求"></a>客户端HTTP请求</h2><p>URL只是标识资源的位置，而HTTP是用来提交和获取资源。客户端发送一个HTTP请求到服务器的请求消息，包括以下格式：</p>
+<p><strong>请求行、请求头部、空行、请求数据</strong></p>
+<p>四个部分组成，下图给出了请求报文的一般格式。</p>
+<p><img src="https://s2.ax1x.com/2019/05/16/EHkoqg.png" alt="enter image description here"><br>一个典型的HTTP请求示例</p>
+<blockquote>
+<p>GET <a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a> HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>Connection: keep-alive<br>Upgrade-Insecure-Requests: 1<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8<br>Referer: <a href="http://www.baidu.com/" target="_blank" rel="noopener">http://www.baidu.com/</a><br>Accept-Encoding: gzip, deflate, sdch, br<br>Accept-Language: zh-CN,zh;q=0.8,en;q=0.6<br>Cookie: BAIDUID=04E4001F34EA74AD4601512DD3C41A7B:FG=1; BIDUPSID=04E4001F34EA74AD4601512DD3C41A7B; PSTM=1470329258; MCITY=-343%3A340%3A; BDUSS=nF0MVFiMTVLcUh-Q2MxQ0M3STZGQUZ4N2hBa1FFRkIzUDI3QlBCZjg5cFdOd1pZQVFBQUFBJCQAAAAAAAAAAAEAAADpLvgG0KGyvLrcyfrG-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFaq3ldWqt5XN; H_PS_PSSID=1447_18240_21105_21386_21454_21409_21554; BD_UPN=12314753; sug=3; sugstore=0; ORIGIN=0; bdime=0; H_PS_645EC=7e2ad3QHl181NSPbFbd7PRUCE1LlufzxrcFmwYin0E6b%2BW8bbTMKHZbDP0g; BDSVRTM=0</p>
+</blockquote>
+<h2 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h2><blockquote>
+<p>GET <a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a> HTTP/1.1</p>
+</blockquote>
+<p>根据HTTP标准，HTTP请求可以使用多种请求方法。</p>
+<p>HTTP 0.9：只有基本的文本 GET 功能。</p>
+<p>HTTP 1.0：完善的请求/响应模型，并将协议补充完整，定义了三种请求方法： GET, POST 和 HEAD方法。</p>
+<p>HTTP 1.1：在 1.0 基础上进行更新，新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。</p>
+<p>HTTP 2.0（未普及）：请求/响应首部的定义基本没有改变，只是所有首部键必须全部小写，而且请求行要独立为 :method、:scheme、:host、:path这些键值对。<br>| 序号      |    方法 | 描述  |<br>| :——– | ——–:| :–: |<br>| 1 | GET |  请求指定的页面信息，并返回实体主体。   |<br>| 2 | HEAD |  类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头  |<br>| 3 | POST | 向指定资源提交数据进行处理请求（例如提交表单或者上传文件），数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。  |<br>| 4 | PUT | 从客户端向服务器传送的数据取代指定的文档的内容。 |<br>| 5 | DELETE | 请求服务器删除指定的页面。|<br>| 6 | CONNECT | HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。 |<br>| 7 | OPTIONS | 允许客户端查看服务器的性能。  |<br>| 8 | TRACE | 回显服务器收到的请求，主要用于测试或诊断。 |</p>
+<h2 id="HTTP请求主要分为Get和Post两种方法"><a href="#HTTP请求主要分为Get和Post两种方法" class="headerlink" title="HTTP请求主要分为Get和Post两种方法"></a>HTTP请求主要分为Get和Post两种方法</h2><blockquote>
+<p>GET是从服务器上获取数据，POST是向服务器传送数据</p>
+</blockquote>
+<blockquote>
+<p>GET请求参数显示，都显示在浏览器网址上，HTTP服务器根据该请求所包含URL中的参数来产生响应内容，即“Get”请求的参数是URL的一部分。 例如： <a href="http://www.baidu.com/s?wd=Chinese" target="_blank" rel="noopener">http://www.baidu.com/s?wd=Chinese</a></p>
+</blockquote>
+<blockquote>
+<p>POST请求参数在请求体当中，消息长度没有限制而且以隐式的方式进行发送，通常用来向HTTP服务器提交量比较大的数据（比如请求中包含许多参数或者文件上传操作等），请求的参数包含在“Content-Type”消息头里，指明该消息体的媒体类型和编码，</p>
+</blockquote>
+<p><strong>注意：避免使用Get方式提交表单，因为有可能会导致安全问题。 比如说在登陆表单中用Get方式，用户输入的用户名和密码将在地址栏中暴露无遗。</strong></p>
+<h2 id="常用的请求报头"><a href="#常用的请求报头" class="headerlink" title="常用的请求报头"></a>常用的请求报头</h2><h3 id="1-Host-主机和端口号"><a href="#1-Host-主机和端口号" class="headerlink" title="1. Host (主机和端口号)"></a>1. Host (主机和端口号)</h3><p>Host：对应网址URL中的Web名称和端口号，用于指定被请求资源的Internet主机和端口号，通常属于URL的一部分。</p>
+<h3 id="2-Connection-链接类型"><a href="#2-Connection-链接类型" class="headerlink" title="2. Connection (链接类型)"></a>2. Connection (链接类型)</h3><p>Connection：表示客户端与服务连接类型</p>
+<ol>
+<li><p>Client 发起一个包含 Connection:keep-alive 的请求，HTTP/1.1使用 keep-alive 为默认值。</p>
+</li>
+<li><p>Server收到请求后：</p>
+</li>
+</ol>
+<blockquote>
+<p>如果 Server 支持 keep-alive，回复一个包含 Connection:keep-alive 的响应，不关闭连接；<br>如果 Server 不支持 keep-alive，回复一个包含 Connection:close 的响应，关闭连接。<br>如果client收到包含 Connection:keep-alive 的响应，向同一个连接发送下一个请求，直到一方主动关闭连接。</p>
+</blockquote>
+<p><strong>keep-alive在很多情况下能够重用连接，减少资源消耗，缩短响应时间，比如当浏览器需要多个文件时(比如一个HTML文件和相关的图形文件)，不需要每次都去请求建立连接。</strong></p>
+<h3 id="3-Upgrade-Insecure-Requests-升级为HTTPS请求"><a href="#3-Upgrade-Insecure-Requests-升级为HTTPS请求" class="headerlink" title="3. Upgrade-Insecure-Requests (升级为HTTPS请求)"></a>3. Upgrade-Insecure-Requests (升级为HTTPS请求)</h3><p>Upgrade-Insecure-Requests：升级不安全的请求，意思是会在加载 http 资源时自动替换成 https 请求，让浏览器不再显示https页面中的http请求警报。</p>
+<p><strong>HTTPS 是以安全为目标的 HTTP 通道，所以在 HTTPS 承载的页面上不允许出现 HTTP 请求，一旦出现就是提示或报错。</strong></p>
+<h3 id="4-User-Agent-浏览器名称"><a href="#4-User-Agent-浏览器名称" class="headerlink" title="4. User-Agent (浏览器名称)"></a>4. User-Agent (浏览器名称)</h3><p>User-Agent：是客户浏览器的名称，以后会详细讲。</p>
+<h3 id="5-Accept-传输文件类型"><a href="#5-Accept-传输文件类型" class="headerlink" title="5. Accept (传输文件类型)"></a>5. Accept (传输文件类型)</h3><p>Accept：指浏览器或其他客户端可以接受的MIME（Multipurpose Internet Mail Extensions（多用途互联网邮件扩展））文件类型，服务器可以根据它判断并返回适当的文件格式。<br>举例：</p>
+<blockquote>
+<p>Accept: <em>/</em>：表示什么都可以接收。</p>
+</blockquote>
+<blockquote>
+<p>Accept：image/gif：表明客户端希望接受GIF图像格式的资源；</p>
+</blockquote>
+<blockquote>
+<p>Accept：text/html：表明客户端希望接受html文本。</p>
+</blockquote>
+<blockquote>
+<p>Accept: text/html, application/xhtml+xml;q=0.9, image/*;q=0.8：表示浏览器支持的 MIME 类型分别是 html文本、xhtml和xml文档、所有的图像格式资源。</p>
+</blockquote>
+<p>**q是权重系数，范围 0 =&lt; q &lt;= 1，q 值越大，请求越倾向于获得其“;”之前的类型表示的内容。若没有指定q值，则默认为1，按从左到右排序顺序；若被赋值为0，则用于表示浏览器不接受此内容类型。</p>
+<p>Text：用于标准化地表示的文本信息，文本消息可以是多种字符集和或者多种格式的；Application：用于传输应用程序数据或者二进制数据**</p>
+<h3 id="6-Referer-页面跳转处"><a href="#6-Referer-页面跳转处" class="headerlink" title="6. Referer (页面跳转处)"></a>6. Referer (页面跳转处)</h3><p>Referer：表明产生请求的网页来自于哪个URL，用户是从该 Referer页面访问到当前请求的页面。这个属性可以用来跟踪Web请求来自哪个页面，是从什么网站来的等。</p>
+<p>有时候遇到下载某网站图片，需要对应的referer，否则无法下载图片，那是因为人家做了防盗链，原理就是根据referer去判断是否是本网站的地址，如果不是，则拒绝，如果是，就可以下载；</p>
+<h3 id="7-Accept-Encoding（文件编解码格式）"><a href="#7-Accept-Encoding（文件编解码格式）" class="headerlink" title="7. Accept-Encoding（文件编解码格式）"></a>7. Accept-Encoding（文件编解码格式）</h3><p>Accept-Encoding：指出浏览器可以接受的编码方式。编码方式不同于文件格式，它是为了压缩文件并加速文件传递速度。浏览器在接收到Web响应之后先解码，然后再检查文件格式，许多情形下这可以减少大量的下载时间。<br><strong>举例：Accept-Encoding:gzip;q=1.0, identity; q=0.5, *;q=0</strong><br>如果有多个Encoding同时匹配, 按照q值顺序排列，本例中按顺序支持 gzip, identity压缩编码，支持gzip的浏览器会返回经过gzip编码的HTML页面。 <strong>如果请求消息中没有设置这个域服务器假定客户端对各种内容编码都可以接受。</strong></p>
+<h3 id="8-Accept-Language（语言种类）"><a href="#8-Accept-Language（语言种类）" class="headerlink" title="8. Accept-Language（语言种类）"></a>8. Accept-Language（语言种类）</h3><p>Accept-Langeuage：指出浏览器可以接受的语言种类，如en或en-us指英语，zh或者zh-cn指中文，当服务器能够提供一种以上的语言版本时要用到。</p>
+<h3 id="9-Accept-Charset（字符编码）"><a href="#9-Accept-Charset（字符编码）" class="headerlink" title="9. Accept-Charset（字符编码）"></a>9. Accept-Charset（字符编码）</h3><p>Accept-Charset：指出浏览器可以接受的字符编码。</p>
+<p><strong>举例：Accept-Charset:iso-8859-1,gb2312,utf-8</strong></p>
+<blockquote>
+<p>ISO8859-1：通常叫做Latin-1。Latin-1包括了书写所有西方欧洲语言不可缺少的附加字符，英文浏览器的默认值是ISO-8859-1.<br>gb2312：标准简体中文字符集;<br>utf-8：UNICODE 的一种变长字符编码，可以解决多种语言文本显示问题，从而实现应用国际化和本地化。</p>
+</blockquote>
+<p><strong>如果在请求消息中没有设置这个域，缺省是任何字符集都可以接受。</strong></p>
+<h3 id="10-Cookie-（Cookie）"><a href="#10-Cookie-（Cookie）" class="headerlink" title="10. Cookie （Cookie）"></a>10. Cookie （Cookie）</h3><p>Cookie：浏览器用这个属性向服务器发送Cookie。Cookie是在浏览器中寄存的小型数据体，它可以记载和服务器相关的用户信息，也可以用来实现会话功能，以后会详细讲。</p>
+<h3 id="11-Content-Type-POST数据类型"><a href="#11-Content-Type-POST数据类型" class="headerlink" title="11. Content-Type (POST数据类型)"></a>11. Content-Type (POST数据类型)</h3><p>Content-Type：POST请求里用来表示的内容类型。</p>
+<p><strong>举例：Content-Type = Text/XML; charset=gb2312：</strong><br>指明该请求的消息体中包含的是纯文本的XML类型的数据，字符编码采用“gb2312”。</p>
+<h2 id="服务端HTTP响应"><a href="#服务端HTTP响应" class="headerlink" title="服务端HTTP响应"></a>服务端HTTP响应</h2><p>HTTP响应也由四个部分组成，分别是：<strong>状态行、消息报头、空行、响应正文</strong><br><img src="https://s2.ax1x.com/2019/05/16/EHAWTJ.jpg" alt="enter image description here"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: Tengine</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Date: Wed, 30 Nov 2016 07:58:21 GMT</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Content-Type: text/html;charset=UTF-8</span><br><span class="line">Keep-Alive: timeout=20</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">Pragma: no-cache</span><br><span class="line">X-NWS-LOG-UUID: bd27210a-24e5-4740-8f6c-25dbafa9c395</span><br><span class="line">Content-Length: 180945</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; ....</span><br></pre></td></tr></table></figure>
+<h2 id="常用的响应报头"><a href="#常用的响应报头" class="headerlink" title="常用的响应报头"></a>常用的响应报头</h2><p>理论上所有的响应头信息都应该是回应请求头的。但是服务端为了效率，安全，还有其他方面的考虑，会添加相对应的响应头信息，从上图可以看到：</p>
+<h3 id="1-Cache-Control：must-revalidate-no-cache-private。"><a href="#1-Cache-Control：must-revalidate-no-cache-private。" class="headerlink" title="1. Cache-Control：must-revalidate, no-cache, private。"></a>1. Cache-Control：must-revalidate, no-cache, private。</h3><p>这个值告诉客户端，服务端不希望客户端缓存资源，在下次请求资源时，必须要从新请求服务器，不能从缓存副本中获取资源。</p>
+<blockquote>
+<p>Cache-Control是响应头中很重要的信息，当客户端请求头中包含Cache-Control:max-age=0请求，明确表示不会缓存服务器资源时,Cache-Control作为作为回应信息，通常会返回no-cache，意思就是说，”那就不缓存呗”。</p>
+</blockquote>
+<blockquote>
+<p>当客户端在请求头中没有包含Cache-Control时，服务端往往会定,不同的资源不同的缓存策略，比如说oschina在缓存图片资源的策略就是Cache-Control：max-age=86400,这个意思是，从当前时间开始，在86400秒的时间内，客户端可以直接从缓存副本中读取资源，而不需要向服务器请求。</p>
+</blockquote>
+<h3 id="2-Connection：keep-alive"><a href="#2-Connection：keep-alive" class="headerlink" title="2. Connection：keep-alive"></a>2. Connection：keep-alive</h3><p>这个字段作为回应客户端的Connection：keep-alive，告诉客户端服务器的tcp连接也是一个长连接，客户端可以继续使用这个tcp连接发送http请求。</p>
+<h3 id="3-Content-Encoding-gzip"><a href="#3-Content-Encoding-gzip" class="headerlink" title="3. Content-Encoding:gzip"></a>3. Content-Encoding:gzip</h3><p>告诉客户端，服务端发送的资源是采用gzip编码的，客户端看到这个信息后，应该采用gzip对资源进行解码。</p>
+<h3 id="4-Content-Type：text-html-charset-UTF-8"><a href="#4-Content-Type：text-html-charset-UTF-8" class="headerlink" title="4. Content-Type：text/html;charset=UTF-8"></a>4. Content-Type：text/html;charset=UTF-8</h3><p>告诉客户端，资源文件的类型，还有字符编码，客户端通过utf-8对资源进行解码，然后对资源进行html解析。通常我们会看到有些网站是乱码的，往往就是服务器端没有返回正确的编码。</p>
+<h3 id="5-Date：Sun-21-Sep-2016-06-18-21-GMT"><a href="#5-Date：Sun-21-Sep-2016-06-18-21-GMT" class="headerlink" title="5. Date：Sun, 21 Sep 2016 06:18:21 GMT"></a>5. Date：Sun, 21 Sep 2016 06:18:21 GMT</h3><p>这个是服务端发送资源时的服务器时间，GMT是格林尼治所在地的标准时间。http协议中发送的时间都是GMT的，这主要是解决在互联网上，不同时区在相互请求资源的时候，时间混乱问题。</p>
+<h3 id="6-Expires-Sun-1-Jan-2000-01-00-00-GMT"><a href="#6-Expires-Sun-1-Jan-2000-01-00-00-GMT" class="headerlink" title="6. Expires:Sun, 1 Jan 2000 01:00:00 GMT"></a>6. Expires:Sun, 1 Jan 2000 01:00:00 GMT</h3><p>这个响应头也是跟缓存有关的，告诉客户端在这个时间前，可以直接访问缓存副本，很显然这个值会存在问题，因为客户端和服务器的时间不一定会都是相同的，如果时间不同就会导致问题。所以这个响应头是没有Cache-Control：max-age=*这个响应头准确的，因为max-age=date中的date是个相对时间，不仅更好理解，也更准确。</p>
+<h3 id="7-Pragma-no-cache"><a href="#7-Pragma-no-cache" class="headerlink" title="7. Pragma:no-cache"></a>7. Pragma:no-cache</h3><p>这个含义与Cache-Control等同。</p>
+<h3 id="8-Server：Tengine-1-4-6"><a href="#8-Server：Tengine-1-4-6" class="headerlink" title="8. Server：Tengine/1.4.6"></a>8. Server：Tengine/1.4.6</h3><p>这个是服务器和相对应的版本，只是告诉客户端服务器的信息。</p>
+<h3 id="9-Transfer-Encoding：chunked"><a href="#9-Transfer-Encoding：chunked" class="headerlink" title="9. Transfer-Encoding：chunked"></a>9. Transfer-Encoding：chunked</h3><p>这个响应头告诉客户端，服务器发送的资源的方式是分块发送的。一般分块发送的资源都是服务器动态生成的，在发送时还不知道发送资源的大小，所以采用分块发送，每一块都是独立的，独立的块都能标示自己的长度，最后一块是0长度的，当客户端读到这个0长度的块时，就可以确定资源已经传输完了。</p>
+<h3 id="10-Vary-Accept-Encoding"><a href="#10-Vary-Accept-Encoding" class="headerlink" title="10. Vary: Accept-Encoding"></a>10. Vary: Accept-Encoding</h3><p>告诉缓存服务器，缓存压缩文件和非压缩文件两个版本，现在这个字段用处并不大，因为现在的浏览器都是支持压缩的。</p>
+<p>Cookie 和 Session：<br>服务器和客户端的交互仅限于请求/响应过程，结束之后便断开，在下一次请求时，服务器会认为新的客户端。</p>
+<p>为了维护他们之间的链接，让服务器知道这是前一个用户发送的请求，必须在一个地方保存客户端的信息。</p>
+<p><strong>Cookie：</strong>通过在 客户端 记录的信息确定用户的身份。</p>
+<p><strong>Session：</strong>通过在 服务器端 记录的信息确定用户的身份。</p>
+<h2 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h2><p>响应状态代码有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值。<br><strong>常见状态码：</strong></p>
+<blockquote>
+<p>100~199：表示服务器成功接收部分请求，要求客户端继续提交其余请求才能完成整个处理过程。</p>
+</blockquote>
+<blockquote>
+<p>200~299：表示服务器成功接收请求并已完成整个处理过程。常用200（OK 请求成功）。</p>
+</blockquote>
+<blockquote>
+<p>300~399：为完成请求，客户需进一步细化请求。例如：请求的资源已经移动一个新地址、常用302（所请求的页面已经临时转移至新的url）、307和304（使用缓存资源）。<br>400~499：客户端的请求有错误，常用404（服务器无法找到被请求的页面）、403（服务器拒绝访问，权限不够）。<br>500~599：服务器端出现错误，常用500（请求未完成。服务器遇到不可预知的情况）。</p>
+</blockquote>
+<h2 id="HTTP响应状态码参考："><a href="#HTTP响应状态码参考：" class="headerlink" title="HTTP响应状态码参考："></a>HTTP响应状态码参考：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><span class="line">1xx:信息</span><br><span class="line"></span><br><span class="line">100 Continue</span><br><span class="line">服务器仅接收到部分请求，但是一旦服务器并没有拒绝该请求，客户端应该继续发送其余的请求。</span><br><span class="line">101 Switching Protocols</span><br><span class="line">服务器转换协议：服务器将遵从客户的请求转换到另外一种协议。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2xx:成功</span><br><span class="line"></span><br><span class="line">200 OK</span><br><span class="line">请求成功（其后是对GET和POST请求的应答文档）</span><br><span class="line">201 Created</span><br><span class="line">请求被创建完成，同时新的资源被创建。</span><br><span class="line">202 Accepted</span><br><span class="line">供处理的请求已被接受，但是处理未完成。</span><br><span class="line">203 Non-authoritative Information</span><br><span class="line">文档已经正常地返回，但一些应答头可能不正确，因为使用的是文档的拷贝。</span><br><span class="line">204 No Content</span><br><span class="line">没有新文档。浏览器应该继续显示原来的文档。如果用户定期地刷新页面，而Servlet可以确定用户文档足够新，这个状态代码是很有用的。</span><br><span class="line">205 Reset Content</span><br><span class="line">没有新文档。但浏览器应该重置它所显示的内容。用来强制浏览器清除表单输入内容。</span><br><span class="line">206 Partial Content</span><br><span class="line">客户发送了一个带有Range头的GET请求，服务器完成了它。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3xx:重定向</span><br><span class="line"></span><br><span class="line">300 Multiple Choices</span><br><span class="line">多重选择。链接列表。用户可以选择某链接到达目的地。最多允许五个地址。</span><br><span class="line">301 Moved Permanently</span><br><span class="line">所请求的页面已经转移至新的url。</span><br><span class="line">302 Moved Temporarily</span><br><span class="line">所请求的页面已经临时转移至新的url。</span><br><span class="line">303 See Other</span><br><span class="line">所请求的页面可在别的url下被找到。</span><br><span class="line">304 Not Modified</span><br><span class="line">未按预期修改文档。客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。</span><br><span class="line">305 Use Proxy</span><br><span class="line">客户请求的文档应该通过Location头所指明的代理服务器提取。</span><br><span class="line">306 Unused</span><br><span class="line">此代码被用于前一版本。目前已不再使用，但是代码依然被保留。</span><br><span class="line">307 Temporary Redirect</span><br><span class="line">被请求的页面已经临时移至新的url。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4xx:客户端错误</span><br><span class="line"></span><br><span class="line">400 Bad Request</span><br><span class="line">服务器未能理解请求。</span><br><span class="line">401 Unauthorized</span><br><span class="line">被请求的页面需要用户名和密码。</span><br><span class="line">401.1</span><br><span class="line">登录失败。</span><br><span class="line">401.2</span><br><span class="line">服务器配置导致登录失败。</span><br><span class="line">401.3</span><br><span class="line">由于 ACL 对资源的限制而未获得授权。</span><br><span class="line">401.4</span><br><span class="line">筛选器授权失败。</span><br><span class="line">401.5</span><br><span class="line">ISAPI/CGI 应用程序授权失败。</span><br><span class="line">401.7</span><br><span class="line">访问被 Web 服务器上的 URL 授权策略拒绝。这个错误代码为 IIS 6.0 所专用。</span><br><span class="line">402 Payment Required</span><br><span class="line">此代码尚无法使用。</span><br><span class="line">403 Forbidden</span><br><span class="line">对被请求页面的访问被禁止。</span><br><span class="line">403.1</span><br><span class="line">执行访问被禁止。</span><br><span class="line">403.2</span><br><span class="line">读访问被禁止。</span><br><span class="line">403.3</span><br><span class="line">写访问被禁止。</span><br><span class="line">403.4</span><br><span class="line">要求 SSL。</span><br><span class="line">403.5</span><br><span class="line">要求 SSL 128。</span><br><span class="line">403.6</span><br><span class="line">IP 地址被拒绝。</span><br><span class="line">403.7</span><br><span class="line">要求客户端证书。</span><br><span class="line">403.8</span><br><span class="line">站点访问被拒绝。</span><br><span class="line">403.9</span><br><span class="line">用户数过多。</span><br><span class="line">403.10</span><br><span class="line">配置无效。</span><br><span class="line">403.11</span><br><span class="line">密码更改。</span><br><span class="line">403.12</span><br><span class="line">拒绝访问映射表。</span><br><span class="line">403.13</span><br><span class="line">客户端证书被吊销。</span><br><span class="line">403.14</span><br><span class="line">拒绝目录列表。</span><br><span class="line">403.15</span><br><span class="line">超出客户端访问许可。</span><br><span class="line">403.16</span><br><span class="line">客户端证书不受信任或无效。</span><br><span class="line">403.17</span><br><span class="line">客户端证书已过期或尚未生效。</span><br><span class="line">403.18</span><br><span class="line">在当前的应用程序池中不能执行所请求的 URL。这个错误代码为 IIS 6.0 所专用。</span><br><span class="line">403.19</span><br><span class="line">不能为这个应用程序池中的客户端执行 CGI。这个错误代码为 IIS 6.0 所专用。</span><br><span class="line">403.20</span><br><span class="line">Passport 登录失败。这个错误代码为 IIS 6.0 所专用。</span><br><span class="line">404 Not Found</span><br><span class="line">服务器无法找到被请求的页面。</span><br><span class="line">404.0</span><br><span class="line">没有找到文件或目录。</span><br><span class="line">404.1</span><br><span class="line">无法在所请求的端口上访问 Web 站点。</span><br><span class="line">404.2</span><br><span class="line">Web 服务扩展锁定策略阻止本请求。</span><br><span class="line">404.3</span><br><span class="line">MIME 映射策略阻止本请求。</span><br><span class="line">405 Method Not Allowed</span><br><span class="line">请求中指定的方法不被允许。</span><br><span class="line">406 Not Acceptable</span><br><span class="line">服务器生成的响应无法被客户端所接受。</span><br><span class="line">407 Proxy Authentication Required</span><br><span class="line">用户必须首先使用代理服务器进行验证，这样请求才会被处理。</span><br><span class="line">408 Request Timeout</span><br><span class="line">请求超出了服务器的等待时间。</span><br><span class="line">409 Conflict</span><br><span class="line">由于冲突，请求无法被完成。</span><br><span class="line">410 Gone</span><br><span class="line">被请求的页面不可用。</span><br><span class="line">411 Length Required</span><br><span class="line">&quot;Content-Length&quot; 未被定义。如果无此内容，服务器不会接受请求。</span><br><span class="line">412 Precondition Failed</span><br><span class="line">请求中的前提条件被服务器评估为失败。</span><br><span class="line">413 Request Entity Too Large</span><br><span class="line">由于所请求的实体的太大，服务器不会接受请求。</span><br><span class="line">414 Request-url Too Long</span><br><span class="line">由于url太长，服务器不会接受请求。当post请求被转换为带有很长的查询信息的get请求时，就会发生这种情况。</span><br><span class="line">415 Unsupported Media Type</span><br><span class="line">由于媒介类型不被支持，服务器不会接受请求。</span><br><span class="line">416 Requested Range Not Satisfiable</span><br><span class="line">服务器不能满足客户在请求中指定的Range头。</span><br><span class="line">417 Expectation Failed</span><br><span class="line">执行失败。</span><br><span class="line">423</span><br><span class="line">锁定的错误。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5xx:服务器错误</span><br><span class="line"></span><br><span class="line">500 Internal Server Error</span><br><span class="line">请求未完成。服务器遇到不可预知的情况。</span><br><span class="line">500.12</span><br><span class="line">应用程序正忙于在 Web 服务器上重新启动。</span><br><span class="line">500.13</span><br><span class="line">Web 服务器太忙。</span><br><span class="line">500.15</span><br><span class="line">不允许直接请求 Global.asa。</span><br><span class="line">500.16</span><br><span class="line">UNC 授权凭据不正确。这个错误代码为 IIS 6.0 所专用。</span><br><span class="line">500.18</span><br><span class="line">URL 授权存储不能打开。这个错误代码为 IIS 6.0 所专用。</span><br><span class="line">500.100</span><br><span class="line">内部 ASP 错误。</span><br><span class="line">501 Not Implemented</span><br><span class="line">请求未完成。服务器不支持所请求的功能。</span><br><span class="line">502 Bad Gateway</span><br><span class="line">请求未完成。服务器从上游服务器收到一个无效的响应。</span><br><span class="line">502.1</span><br><span class="line">CGI 应用程序超时。　·</span><br><span class="line">502.2</span><br><span class="line">CGI 应用程序出错。</span><br><span class="line">503 Service Unavailable</span><br><span class="line">请求未完成。服务器临时过载或当机。</span><br><span class="line">504 Gateway Timeout</span><br><span class="line">网关超时。</span><br><span class="line">505 HTTP Version Not Supported</span><br><span class="line">服务器不支持请求中指明的HTTP协议版本</span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月16日 11:46</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/16/HTTPS的请求与响应/" title="HTTP/HTTPS的请求与响应">https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/&title=《HTTP/HTTPS的请求与响应》 — Enmin`s blog&pic=images/2.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/&title=《HTTP/HTTPS的请求与响应》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP/HTTPS的请求与响应》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/16/HTTPS的请求与响应/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/爬虫/" class="color3">爬虫</a>
+      
+    <a href="/tags/HTTP/HTTPS/" class="color1">HTTP/HTTPS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HTTP-HTTPS的请求与响应"><span class="post-toc-text">HTTP/HTTPS的请求与响应</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTP和HTTPS"><span class="post-toc-text">HTTP和HTTPS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTP的请求与响应"><span class="post-toc-text">HTTP的请求与响应</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浏览器发送HTTP请求的过程："><span class="post-toc-text">浏览器发送HTTP请求的过程：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#客户端HTTP请求"><span class="post-toc-text">客户端HTTP请求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#请求方法"><span class="post-toc-text">请求方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTP请求主要分为Get和Post两种方法"><span class="post-toc-text">HTTP请求主要分为Get和Post两种方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用的请求报头"><span class="post-toc-text">常用的请求报头</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Host-主机和端口号"><span class="post-toc-text">1. Host (主机和端口号)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Connection-链接类型"><span class="post-toc-text">2. Connection (链接类型)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-Upgrade-Insecure-Requests-升级为HTTPS请求"><span class="post-toc-text">3. Upgrade-Insecure-Requests (升级为HTTPS请求)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-User-Agent-浏览器名称"><span class="post-toc-text">4. User-Agent (浏览器名称)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-Accept-传输文件类型"><span class="post-toc-text">5. Accept (传输文件类型)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-Referer-页面跳转处"><span class="post-toc-text">6. Referer (页面跳转处)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-Accept-Encoding（文件编解码格式）"><span class="post-toc-text">7. Accept-Encoding（文件编解码格式）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-Accept-Language（语言种类）"><span class="post-toc-text">8. Accept-Language（语言种类）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-Accept-Charset（字符编码）"><span class="post-toc-text">9. Accept-Charset（字符编码）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-Cookie-（Cookie）"><span class="post-toc-text">10. Cookie （Cookie）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-Content-Type-POST数据类型"><span class="post-toc-text">11. Content-Type (POST数据类型)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#服务端HTTP响应"><span class="post-toc-text">服务端HTTP响应</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用的响应报头"><span class="post-toc-text">常用的响应报头</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Cache-Control：must-revalidate-no-cache-private。"><span class="post-toc-text">1. Cache-Control：must-revalidate, no-cache, private。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Connection：keep-alive"><span class="post-toc-text">2. Connection：keep-alive</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-Content-Encoding-gzip"><span class="post-toc-text">3. Content-Encoding:gzip</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-Content-Type：text-html-charset-UTF-8"><span class="post-toc-text">4. Content-Type：text/html;charset=UTF-8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-Date：Sun-21-Sep-2016-06-18-21-GMT"><span class="post-toc-text">5. Date：Sun, 21 Sep 2016 06:18:21 GMT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-Expires-Sun-1-Jan-2000-01-00-00-GMT"><span class="post-toc-text">6. Expires:Sun, 1 Jan 2000 01:00:00 GMT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-Pragma-no-cache"><span class="post-toc-text">7. Pragma:no-cache</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-Server：Tengine-1-4-6"><span class="post-toc-text">8. Server：Tengine/1.4.6</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-Transfer-Encoding：chunked"><span class="post-toc-text">9. Transfer-Encoding：chunked</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-Vary-Accept-Encoding"><span class="post-toc-text">10. Vary: Accept-Encoding</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#响应状态码"><span class="post-toc-text">响应状态码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTP响应状态码参考："><span class="post-toc-text">HTTP响应状态码参考：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/05/16/HTTPS抓包工具-Fiddler/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          HTTP/HTTPS抓包工具-Fiddler
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/05/16/爬虫原理与数据抓取/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">爬虫原理与数据抓取</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="HTTPS的请求与响应" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Redis/">Redis</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/数据挖掘/">数据挖掘</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/网络原理/">网络原理</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.67px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/python/" style="font-size: 11.67px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 16.67px;">爬虫</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/编码/" style="font-size: 11.67px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.67px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/python/" style="font-size: 11.67px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 16.67px;">爬虫</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/编码/" style="font-size: 11.67px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
