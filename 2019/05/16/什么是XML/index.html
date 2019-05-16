@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>什么是XML | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="什么是XML XML 指可扩展标记语言（EXtensible Markup Language） XML 是一种标记语言，很类似 HTML XML 的设计宗旨是传输数据，而非显示数据 XML 的标签需要我们自行定义。 XML 被设计为具有自我描述性。 XML 是 W3C 的推荐标准W3School官方文档：http://www.w3school.com.cn/xml/index.aspXML 和 H">
+<meta name="keywords" content="爬虫,XPath">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是XML">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/16/什么是XML/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="什么是XML XML 指可扩展标记语言（EXtensible Markup Language） XML 是一种标记语言，很类似 HTML XML 的设计宗旨是传输数据，而非显示数据 XML 的标签需要我们自行定义。 XML 被设计为具有自我描述性。 XML 是 W3C 的推荐标准W3School官方文档：http://www.w3school.com.cn/xml/index.aspXML 和 H">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EbJuQO.gif">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/16/Ebd0mT.png">
+<meta property="og:updated_time" content="2019-05-16T12:30:07.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是XML">
+<meta name="twitter:description" content="什么是XML XML 指可扩展标记语言（EXtensible Markup Language） XML 是一种标记语言，很类似 HTML XML 的设计宗旨是传输数据，而非显示数据 XML 的标签需要我们自行定义。 XML 被设计为具有自我描述性。 XML 是 W3C 的推荐标准W3School官方文档：http://www.w3school.com.cn/xml/index.aspXML 和 H">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/16/EbJuQO.gif">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-什么是XML" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      什么是XML
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据挖掘/">数据挖掘</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-16
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="什么是XML"><a href="#什么是XML" class="headerlink" title="什么是XML"></a>什么是XML</h1><ul>
+<li>XML 指可扩展标记语言（EXtensible Markup Language）</li>
+<li>XML 是一种标记语言，很类似 HTML</li>
+<li>XML 的设计宗旨是传输数据，而非显示数据</li>
+<li>XML 的标签需要我们自行定义。</li>
+<li>XML 被设计为具有自我描述性。</li>
+<li>XML 是 W3C 的推荐标准<br>W3School官方文档：<a href="http://www.w3school.com.cn/xml/index.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/xml/index.asp</a><h2 id="XML-和-HTML-的区别"><a href="#XML-和-HTML-的区别" class="headerlink" title="XML 和 HTML 的区别"></a>XML 和 HTML 的区别</h2></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">数据格式</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">设计目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">XML</td>
+<td style="text-align:center">Extensible Markup Language （可扩展标记语言）</td>
+<td style="text-align:center">被设计为传输和存储数据，其焦点是数据的内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">HTML</td>
+<td style="text-align:center">HyperText Markup Language （超文本标记语言）</td>
+<td style="text-align:center">显示数据以及如何更好显示数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">HTML DOM</td>
+<td style="text-align:center">Document Object Model for HTML (文档对象模型)</td>
+<td style="text-align:center">通过 HTML DOM，可以访问所有的 HTML 元素，连同它们所包含的文本和属性。可以对其中的内容进行修改和删除，同时也可以创建新的元素。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="XML文档示例"><a href="#XML文档示例" class="headerlink" title="XML文档示例"></a>XML文档示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line"></span><br><span class="line">  &lt;book category=&quot;cooking&quot;&gt;</span><br><span class="line">    &lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;  </span><br><span class="line">    &lt;author&gt;Giada De Laurentiis&lt;/author&gt;  </span><br><span class="line">    &lt;year&gt;2005&lt;/year&gt;  </span><br><span class="line">    &lt;price&gt;30.00&lt;/price&gt;</span><br><span class="line">  &lt;/book&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;book category=&quot;children&quot;&gt;</span><br><span class="line">    &lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;  </span><br><span class="line">    &lt;author&gt;J K. Rowling&lt;/author&gt;  </span><br><span class="line">    &lt;year&gt;2005&lt;/year&gt;  </span><br><span class="line">    &lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">  &lt;/book&gt;  </span><br><span class="line"></span><br><span class="line">  &lt;book category=&quot;web&quot;&gt;</span><br><span class="line">    &lt;title lang=&quot;en&quot;&gt;XQuery Kick Start&lt;/title&gt;  </span><br><span class="line">    &lt;author&gt;James McGovern&lt;/author&gt;  </span><br><span class="line">    &lt;author&gt;Per Bothner&lt;/author&gt;  </span><br><span class="line">    &lt;author&gt;Kurt Cagle&lt;/author&gt;  </span><br><span class="line">    &lt;author&gt;James Linn&lt;/author&gt;  </span><br><span class="line">    &lt;author&gt;Vaidyanathan Nagarajan&lt;/author&gt;  </span><br><span class="line">    &lt;year&gt;2003&lt;/year&gt;  </span><br><span class="line">    &lt;price&gt;49.99&lt;/price&gt;</span><br><span class="line">  &lt;/book&gt;</span><br><span class="line"></span><br><span class="line">  &lt;book category=&quot;web&quot; cover=&quot;paperback&quot;&gt;</span><br><span class="line">    &lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;  </span><br><span class="line">    &lt;author&gt;Erik T. Ray&lt;/author&gt;  </span><br><span class="line">    &lt;year&gt;2003&lt;/year&gt;  </span><br><span class="line">    &lt;price&gt;39.95&lt;/price&gt;</span><br><span class="line">  &lt;/book&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bookstore&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="HTML-DOM-模型示例"><a href="#HTML-DOM-模型示例" class="headerlink" title="HTML DOM 模型示例"></a>HTML DOM 模型示例</h3><p>HTML DOM 定义了访问和操作 HTML 文档的标准方法，以树结构方式表达 HTML 文档。<br><img src="https://s2.ax1x.com/2019/05/16/EbJuQO.gif" alt="enter image description here"></p>
+<h2 id="XML的节点关系"><a href="#XML的节点关系" class="headerlink" title="XML的节点关系"></a>XML的节点关系</h2><h3 id="1-父（Parent）"><a href="#1-父（Parent）" class="headerlink" title="1. 父（Parent）"></a>1. 父（Parent）</h3><p>每个元素以及属性都有一个父。</p>
+<p>下面是一个简单的XML例子中，book 元素是 title、author、year 以及 price 元素的父：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;book&gt;</span><br><span class="line">  &lt;title&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">  &lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">  &lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">  &lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-子（Children）"><a href="#2-子（Children）" class="headerlink" title="2. 子（Children）"></a>2. 子（Children）</h3><p>元素节点可有零个、一个或多个子。</p>
+<p>在下面的例子中，title、author、year 以及 price 元素都是 book 元素的子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;book&gt;</span><br><span class="line">  &lt;title&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">  &lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">  &lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">  &lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-同胞（Sibling）"><a href="#3-同胞（Sibling）" class="headerlink" title="3. 同胞（Sibling）"></a>3. 同胞（Sibling）</h3><p>拥有相同的父的节点</p>
+<p>在下面的例子中，title、author、year 以及 price 元素都是同胞：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;book&gt;</span><br><span class="line">  &lt;title&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">  &lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">  &lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">  &lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="4-先辈（Ancestor）"><a href="#4-先辈（Ancestor）" class="headerlink" title="4. 先辈（Ancestor）"></a>4. 先辈（Ancestor）</h3><p>某节点的父、父的父，等等。</p>
+<p>在下面的例子中，title 元素的先辈是 book 元素和 bookstore 元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line"></span><br><span class="line">&lt;book&gt;</span><br><span class="line">  &lt;title&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">  &lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">  &lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">  &lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bookstore&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-后代（Descendant）"><a href="#5-后代（Descendant）" class="headerlink" title="5. 后代（Descendant）"></a>5. 后代（Descendant）</h3><p>某个节点的子，子的子，等等。</p>
+<p>在下面的例子中，bookstore 的后代是 book、title、author、year 以及 price 元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line"></span><br><span class="line">&lt;book&gt;</span><br><span class="line">  &lt;title&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">  &lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">  &lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">  &lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bookstore&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="什么是XPath？"><a href="#什么是XPath？" class="headerlink" title="什么是XPath？"></a>什么是XPath？</h1><blockquote>
+<p>Path (XML Path Language) 是一门在 XML 文档中查找信息的语言，可用来在 XML 文档中对元素和属性进行遍历。</p>
+</blockquote>
+<blockquote>
+<p>W3School官方文档：<a href="http://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/xpath/index.asp</a></p>
+</blockquote>
+<h2 id="XPath-开发工具"><a href="#XPath-开发工具" class="headerlink" title="XPath 开发工具"></a>XPath 开发工具</h2><ol>
+<li>开源的XPath表达式编辑工具:XMLQuire(XML格式文件可用)</li>
+<li>Chrome插件 XPath Helper</li>
+<li>Firefox插件 XPath Checker</li>
+</ol>
+<h2 id="选取节点"><a href="#选取节点" class="headerlink" title="选取节点"></a>选取节点</h2><p>XPath 使用路径表达式来选取 XML 文档中的节点或者节点集。这些路径表达式和我们在常规的电脑文件系统中看到的表达式非常相似。</p>
+<p>下面列出了最常用的路径表达式：<br>| 表达式     |    描述 |<br>| :——–:| :——–:|<br>| nodename  | 选取此节点的所有子节点。|<br>| /     |  从根节点选取。  |<br>| //      |  从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置。   |<br>| .      |  选取当前节点。   |<br>| ..      |  选取当前节点的父节点。   |<br>| @      |   选取属性。  | </p>
+<p>在下面的表格中，我们已列出了一些路径表达式以及表达式的结果：<br>|    路径表达式     |   结果  |<br>| :——– | :——–|<br>| bookstore  | 选取 bookstore 元素的所有子节点。 |<br>| /bookstore   |   选取根元素 bookstore。注释：假如路径起始于正斜杠( / )，则此路径始终代表到某元素的绝对路径！ |<br>| bookstore/book      |    选取属于 bookstore 的子元素的所有 book 元素。 |<br>| //book    | 选取所有 book 子元素，而不管它们在文档中的位置。    |<br>| bookstore//book     | 选择属于 bookstore 元素的后代的所有 book 元素，而不管它们位于 bookstore 之下的什么位置。    |<br>| //@lang     |  选取名为 lang 的所有属性。   |</p>
+<h2 id="谓语（Predicates）"><a href="#谓语（Predicates）" class="headerlink" title="谓语（Predicates）"></a>谓语（Predicates）</h2><p>谓语用来查找某个特定的节点或者包含某个指定的值的节点，被嵌在方括号中。</p>
+<p>在下面的表格中，我们列出了带有谓语的一些路径表达式，以及表达式的结果：<br>|  路径表达式     |    结果 |<br>| :——– | :——–:|<br>| /bookstore/book[1]  | 选取属于 bookstore 子元素的第一个 book 元素。 |<br>| /bookstore/book[last()]     |   选取属于 bookstore 子元素的最后一个 book 元素。 |<br>|   /bookstore/book[last()-1]    |    选取属于 bookstore 子元素的倒数第二个 book 元素。 |<br>|   /bookstore/book[position()&lt;3]    | 选取最前面的两个属于 bookstore 元素的子元素的 book 元素。    |<br>|     //title[@lang]  |   选取所有拥有名为 lang 的属性的 title 元素。  |<br>| //title[@lang=’eng’]      |   选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。  |<br>|  /bookstore/book[price&gt;35.00]     | 选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。    |<br>|  /bookstore/book[price&gt;35.00]/title     |     选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。|   </p>
+<h2 id="选取未知节点"><a href="#选取未知节点" class="headerlink" title="选取未知节点"></a>选取未知节点</h2><p>XPath 通配符可用来选取未知的 XML 元素。<br>| 通配符     |    描述 |<br>| :——– | :——–:|<br>|  <em> |  匹配任何元素节点。|<br>|  @</em>    |  匹配任何属性节点。  |<br>|  node()   |  匹配任何类型的节点。   |<br>在下面的表格中，我们列出了一些路径表达式，以及这些表达式的结果：<br>| 路径表达式      |    结果|<br>| :——– | :——–:|<br>| /bookstore/<em>  |选取 bookstore 元素的所有子元素。  |<br>|   //</em>   |  选取文档中的所有元素。  |<br>|    html/node()/meta/@<em> |  选择html下面任意节点下的meta节点的所有属性   |<br>|  //title[@</em>]   |  选取所有带有属性的 title 元素。  |   </p>
+<h2 id="选取若干路径"><a href="#选取若干路径" class="headerlink" title="选取若干路径"></a>选取若干路径</h2><p>通过在路径表达式中使用“|”运算符，您可以选取若干个路径。</p>
+<p>实例</p>
+<p>在下面的表格中，我们列出了一些路径表达式，以及这些表达式的结果：<br>| Item      |    Value |<br>| :——– | :——–:|<br>| //book/title  //book/price |  选取 book 元素的所有 title 和 price 元素。 |<br>|  //book/title | //book/price    |  选取文档中的所有 title 和 price 元素。  |<br>|  /bookstore/book/title · //price   |   选取属于 bookstore 元素的 book 元素的所有 title 元素，以及文档中所有的 price 元素。  |   </p>
+<h2 id="XPath的运算符"><a href="#XPath的运算符" class="headerlink" title="XPath的运算符"></a>XPath的运算符</h2><p>下面列出了可用在 XPath 表达式中的运算符：<br><img src="https://s2.ax1x.com/2019/05/16/Ebd0mT.png" alt="enter image description here"><br><strong>这些就是XPath的语法内容，在运用到Python抓取时要先转换为xml。</strong></p>
+<h2 id="lxml库"><a href="#lxml库" class="headerlink" title="lxml库"></a>lxml库</h2><blockquote>
+<p>lxml 是 一个HTML/XML的解析器，主要的功能是如何解析和提取 HTML/XML 数据。</p>
+</blockquote>
+<blockquote>
+<p>lxml和正则一样，也是用 C 实现的，是一款高性能的 Python HTML/XML 解析器，我们可以利用之前学习的XPath语法，来快速的定位特定元素以及节点信息。</p>
+</blockquote>
+<blockquote>
+<p>lxml python 官方文档：<a href="http://lxml.de/index.html" target="_blank" rel="noopener">http://lxml.de/index.html</a></p>
+</blockquote>
+<blockquote>
+<p>需要安装C语言库，可使用 pip 安装：pip install lxml （或通过wheel方式安装）</p>
+</blockquote>
+<h2 id="初步使用"><a href="#初步使用" class="headerlink" title="初步使用"></a>初步使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># lxml_test.py</span><br><span class="line"></span><br><span class="line"># 使用 lxml 的 etree 库</span><br><span class="line">from lxml import etree</span><br><span class="line"></span><br><span class="line">text = &apos;&apos;&apos;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link1.html&quot;&gt;first item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-inactive&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;third item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt; # 注意，此处缺少一个 &lt;/li&gt; 闭合标签</span><br><span class="line">     &lt;/ul&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">#利用etree.HTML，将字符串解析为HTML文档</span><br><span class="line">html = etree.HTML(text)</span><br><span class="line"></span><br><span class="line"># 按字符串序列化HTML文档</span><br><span class="line">result = etree.tostring(html)</span><br><span class="line"></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+<p>除了直接读取字符串，lxml还支持从文件里读取内容。我们新建一个hello.html文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link1.html&quot;&gt;first item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-inactive&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">     &lt;/ul&gt;</span><br><span class="line"> &lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>再利用 etree.parse() 方法来读取文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># lxml_parse.py</span><br><span class="line"></span><br><span class="line">from lxml import etree</span><br><span class="line"></span><br><span class="line"># 读取外部文件 hello.html</span><br><span class="line">html = etree.parse(&apos;./hello.html&apos;)</span><br><span class="line">result = etree.tostring(html, pretty_print=True)</span><br><span class="line"></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果与之前相同：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;body&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link1.html&quot;&gt;first item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-inactive&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;third item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="XPath实例测试"><a href="#XPath实例测试" class="headerlink" title="XPath实例测试"></a>XPath实例测试</h2><h3 id="1-获取所有的"><a href="#1-获取所有的" class="headerlink" title="1. 获取所有的 "></a>1. 获取所有的 <figure class="highlight plain"><figcaption><span>标签</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">&lt;type &apos;lxml.etree._ElementTree&apos;&gt;</span><br><span class="line">[&lt;Element li at 0x1014e0e18&gt;, &lt;Element li at 0x1014e0ef0&gt;, &lt;Element li at 0x1014e0f38&gt;, &lt;Element li at 0x1014e0f80&gt;, &lt;Element li at 0x1014e0fc8&gt;]</span><br><span class="line">5</span><br><span class="line">&lt;type &apos;list&apos;&gt;</span><br><span class="line">&lt;type &apos;lxml.etree._Element&apos;&gt;</span><br></pre></td></tr></table></figure></h3><h2 id="2-继续获取"><a href="#2-继续获取" class="headerlink" title="2. 继续获取"></a>2. 继续获取<figure class="highlight plain"><figcaption><span>标签的所有 class属性</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></h2><h1 id="xpath-li-py"><a href="#xpath-li-py" class="headerlink" title="xpath_li.py"></a>xpath_li.py</h1><p>from lxml import etree</p>
+<p>html = etree.parse(‘hello.html’)<br>result = html.xpath(‘//li/@class’)</p>
+<p>print result<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行结果</span><br></pre></td></tr></table></figure></p>
+<p>[‘item-0’, ‘item-1’, ‘item-inactive’, ‘item-1’, ‘item-0’]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 3. 继续获取&lt;li&gt;标签下hre 为 link1.html 的 &lt;a&gt; 标签</span><br><span class="line"></span><br><span class="line"># xpath_li.py</span><br></pre></td></tr></table></figure></p>
+<p>from lxml import etree</p>
+<p>html = etree.parse(‘hello.html’)<br>result = html.xpath(‘//li/a[@href=”link1.html”]’)</p>
+<p>print result<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">运行结果</span><br><span class="line">[&lt;Element a at 0x10ffaae18&gt;]</span><br><span class="line"></span><br><span class="line">## 4.  获取&lt;li&gt; 标签下的所有 &lt;span&gt; 标签</span><br></pre></td></tr></table></figure></p>
+<h1 id="xpath-li-py-1"><a href="#xpath-li-py-1" class="headerlink" title="xpath_li.py"></a>xpath_li.py</h1><p>from lxml import etree</p>
+<p>html = etree.parse(‘hello.html’)</p>
+<p>#result = html.xpath(‘//li/span’)</p>
+<p>#注意这么写是不对的：</p>
+<p>#因为 / 是用来获取子元素的，而 <span> 并不是 <li> 的子元素，所以，要用双斜杠</li></span></p>
+<p>result = html.xpath(‘//li//span’)</p>
+<p>print result<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行结果</span><br></pre></td></tr></table></figure></p>
+<p>[<element span="" at="" 0x10d698e18="">]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## 5. 获取``` &lt;li&gt;``` 标签下的&lt;a&gt;标签里的所有 class</span><br></pre></td></tr></table></figure></element></p>
+<h1 id="xpath-li-py-2"><a href="#xpath-li-py-2" class="headerlink" title="xpath_li.py"></a>xpath_li.py</h1><p>from lxml import etree</p>
+<p>html = etree.parse(‘hello.html’)<br>result = html.xpath(‘//li/a//@class’)</p>
+<p>print result<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行结果</span><br></pre></td></tr></table></figure></p>
+<p>[‘blod’]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## 6. 获取最后一个 ```&lt;li&gt;``` 的 ```&lt;a&gt; ```的 href</span><br></pre></td></tr></table></figure></p>
+<h1 id="xpath-li-py-3"><a href="#xpath-li-py-3" class="headerlink" title="xpath_li.py"></a>xpath_li.py</h1><p>from lxml import etree</p>
+<p>html = etree.parse(‘hello.html’)</p>
+<p>result = html.xpath(‘//li[last()]/a/@href’)</p>
+<h1 id="谓语-last-可以找到最后一个元素"><a href="#谓语-last-可以找到最后一个元素" class="headerlink" title="谓语 [last()] 可以找到最后一个元素"></a>谓语 [last()] 可以找到最后一个元素</h1><p>print result<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">运行结果</span><br></pre></td></tr></table></figure></p>
+<p>[‘link5.html’]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## 7. 获取倒数第二个元素的内容</span><br></pre></td></tr></table></figure></p>
+<h1 id="xpath-li-py-4"><a href="#xpath-li-py-4" class="headerlink" title="xpath_li.py"></a>xpath_li.py</h1><p>from lxml import etree</p>
+<p>html = etree.parse(‘hello.html’)<br>result = html.xpath(‘//li[last()-1]/a’)</p>
+<h1 id="text-方法可以获取元素内容"><a href="#text-方法可以获取元素内容" class="headerlink" title="text 方法可以获取元素内容"></a>text 方法可以获取元素内容</h1><p>print result[0].text<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行结果</span><br></pre></td></tr></table></figure></p>
+<p>fourth item<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## 8. 获取 class 值为 bold 的标签名</span><br></pre></td></tr></table></figure></p>
+<p> xpath_li.py</p>
+<p>from lxml import etree</p>
+<p>html = etree.parse(‘hello.html’)</p>
+<p>result = html.xpath(‘//*[@class=”bold”]’)</p>
+<h1 id="tag方法可以获取标签名"><a href="#tag方法可以获取标签名" class="headerlink" title="tag方法可以获取标签名"></a>tag方法可以获取标签名</h1><p>print result[0].tag<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**运行结果**</span><br></pre></td></tr></table></figure></p>
+<p>span<br><code>`</code></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月16日 20:30</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/16/什么是XML/" title="什么是XML">https://zem12345678.github.io/2019/05/16/什么是XML/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/16/什么是XML/&title=《什么是XML》 — Enmin`s blog&pic=images/10.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/16/什么是XML/&title=《什么是XML》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/16/什么是XML/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《什么是XML》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/16/什么是XML/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/16/什么是XML/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/16/什么是XML/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/爬虫/" class="color3">爬虫</a>
+      
+    <a href="/tags/XPath/" class="color1">XPath</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是XML"><span class="post-toc-text">什么是XML</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XML-和-HTML-的区别"><span class="post-toc-text">XML 和 HTML 的区别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#XML文档示例"><span class="post-toc-text">XML文档示例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTML-DOM-模型示例"><span class="post-toc-text">HTML DOM 模型示例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XML的节点关系"><span class="post-toc-text">XML的节点关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-父（Parent）"><span class="post-toc-text">1. 父（Parent）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-子（Children）"><span class="post-toc-text">2. 子（Children）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-同胞（Sibling）"><span class="post-toc-text">3. 同胞（Sibling）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-先辈（Ancestor）"><span class="post-toc-text">4. 先辈（Ancestor）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-后代（Descendant）"><span class="post-toc-text">5. 后代（Descendant）</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是XPath？"><span class="post-toc-text">什么是XPath？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XPath-开发工具"><span class="post-toc-text">XPath 开发工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#选取节点"><span class="post-toc-text">选取节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#谓语（Predicates）"><span class="post-toc-text">谓语（Predicates）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#选取未知节点"><span class="post-toc-text">选取未知节点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#选取若干路径"><span class="post-toc-text">选取若干路径</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XPath的运算符"><span class="post-toc-text">XPath的运算符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lxml库"><span class="post-toc-text">lxml库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初步使用"><span class="post-toc-text">初步使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#XPath实例测试"><span class="post-toc-text">XPath实例测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-获取所有的"><span class="post-toc-text">1. 获取所有的 标签123456```&lt;type &#39;lxml.etree._ElementTree&#39;&gt;[&lt;Element li at 0x1014e0e18&gt;, &lt;Element li at 0x1014e0ef0&gt;, &lt;Element li at 0x1014e0f38&gt;, &lt;Element li at 0x1014e0f80&gt;, &lt;Element li at 0x1014e0fc8&gt;]5&lt;type &#39;list&#39;&gt;&lt;type &#39;lxml.etree._Element&#39;&gt;</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-继续获取"><span class="post-toc-text">2. 继续获取标签的所有 class属性12</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#xpath-li-py"><span class="post-toc-text">xpath_li.py</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#xpath-li-py-1"><span class="post-toc-text">xpath_li.py</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#xpath-li-py-2"><span class="post-toc-text">xpath_li.py</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#xpath-li-py-3"><span class="post-toc-text">xpath_li.py</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#谓语-last-可以找到最后一个元素"><span class="post-toc-text">谓语 [last()] 可以找到最后一个元素</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#xpath-li-py-4"><span class="post-toc-text">xpath_li.py</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#text-方法可以获取元素内容"><span class="post-toc-text">text 方法可以获取元素内容</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#tag方法可以获取标签名"><span class="post-toc-text">tag方法可以获取标签名</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/16/使用XPath的爬虫/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">使用XPath的爬虫</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="什么是XML" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Redis/">Redis</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/数据挖掘/">数据挖掘</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/网络原理/">网络原理</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.67px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/XPath/" style="font-size: 11.67px;">XPath</a> <a href="/tags/python/" style="font-size: 11.67px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/正则表达式/" style="font-size: 11.67px;">正则表达式</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 18.33px;">爬虫</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/编码/" style="font-size: 11.67px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 20px;">Django</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.67px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 13.33px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 13.33px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.67px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.67px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.67px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.67px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 13.33px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.67px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/Python/" style="font-size: 18.33px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 16.67px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 13.33px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.67px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 16.67px;">Web</a> <a href="/tags/XPath/" style="font-size: 11.67px;">XPath</a> <a href="/tags/python/" style="font-size: 11.67px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 13.33px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 15px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.67px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.67px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 13.33px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/正则表达式/" style="font-size: 11.67px;">正则表达式</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 18.33px;">爬虫</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/编码/" style="font-size: 11.67px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.67px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
