@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>urllib库的使用 | Enmin`s blog</title>
+  <title>使用正则表达式re模块 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
@@ -11,16 +11,16 @@
   <meta name="description" content="使用正则表达式re模块为什么要学正则表达式实际上爬虫一共就四个主要步骤：  明确目标 (要知道你准备在哪个范围或者网站去搜索) 爬 (将所有的网站的内容全部爬下来) 取 (去掉对我们没用处的数据) 处理数据（按照我们想要的方式存储和使用）  我们在昨天的案例里实际上省略了第3步，也就是”取”的步骤。因为我们down下了的数据是全部的网页，这些数据很庞大并且很混乱，大部分的东西使我们不关心的，因此我">
 <meta name="keywords" content="正则表达式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="urllib库的使用">
+<meta property="og:title" content="使用正则表达式re模块">
 <meta property="og:url" content="https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
 <meta property="og:description" content="使用正则表达式re模块为什么要学正则表达式实际上爬虫一共就四个主要步骤：  明确目标 (要知道你准备在哪个范围或者网站去搜索) 爬 (将所有的网站的内容全部爬下来) 取 (去掉对我们没用处的数据) 处理数据（按照我们想要的方式存储和使用）  我们在昨天的案例里实际上省略了第3步，也就是”取”的步骤。因为我们down下了的数据是全部的网页，这些数据很庞大并且很混乱，大部分的东西使我们不关心的，因此我">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://s2.ax1x.com/2019/05/16/Ebeqln.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/05/16/EbmNtg.png">
-<meta property="og:updated_time" content="2019-05-16T10:00:46.752Z">
+<meta property="og:updated_time" content="2019-05-16T10:05:05.696Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="urllib库的使用">
+<meta name="twitter:title" content="使用正则表达式re模块">
 <meta name="twitter:description" content="使用正则表达式re模块为什么要学正则表达式实际上爬虫一共就四个主要步骤：  明确目标 (要知道你准备在哪个范围或者网站去搜索) 爬 (将所有的网站的内容全部爬下来) 取 (去掉对我们没用处的数据) 处理数据（按照我们想要的方式存储和使用）  我们在昨天的案例里实际上省略了第3步，也就是”取”的步骤。因为我们down下了的数据是全部的网页，这些数据很庞大并且很混乱，大部分的东西使我们不关心的，因此我">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/05/16/Ebeqln.png">
   
@@ -147,7 +147,7 @@ ga('send', 'pageview');
         
   
     <h1 class="post-title" itemprop="name">
-      urllib库的使用
+      使用正则表达式re模块
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -272,8 +272,8 @@ ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用非贪婪的数量词的正则表达式：&lt;div&gt;.*?&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">匹配结果：&lt;div&gt;test1&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">正则表达式二采用的是非贪婪模式，在匹配到第一个&quot;&lt;/div&gt;&quot;时使整个表达式匹配成功，由于采用的是非贪婪模式，所以结束匹配，不再向右尝试，匹配结果为&quot;&lt;div&gt;test1&lt;/div&gt;&quot;。</span><br></pre></td></tr></table></figure>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月16日 18:00</p>
-        <p>原始链接： <a class="post-url" href="/2019/05/16/使用正则表达式re模块/" title="urllib库的使用">https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/</a></p>
+        <p>最后更新： 2019年05月16日 18:05</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/16/使用正则表达式re模块/" title="使用正则表达式re模块">https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
                 <img src="/images/logo.png" alt="Enmin">
@@ -330,7 +330,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/&title=《urllib库的使用》 — Enmin`s blog&pic=images/9.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/&title=《使用正则表达式re模块》 — Enmin`s blog&pic=images/9.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -340,7 +340,7 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/&title=《urllib库的使用》 — Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/&title=《使用正则表达式re模块》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -350,7 +350,7 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《urllib库的使用》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/&via=https://zem12345678.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用正则表达式re模块》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/16/使用正则表达式re模块/&via=https://zem12345678.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
