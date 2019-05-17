@@ -3,26 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>使用BeautifuSoup4的爬虫 | Enmin`s blog</title>
+  <title>爬虫处理格式规范的文字 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta name="description" content="使用BeautifuSoup4的爬虫我们以腾讯社招页面来做演示：http://hr.tencent.com/position.php?&amp;amp;start=10#a 使用BeautifuSoup4解析器，将招聘网页上的职位名称、职位类别、招聘人数、工作地点、发布时间，以及每个职位详情的点击链接存储出来。 12345678910111213141516171819202122232425262728">
-<meta name="keywords" content="爬虫,BeautifuSoup4">
+  <meta name="description" content="爬虫处理格式规范的文字处理的大多数文字最好都是比较干净、格式规范的。格式规范的文字通常可以满足一些需求，通常格式规范的文字具有以下特点:  使用一个标准字体(不包含手写体、草书,或者十分“花哨的”字体) 即使被复印或拍照，字体还是很清晰，没有多余的痕迹或污点 排列整齐，没有歪歪斜斜的字 没有超出图片范围，也没有残缺不全，或紧紧贴在图片的边缘  文字的一些格式问题在图片预处理时可以进行解决。例如,可">
+<meta name="keywords" content="爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用BeautifuSoup4的爬虫">
-<meta property="og:url" content="https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/index.html">
+<meta property="og:title" content="爬虫处理格式规范的文字">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
-<meta property="og:description" content="使用BeautifuSoup4的爬虫我们以腾讯社招页面来做演示：http://hr.tencent.com/position.php?&amp;amp;start=10#a 使用BeautifuSoup4解析器，将招聘网页上的职位名称、职位类别、招聘人数、工作地点、发布时间，以及每个职位详情的点击链接存储出来。 12345678910111213141516171819202122232425262728">
+<meta property="og:description" content="爬虫处理格式规范的文字处理的大多数文字最好都是比较干净、格式规范的。格式规范的文字通常可以满足一些需求，通常格式规范的文字具有以下特点:  使用一个标准字体(不包含手写体、草书,或者十分“花哨的”字体) 即使被复印或拍照，字体还是很清晰，没有多余的痕迹或污点 排列整齐，没有歪歪斜斜的字 没有超出图片范围，也没有残缺不全，或紧紧贴在图片的边缘  文字的一些格式问题在图片预处理时可以进行解决。例如,可">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/EqDll9.jpg">
-<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/EqDwSH.jpg">
-<meta property="og:updated_time" content="2019-05-17T03:59:07.705Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/ELkHhj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/ELAkg1.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/ELAl8A.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/ELA3vt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/ELE8JJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/ELEJzR.png">
+<meta property="og:updated_time" content="2019-05-17T08:55:47.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用BeautifuSoup4的爬虫">
-<meta name="twitter:description" content="使用BeautifuSoup4的爬虫我们以腾讯社招页面来做演示：http://hr.tencent.com/position.php?&amp;amp;start=10#a 使用BeautifuSoup4解析器，将招聘网页上的职位名称、职位类别、招聘人数、工作地点、发布时间，以及每个职位详情的点击链接存储出来。 12345678910111213141516171819202122232425262728">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/17/EqDll9.jpg">
+<meta name="twitter:title" content="爬虫处理格式规范的文字">
+<meta name="twitter:description" content="爬虫处理格式规范的文字处理的大多数文字最好都是比较干净、格式规范的。格式规范的文字通常可以满足一些需求，通常格式规范的文字具有以下特点:  使用一个标准字体(不包含手写体、草书,或者十分“花哨的”字体) 即使被复印或拍照，字体还是很清晰，没有多余的痕迹或污点 排列整齐，没有歪歪斜斜的字 没有超出图片范围，也没有残缺不全，或紧紧贴在图片的边缘  文字的一些格式问题在图片预处理时可以进行解决。例如,可">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/17/ELkHhj.png">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -140,14 +144,14 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-使用BeautifuSoup4的爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-爬虫处理格式规范的文字" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      使用BeautifuSoup4的爬虫
+      爬虫处理格式规范的文字
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -176,14 +180,42 @@ ga('send', 'pageview');
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h1 id="使用BeautifuSoup4的爬虫"><a href="#使用BeautifuSoup4的爬虫" class="headerlink" title="使用BeautifuSoup4的爬虫"></a>使用BeautifuSoup4的爬虫</h1><p>我们以腾讯社招页面来做演示：<a href="http://hr.tencent.com/position.php?&amp;start=10#a" target="_blank" rel="noopener">http://hr.tencent.com/position.php?&amp;start=10#a</a><br><img src="https://s2.ax1x.com/2019/05/17/EqDll9.jpg" alt="enter image description here"></p>
-<p>使用BeautifuSoup4解析器，将招聘网页上的职位名称、职位类别、招聘人数、工作地点、发布时间，以及每个职位详情的点击链接存储出来。</p>
-<p><img src="https://s2.ax1x.com/2019/05/17/EqDwSH.jpg" alt="enter image description here"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"># bs4_tencent.py</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import urllib</span><br><span class="line">import json    # 使用了json格式存储</span><br><span class="line"></span><br><span class="line">def tencent():</span><br><span class="line">    url = &apos;http://hr.tencent.com/&apos;</span><br><span class="line">    request = urllib.request.Request(url + &apos;position.php?&amp;start=10#a&apos;)</span><br><span class="line">    response =urllib.request.urlopen(request)</span><br><span class="line">    resHtml = response.read()</span><br><span class="line"></span><br><span class="line">    output =open(&apos;tencent.json&apos;,&apos;w&apos;)</span><br><span class="line"></span><br><span class="line">    html = BeautifulSoup(resHtml,&apos;lxml&apos;)</span><br><span class="line"></span><br><span class="line"># 创建CSS选择器</span><br><span class="line">    result = html.select(&apos;tr[class=&quot;even&quot;]&apos;)</span><br><span class="line">    result2 = html.select(&apos;tr[class=&quot;odd&quot;]&apos;)</span><br><span class="line">    result += result2</span><br><span class="line"></span><br><span class="line">    items = []</span><br><span class="line">    for site in result:</span><br><span class="line">        item = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        name = site.select(&apos;td a&apos;)[0].get_text()</span><br><span class="line">        detailLink = site.select(&apos;td a&apos;)[0].attrs[&apos;href&apos;]</span><br><span class="line">        catalog = site.select(&apos;td&apos;)[1].get_text()</span><br><span class="line">        recruitNumber = site.select(&apos;td&apos;)[2].get_text()</span><br><span class="line">        workLocation = site.select(&apos;td&apos;)[3].get_text()</span><br><span class="line">        publishTime = site.select(&apos;td&apos;)[4].get_text()</span><br><span class="line"></span><br><span class="line">        item[&apos;name&apos;] = name</span><br><span class="line">        item[&apos;detailLink&apos;] = url + detailLink</span><br><span class="line">        item[&apos;catalog&apos;] = catalog</span><br><span class="line">        item[&apos;recruitNumber&apos;] = recruitNumber</span><br><span class="line">        item[&apos;publishTime&apos;] = publishTime</span><br><span class="line"></span><br><span class="line">        items.append(item)</span><br><span class="line"></span><br><span class="line">    # 禁用ascii编码，按utf-8编码</span><br><span class="line">    line = json.dumps(items,ensure_ascii=False)</span><br><span class="line"></span><br><span class="line">    output.write(line.encode(&apos;utf-8&apos;))</span><br><span class="line">    output.close()</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">   tencent()</span><br></pre></td></tr></table></figure></p>
+            <h1 id="爬虫处理格式规范的文字"><a href="#爬虫处理格式规范的文字" class="headerlink" title="爬虫处理格式规范的文字"></a>爬虫处理格式规范的文字</h1><p>处理的大多数文字最好都是比较干净、格式规范的。格式规范的文字通常可以满足一些需求，通常格式规范的文字具有以下特点:</p>
+<ul>
+<li>使用一个标准字体(不包含手写体、草书,或者十分“花哨的”字体)</li>
+<li>即使被复印或拍照，字体还是很清晰，没有多余的痕迹或污点</li>
+<li>排列整齐，没有歪歪斜斜的字</li>
+<li>没有超出图片范围，也没有残缺不全，或紧紧贴在图片的边缘</li>
+</ul>
+<p>文字的一些格式问题在图片预处理时可以进行解决。例如,可以把图片转换成灰度图，调整亮度和对比度，还可以根据需要进行裁剪和旋转（详情需要了解图像与信号处理）等。<br>格式规范文字的理想示例<br><img src="https://s2.ax1x.com/2019/05/17/ELkHhj.png" alt="enter image description here"><br>通过下面的命令运行 Tesseract，读取文件并把结果写到一个文本文件中: tesseract test.jpg text<br><img src="https://s2.ax1x.com/2019/05/17/ELAkg1.jpg" alt="enter image description here"><br>cat text.txt 即可显示结果。</p>
+<p>识别结果很准确,不过符号^和*分别被表示成了双引号和单引号。大体上可以让你很舒服地阅读。</p>
+<h2 id="通过Python代码实现"><a href="#通过Python代码实现" class="headerlink" title="通过Python代码实现"></a>通过Python代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import pytesseract</span><br><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line">image = Image.open(&apos;test.jpg&apos;)</span><br><span class="line">text = pytesseract.image_to_string(image)</span><br><span class="line">print text</span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This is some text, written in Arial, that will be read by</span><br><span class="line">Tesseract. Here are some symbols: !@#$%&quot;&amp;*()</span><br></pre></td></tr></table></figure></p>
+<h1 id="对图片进行阈值过滤和降噪处理"><a href="#对图片进行阈值过滤和降噪处理" class="headerlink" title="对图片进行阈值过滤和降噪处理"></a>对图片进行阈值过滤和降噪处理</h1><p>很多时候我们在网上会看到这样的图片：<br><img src="https://s2.ax1x.com/2019/05/17/ELAl8A.png" alt="enter image description here"><br>Tesseract 不能完整处理这个图片,主要是因为图片背景色是渐变的,最终结果是这样:<br><img src="https://s2.ax1x.com/2019/05/17/ELA3vt.png" alt="enter image description here"><br>随着背景色从左到右不断加深,文字变得越来越难以识别,Tesseract 识别出的 每一行的最后几个字符都是错的。</p>
+<p>遇到这类问题,可以先用 Python 脚本对图片进行清理。利用 PIL 库,我们可以创建一个阈值过滤器来去掉渐变的背景色，只把文字留下来，从而让图片更加清晰，便于 Tesseract 读取:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">import subprocess</span><br><span class="line"></span><br><span class="line">def cleanFile(filePath, newFilePath):</span><br><span class="line">    image = Image.open(filePath)</span><br><span class="line"></span><br><span class="line">    # 对图片进行阈值过滤（低于143的置为黑色，否则为白色）</span><br><span class="line">    image = image.point(lambda x: 0 if x &lt; 143 else 255)</span><br><span class="line">    # 重新保存图片</span><br><span class="line">    image.save(newFilePath)</span><br><span class="line"></span><br><span class="line">    # 调用系统的tesseract命令对图片进行OCR识别     </span><br><span class="line">    subprocess.call([&quot;tesseract&quot;, newFilePath, &quot;output&quot;])</span><br><span class="line"></span><br><span class="line">    # 打开文件读取结果</span><br><span class="line">    with open(&quot;output.txt&quot;, &apos;r&apos;) as f:</span><br><span class="line">        print(f.read())</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    cleanFile(&quot;text2.png&quot;, &quot;text2clean.png&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>通过一个阈值对前面的“模糊”图片进行过滤的结果</p>
+<p><img src="https://s2.ax1x.com/2019/05/17/ELE8JJ.png" alt="enter image description here"><br>除了一些标点符号不太清晰或丢失了,大部分文字都被读出来了。Tesseract 给出了最好的 结果:</p>
+<p><img src="https://s2.ax1x.com/2019/05/17/ELEJzR.png" alt="enter image description here"><br>从网站图片中抓取文字<br>用 Tesseract 读取硬盘里图片上的文字,可能不怎么令人兴奋,但当我们把它和网络爬虫组合使用时,就能成为一个强大的工具。</p>
+<p>网站上的图片可能并不是故意把文字做得很花哨 (就像餐馆菜单的 JPG 图片上的艺术字),但它们上面的文字对网络爬虫来说就是隐藏起来 了，举个例子：</p>
+<ul>
+<li><p>虽然亚马逊的 robots.txt 文件允许抓取网站的产品页面,但是图书的预览页通常不让网络机 器人采集。</p>
+</li>
+<li><p>图书的预览页是通过用户触发 Ajax 脚本进行加载的,预览图片隐藏在 div 节点 下面;其实,普通的访问者会觉得它们看起来更像是一个 Flash 动画,而不是一个图片文 件。当然,即使我们能获得图片,要把它们读成文字也没那么简单。</p>
+</li>
+<li><p>下面的程序就解决了这个问题:首先导航到托尔斯泰的《战争与和平》的大字号印刷版 1, 打开阅读器,收集图片的 URL 链接,然后下载图片,识别图片,最后打印每个图片的文 字。因为这个程序很复杂,利用了前面几章的多个程序片段,所以我增加了一些注释以让 每段代码的目的更加清晰:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">from urllib.request import urlretrieve</span><br><span class="line">import subprocess</span><br><span class="line">from selenium import webdriver</span><br><span class="line">#创建新的Selenium driver</span><br><span class="line">driver = webdriver.PhantomJS()</span><br><span class="line"></span><br><span class="line"># 用Selenium试试Firefox浏览器:</span><br><span class="line"># driver = webdriver.Firefox()</span><br><span class="line"></span><br><span class="line">driver.get(&quot;http://www.amazon.com/War-Peace-Leo-Nikolayevich-Tolstoy/dp/1427030200&quot;)</span><br><span class="line"># 单击图书预览按钮 driver.find_element_by_id(&quot;sitbLogoImg&quot;).click() imageList = set()</span><br><span class="line"># 等待页面加载完成</span><br><span class="line">time.sleep(5)</span><br><span class="line"># 当向右箭头可以点击时,开始翻页</span><br><span class="line">while &quot;pointer&quot; in driver.find_element_by_id(&quot;sitbReaderRightPageTurner&quot;).get_attribute(&quot;style&quot;):</span><br><span class="line">    driver.find_element_by_id(&quot;sitbReaderRightPageTurner&quot;).click()</span><br><span class="line">    time.sleep(2)</span><br><span class="line">    # 获取已加载的新页面(一次可以加载多个页面,但是重复的页面不能加载到集合中)</span><br><span class="line">    pages = driver.find_elements_by_xpath(&quot;//div[@class=&apos;pageImage&apos;]/div/img&quot;)</span><br><span class="line">    for page in pages:</span><br><span class="line">        image = page.get_attribute(&quot;src&quot;)</span><br><span class="line">        imageList.add(image)</span><br><span class="line">driver.quit()</span><br><span class="line"></span><br><span class="line"># 用Tesseract处理我们收集的图片URL链接</span><br><span class="line">for image in sorted(imageList):</span><br><span class="line">    # 保存图片</span><br><span class="line">    urlretrieve(image, &quot;page.jpg&quot;)</span><br><span class="line">    p = subprocess.Popen([&quot;tesseract&quot;, &quot;page.jpg&quot;, &quot;page&quot;], stdout=subprocess.PIPE,stderr=subprocess.PIPE)</span><br><span class="line">    f = open(&quot;page.txt&quot;, &quot;r&quot;)</span><br><span class="line">    p.wait() print(f.read())</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>和我们前面使用 Tesseract 读取的效果一样，这个程序也会完美地打印书中很多长长的段落，第六页的预览如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">     &quot;A word of friendly advice, mon</span><br><span class="line">     cher. Be off as soon as you can,</span><br><span class="line">     that&apos;s all I have to tell you. Happy</span><br><span class="line">     he who has ears to hear. Good-by,</span><br><span class="line">     my dear fellow. Oh, by the by!&quot; he</span><br><span class="line">     shouted through the doorway after</span><br><span class="line">     Pierre, &quot;is it true that the countess</span><br><span class="line">     has fallen into the clutches of the</span><br><span class="line">     holy fathers of the Society of je-</span><br><span class="line">     sus?&quot;</span><br><span class="line">     Pierre did not answer and left Ros-</span><br><span class="line">     topchin&apos;s room more sullen and an-</span><br><span class="line">     gry than he had ever before shown</span><br><span class="line">     himself.</span><br></pre></td></tr></table></figure>
+<p>但是当文字出现在彩色封面上时，结果就不那么完美了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">WEI&apos; nrrd Peace</span><br><span class="line">   Len Nlkelayevldu Iolfluy</span><br><span class="line">   Readmg shmdd be ax</span><br><span class="line">   wlnvame asnossxble Wenfler</span><br><span class="line">   an mm m our cram: Llhvary</span><br><span class="line">    - Leo Tmsloy was a Russian rwovelwst</span><br><span class="line">    I and moval phflmopher med lur</span><br><span class="line">    A ms Ideas 01 nonviolenx reswslance m 5 We range     0, &quot;and&quot;</span><br></pre></td></tr></table></figure></p>
+<p>如果想把文字加工成普通人可以看懂的效果，还需要花很多时间去处理。</p>
+<p>比如，通过给 Tesseract 提供大量已知的文字与图片映射集，经过训练 Tesseract 就可以“学会”识别同一种字体，而且可以达到极高的精确率和准确率，甚至可以忽略图片中文字的背景色和相对位置等问题。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月17日 11:59</p>
-        <p>原始链接： <a class="post-url" href="/2019/05/17/使用BeautifuSoup4的爬虫/" title="使用BeautifuSoup4的爬虫">https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/</a></p>
+        <p>最后更新： 2019年05月17日 16:55</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/17/爬虫处理格式规范的文字/" title="爬虫处理格式规范的文字">https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/</a></p>
         <footer>
             <a href="https://zem12345678.github.io">
                 <img src="/images/logo.png" alt="Enmin">
@@ -240,7 +272,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/&title=《使用BeautifuSoup4的爬虫》 — Enmin`s blog&pic=images/14.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/&title=《爬虫处理格式规范的文字》 — Enmin`s blog&pic=images/20.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -250,22 +282,22 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/&title=《使用BeautifuSoup4的爬虫》 — Enmin`s blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/&title=《爬虫处理格式规范的文字》 — Enmin`s blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用BeautifuSoup4的爬虫》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/&via=https://zem12345678.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《爬虫处理格式规范的文字》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/&via=https://zem12345678.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -275,7 +307,7 @@ ga('send', 'pageview');
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/17/使用BeautifuSoup4的爬虫/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/17/爬虫处理格式规范的文字/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -289,8 +321,6 @@ ga('send', 'pageview');
       
     <a href="/tags/爬虫/" class="color3">爬虫</a>
       
-    <a href="/tags/BeautifuSoup4/" class="color4">BeautifuSoup4</a>
-      
   </li>
 
         </ul>
@@ -302,26 +332,26 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用BeautifuSoup4的爬虫"><span class="post-toc-text">使用BeautifuSoup4的爬虫</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#爬虫处理格式规范的文字"><span class="post-toc-text">爬虫处理格式规范的文字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过Python代码实现"><span class="post-toc-text">通过Python代码实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#对图片进行阈值过滤和降噪处理"><span class="post-toc-text">对图片进行阈值过滤和降噪处理</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2019/05/17/Selenium与PhantomJS/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/05/17/尝试对验证码机器识别进行处理：/" id="article-nav-newer" class="article-nav-link-wrap">
 
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          Selenium与PhantomJS
+          尝试对验证码机器识别进行处理
         
       </span>
     </a>
   
   
-    <a href="/2019/05/17/CSS 选择器：BeautifulSoup4/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">BeautifulSoup4解析器</span>
+    <a href="/2019/05/17/selenium执行 JavaScript 语句/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">selenium执行 JavaScript 语句</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -330,7 +360,7 @@ ga('send', 'pageview');
 
 
     
-        <div id="SOHUCS" sid="使用BeautifuSoup4的爬虫" ></div>
+        <div id="SOHUCS" sid="爬虫处理格式规范的文字" ></div>
 <script type="text/javascript">
     (function(){
         var appid = 'cytRXLIlH';

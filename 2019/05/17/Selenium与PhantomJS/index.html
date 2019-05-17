@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Selenium与PhantomJS | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="Selenium与PhantomJSSeleniumSelenium是一个Web的自动化测试工具，最初是为网站自动化测试而开发的，类型像我们玩游戏用的按键精灵，可以按指定的命令自动操作，不同是Selenium 可以直接运行在浏览器上，它支持所有主流的浏览器（包括PhantomJS这些无界面的浏览器）。 Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，甚至页面截屏，或者判">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium与PhantomJS">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="Selenium与PhantomJSSeleniumSelenium是一个Web的自动化测试工具，最初是为网站自动化测试而开发的，类型像我们玩游戏用的按键精灵，可以按指定的命令自动操作，不同是Selenium 可以直接运行在浏览器上，它支持所有主流的浏览器（包括PhantomJS这些无界面的浏览器）。 Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，甚至页面截屏，或者判">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-17T08:53:42.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Selenium与PhantomJS">
+<meta name="twitter:description" content="Selenium与PhantomJSSeleniumSelenium是一个Web的自动化测试工具，最初是为网站自动化测试而开发的，类型像我们玩游戏用的按键精灵，可以按指定的命令自动操作，不同是Selenium 可以直接运行在浏览器上，它支持所有主流的浏览器（包括PhantomJS这些无界面的浏览器）。 Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，甚至页面截屏，或者判">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Selenium与PhantomJS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Selenium与PhantomJS
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据挖掘/">数据挖掘</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="Selenium与PhantomJS"><a href="#Selenium与PhantomJS" class="headerlink" title="Selenium与PhantomJS"></a>Selenium与PhantomJS</h1><h2 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h2><p>Selenium是一个Web的自动化测试工具，最初是为网站自动化测试而开发的，类型像我们玩游戏用的按键精灵，可以按指定的命令自动操作，不同是Selenium 可以直接运行在浏览器上，它支持所有主流的浏览器（包括PhantomJS这些无界面的浏览器）。</p>
+<p>Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，甚至页面截屏，或者判断网站上某些动作是否发生。</p>
+<p>Selenium 自己不带浏览器，不支持浏览器的功能，它需要与第三方浏览器结合在一起才能使用。但是我们有时候需要让它内嵌在代码中运行，所以我们可以用一个叫 PhantomJS 的工具代替真实的浏览器。</p>
+<blockquote>
+<p>可以从 PyPI 网站下载 Selenium库<a href="https://pypi.python.org/simple/selenium" target="_blank" rel="noopener">https://pypi.python.org/simple/selenium</a> ，也可以用 第三方管理器 pip用命令安装：<figure class="highlight plain"><figcaption><span>pip install selenium```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;Selenium 官方参考文档：http://selenium-python.readthedocs.io/index.html</span><br><span class="line"></span><br><span class="line">## PhantomJS</span><br><span class="line">PhantomJS 是一个基于Webkit的“无界面”(headless)浏览器，它会把网站加载到内存并执行页面上的 JavaScript，因为不会展示图形界面，所以运行起来比完整的浏览器要高效。</span><br><span class="line"></span><br><span class="line">如果我们把 Selenium 和 PhantomJS 结合在一起，就可以运行一个非常强大的网络爬虫了，这个爬虫可以处理 JavaScrip、Cookie、headers，以及任何我们真实用户需要做的事情。</span><br><span class="line"></span><br><span class="line">&gt;PhantomJS 是一个功能完善(虽然无界面)的浏览器而非一个 Python 库，所以它不需要像 Python 的其他库一样安装，但我们可以通过Selenium调用PhantomJS来直接使用。</span><br><span class="line"></span><br><span class="line">&gt;在Ubuntu16.04中可以使用命令安装：```sudo apt-get install phantomjs</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>如果其他系统无法安装，可以从它的官方网站<a href="http://phantomjs.org/download.html" target="_blank" rel="noopener">http://phantomjs.org/download.html</a>) 下载。</p>
+</blockquote>
+<blockquote>
+<p>PhantomJS 官方参考文档：<a href="http://phantomjs.org/documentation" target="_blank" rel="noopener">http://phantomjs.org/documentation</a></p>
+</blockquote>
+<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><p>Selenium 库里有个叫 WebDriver 的 API。WebDriver 有点儿像可以加载网站的浏览器，但是它也可以像 BeautifulSoup 或者其他 Selector 对象一样用来查找页面元素，与页面上的元素进行交互 (发送文本、点击等)，以及执行其他动作来运行网络爬虫。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"># IPython2 测试代码</span><br><span class="line"></span><br><span class="line"># 导入 webdriver</span><br><span class="line">from selenium import webdriver</span><br><span class="line"></span><br><span class="line"># 调用键盘按键操作时需要引入的Keys包</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line"></span><br><span class="line"># 调用环境变量指定的PhantomJS浏览器创建浏览器对象</span><br><span class="line">driver = webdriver.PhantomJS()</span><br><span class="line"></span><br><span class="line"># 如果没有在环境变量指定PhantomJS位置</span><br><span class="line"># driver = webdriver.PhantomJS(executable_path=&quot;./phantomjs&quot;))</span><br><span class="line"></span><br><span class="line"># get方法会一直等到页面被完全加载，然后才会继续程序，通常测试会在这里选择 time.sleep(2)</span><br><span class="line">driver.get(&quot;http://www.baidu.com/&quot;)</span><br><span class="line"></span><br><span class="line"># 获取页面名为 wrapper的id标签的文本内容</span><br><span class="line">data = driver.find_element_by_id(&quot;wrapper&quot;).text</span><br><span class="line"></span><br><span class="line"># 打印数据内容</span><br><span class="line">print data</span><br><span class="line"></span><br><span class="line"># 打印页面标题 &quot;百度一下，你就知道&quot;</span><br><span class="line">print driver.title</span><br><span class="line"></span><br><span class="line"># 生成当前页面快照并保存</span><br><span class="line">driver.save_screenshot(&quot;baidu.png&quot;)</span><br><span class="line"></span><br><span class="line"># id=&quot;kw&quot;是百度搜索输入框，输入字符串&quot;长城&quot;</span><br><span class="line">driver.find_element_by_id(&quot;kw&quot;).send_keys(u&quot;长城&quot;)</span><br><span class="line"></span><br><span class="line"># id=&quot;su&quot;是百度搜索按钮，click() 是模拟点击</span><br><span class="line">driver.find_element_by_id(&quot;su&quot;).click()</span><br><span class="line"></span><br><span class="line"># 获取新的页面快照</span><br><span class="line">driver.save_screenshot(&quot;长城.png&quot;)</span><br><span class="line"></span><br><span class="line"># 打印网页渲染后的源代码</span><br><span class="line">print driver.page_source</span><br><span class="line"></span><br><span class="line"># 获取当前页面Cookie</span><br><span class="line">print driver.get_cookies()</span><br><span class="line"></span><br><span class="line"># ctrl+a 全选输入框内容</span><br><span class="line">driver.find_element_by_id(&quot;kw&quot;).send_keys(Keys.CONTROL,&apos;a&apos;)</span><br><span class="line"></span><br><span class="line"># ctrl+x 剪切输入框内容</span><br><span class="line">driver.find_element_by_id(&quot;kw&quot;).send_keys(Keys.CONTROL,&apos;x&apos;)</span><br><span class="line"></span><br><span class="line"># 输入框重新输入内容</span><br><span class="line">driver.find_element_by_id(&quot;kw&quot;).send_keys(&quot;itcast&quot;)</span><br><span class="line"></span><br><span class="line"># 模拟Enter回车键</span><br><span class="line">driver.find_element_by_id(&quot;su&quot;).send_keys(Keys.RETURN)</span><br><span class="line"></span><br><span class="line"># 清除输入框内容</span><br><span class="line">driver.find_element_by_id(&quot;kw&quot;).clear()</span><br><span class="line"></span><br><span class="line"># 生成新的页面快照</span><br><span class="line">driver.save_screenshot(&quot;itcast.png&quot;)</span><br><span class="line"></span><br><span class="line"># 获取当前url</span><br><span class="line">print driver.current_url</span><br><span class="line"></span><br><span class="line"># 关闭当前页面，如果只有一个页面，会关闭浏览器</span><br><span class="line"># driver.close()</span><br><span class="line"></span><br><span class="line"># 关闭浏览器</span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure></p>
+<h1 id="页面操作"><a href="#页面操作" class="headerlink" title="页面操作"></a>页面操作</h1><p>Selenium 的 WebDriver提供了各种方法来寻找元素，假设下面有一个表单输入框：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; name=&quot;user-name&quot; id=&quot;passwd-id&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>那么：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 获取id标签值</span><br><span class="line">element = driver.find_element_by_id(&quot;passwd-id&quot;)</span><br><span class="line"># 获取name标签值</span><br><span class="line">element = driver.find_element_by_name(&quot;user-name&quot;)</span><br><span class="line"># 获取标签名值</span><br><span class="line">element = driver.find_elements_by_tag_name(&quot;input&quot;)</span><br><span class="line"># 也可以通过XPath来匹配</span><br><span class="line">element = driver.find_element_by_xpath(&quot;//input[@id=&apos;passwd-id&apos;]&quot;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="定位UI元素-WebElements"><a href="#定位UI元素-WebElements" class="headerlink" title="定位UI元素 (WebElements)"></a>定位UI元素 (WebElements)</h2><p>关于元素的选取，有如下的API 单个元素选取<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ind_element_by_id</span><br><span class="line">find_elements_by_name</span><br><span class="line">find_elements_by_xpath</span><br><span class="line">find_elements_by_link_text</span><br><span class="line">find_elements_by_partial_link_text</span><br><span class="line">find_elements_by_tag_name</span><br><span class="line">find_elements_by_class_name</span><br><span class="line">find_elements_by_css_selector</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>By ID<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;coolestWidgetEvah&quot;&gt;...&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element = driver.find_element_by_id(&quot;coolestWidgetEvah&quot;)</span><br><span class="line">------------------------ or -------------------------</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">element = driver.find_element(by=By.ID, value=&quot;coolestWidgetEvah&quot;)</span><br><span class="line">By Class Name</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>By Class Name<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div class=&quot;cheese&quot;&gt;&lt;span&gt;Cheddar&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;cheese&quot;&gt;&lt;span&gt;Gouda&lt;/span&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cheeses = driver.find_elements_by_class_name(&quot;cheese&quot;)</span><br><span class="line">------------------------ or -------------------------</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">cheeses = driver.find_elements(By.CLASS_NAME, &quot;cheese&quot;)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>By Tag Name<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;...&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frame = driver.find_element_by_tag_name(&quot;iframe&quot;)</span><br><span class="line">------------------------ or -------------------------</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">frame = driver.find_element(By.TAG_NAME, &quot;iframe&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>By Name<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=&quot;cheese&quot; type=&quot;text&quot;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cheese = driver.find_element_by_name(&quot;cheese&quot;)</span><br><span class="line">------------------------ or -------------------------</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">cheese = driver.find_element(By.NAME, &quot;cheese&quot;)</span><br><span class="line">By Link Text</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;http://www.google.com/search?q=cheese&quot;&gt;cheese&lt;/a&gt;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">5. By Link Text</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://www.google.com/search?q=cheese" target="_blank" rel="noopener">cheese</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 实现</span><br></pre></td></tr></table></figure></p>
+<p>cheese = driver.find_element_by_link_text(“cheese”)<br>———————— or ————————-<br>from selenium.webdriver.common.by import By<br>cheese = driver.find_element(By.LINK_TEXT, “cheese”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6. By Partial Link Text</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://www.google.com/search?q=cheese" target="_blank" rel="noopener">search for cheese</a>&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 实现</span><br></pre></td></tr></table></figure></p>
+<p>cheese = driver.find_element_by_partial_link_text(“cheese”)<br>———————— or ————————-<br>from selenium.webdriver.common.by import By<br>cheese = driver.find_element(By.PARTIAL_LINK_TEXT, “cheese”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7. By CSS</span><br></pre></td></tr></table></figure></p>
+<p><div id="food"><span class="dairy">milk</span><span class="dairy aged">cheese</span></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实现</span><br></pre></td></tr></table></figure></p>
+<p>cheese = driver.find_element_by_css_selector(“#food span.dairy.aged”)<br>———————— or ————————-<br>from selenium.webdriver.common.by import By<br>cheese = driver.find_element(By.CSS_SELECTOR, “#food span.dairy.aged”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8. By XPath</span><br></pre></td></tr></table></figure></p>
+<p><input type="text" name="example"></p>
+<p><input type="text" name="other"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实现</span><br></pre></td></tr></table></figure></p>
+<p>inputs = driver.find_elements_by_xpath(“//input”)<br>———————— or ————————-<br>from selenium.webdriver.common.by import By<br>inputs = driver.find_elements(By.XPATH, “//input”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## 鼠标动作链</span><br><span class="line">有些时候，我们需要再页面上模拟一些鼠标操作，比如双击、右击、拖拽甚至按住不动等，我们可以通过导入 ActionChains 类来做到：</span><br><span class="line"></span><br><span class="line">示例：</span><br></pre></td></tr></table></figure></p>
+<p>#导入 ActionChains 类<br>from selenium.webdriver import ActionChains</p>
+<h1 id="鼠标移动到-ac-位置"><a href="#鼠标移动到-ac-位置" class="headerlink" title="鼠标移动到 ac 位置"></a>鼠标移动到 ac 位置</h1><p>ac = driver.find_element_by_xpath(‘element’)<br>ActionChains(driver).move_to_element(ac).perform()</p>
+<h1 id="在-ac-位置单击"><a href="#在-ac-位置单击" class="headerlink" title="在 ac 位置单击"></a>在 ac 位置单击</h1><p>ac = driver.find_element_by_xpath(“elementA”)<br>ActionChains(driver).move_to_element(ac).click(ac).perform()</p>
+<h1 id="在-ac-位置双击"><a href="#在-ac-位置双击" class="headerlink" title="在 ac 位置双击"></a>在 ac 位置双击</h1><p>ac = driver.find_element_by_xpath(“elementB”)<br>ActionChains(driver).move_to_element(ac).double_click(ac).perform()</p>
+<h1 id="在-ac-位置右击"><a href="#在-ac-位置右击" class="headerlink" title="在 ac 位置右击"></a>在 ac 位置右击</h1><p>ac = driver.find_element_by_xpath(“elementC”)<br>ActionChains(driver).move_to_element(ac).context_click(ac).perform()</p>
+<h1 id="在-ac-位置左键单击hold住"><a href="#在-ac-位置左键单击hold住" class="headerlink" title="在 ac 位置左键单击hold住"></a>在 ac 位置左键单击hold住</h1><p>ac = driver.find_element_by_xpath(‘elementF’)<br>ActionChains(driver).move_to_element(ac).click_and_hold(ac).perform()</p>
+<h1 id="将-ac1-拖拽到-ac2-位置"><a href="#将-ac1-拖拽到-ac2-位置" class="headerlink" title="将 ac1 拖拽到 ac2 位置"></a>将 ac1 拖拽到 ac2 位置</h1><p>ac1 = driver.find_element_by_xpath(‘elementD’)<br>ac2 = driver.find_element_by_xpath(‘elementE’)<br>ActionChains(driver).drag_and_drop(ac1, ac2).perform()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 填充表单</span><br><span class="line">我们已经知道了怎样向文本框中输入文字，但是有时候我们会碰到&lt;select&gt; &lt;/select&gt;标签的下拉框。直接点击下拉框中的选项不一定可行。</span><br></pre></td></tr></table></figure></p>
+<p><select id="status" class="form-control valid" onchange="" name="status"><br>    <option value=""></option><br>    <option value="0">未审核</option><br>    <option value="1">初审通过</option><br>    <option value="2">复审通过</option><br>    <option value="3">审核不通过</option><br></select><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Selenium专门提供了Select类来处理下拉框。 其实 WebDriver 中提供了一个叫 Select 的方法，可以帮助我们完成这些事情：</span><br></pre></td></tr></table></figure></p>
+<h1 id="导入-Select-类"><a href="#导入-Select-类" class="headerlink" title="导入 Select 类"></a>导入 Select 类</h1><p>from selenium.webdriver.support.ui import Select</p>
+<h1 id="找到-name-的选项卡"><a href="#找到-name-的选项卡" class="headerlink" title="找到 name 的选项卡"></a>找到 name 的选项卡</h1><p>select = Select(driver.find_element_by_name(‘status’))</p>
+<p>#<br>select.select_by_index(1)<br>select.select_by_value(“0”)<br>select.select_by_visible_text(u”未审核”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">以上是三种选择下拉框的方式，它可以根据索引来选择，可以根据值来选择，可以根据文字来选择。注意：</span><br><span class="line"></span><br><span class="line">&gt;* index 索引从 0 开始</span><br><span class="line">&gt;* value是option标签的一个属性值，并不是显示在下拉框中的值</span><br><span class="line">&gt;* visible_text是在option标签文本的值，是显示在下拉框的值</span><br><span class="line"></span><br><span class="line">全部取消选择怎么办呢？很简单:</span><br></pre></td></tr></table></figure></p>
+<p>select.deselect_all()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 弹窗处理</span><br><span class="line">当你触发了某个事件之后，页面出现了弹窗提示，处理这个提示或者获取提示信息方法如下：</span><br></pre></td></tr></table></figure></p>
+<p>alert = driver.switch_to_alert()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 页面切换</span><br><span class="line">一个浏览器肯定会有很多窗口，所以我们肯定要有方法来实现窗口的切换。切换窗口的方法如下：</span><br></pre></td></tr></table></figure></p>
+<p>driver.switch_to.window(“this is window name”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">也可以使用 window_handles 方法来获取每个窗口的操作对象。例如：</span><br></pre></td></tr></table></figure></p>
+<p>for handle in driver.window_handles:<br>    driver.switch_to_window(handle)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##  页面前进和后退</span><br><span class="line">操作页面的前进和后退功能：</span><br></pre></td></tr></table></figure></p>
+<p>driver.forward()     #前进<br>driver.back()        # 后退<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Cookies</span><br><span class="line">获取页面每个Cookies值，用法如下</span><br></pre></td></tr></table></figure></p>
+<p>for cookie in driver.get_cookies():<br>    print “%s -&gt; %s” % (cookie[‘name’], cookie[‘value’])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">删除Cookies，用法如下</span><br></pre></td></tr></table></figure></p>
+<h1 id="By-name"><a href="#By-name" class="headerlink" title="By name"></a>By name</h1><p>driver.delete_cookie(“CookieName”)</p>
+<h1 id="all"><a href="#all" class="headerlink" title="all"></a>all</h1><p>driver.delete_all_cookies()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 页面等待</span><br><span class="line">注意：这是非常重要的一部分！！</span><br><span class="line"></span><br><span class="line">现在的网页越来越多采用了 Ajax 技术，这样程序便不能确定何时某个元素完全加载出来了。如果实际页面等待时间过长导致某个dom元素还没出来，但是你的代码直接使用了这个WebElement，那么就会抛出NullPointer的异常。</span><br><span class="line"></span><br><span class="line">为了避免这种元素定位困难而且会提高产生 ElementNotVisibleException 的概率。所以 Selenium 提供了两种等待方式，一种是隐式等待，一种是显式等待。</span><br><span class="line"></span><br><span class="line">隐式等待是等待特定的时间，显式等待是指定某一条件直到这个条件成立时继续执行。</span><br><span class="line"></span><br><span class="line">### 显式等待</span><br><span class="line">显式等待指定某个条件，然后设置最长等待时间。如果在这个时间还没有找到元素，那么便会抛出异常了。</span><br></pre></td></tr></table></figure></p>
+<p>from selenium import webdriver<br>from selenium.webdriver.common.by import By</p>
+<h1 id="WebDriverWait-库，负责循环等待"><a href="#WebDriverWait-库，负责循环等待" class="headerlink" title="WebDriverWait 库，负责循环等待"></a>WebDriverWait 库，负责循环等待</h1><p>from selenium.webdriver.support.ui import WebDriverWait</p>
+<h1 id="expected-conditions-类，负责条件出发"><a href="#expected-conditions-类，负责条件出发" class="headerlink" title="expected_conditions 类，负责条件出发"></a>expected_conditions 类，负责条件出发</h1><p>from selenium.webdriver.support import expected_conditions as EC</p>
+<p>driver = webdriver.Chrome()<br>driver.get(“<a href="http://www.xxxxx.com/loading&quot;" target="_blank" rel="noopener">http://www.xxxxx.com/loading&quot;</a>)<br>try:</p>
+<pre><code># 页面一直循环，直到 id=&quot;myDynamicElement&quot; 出现
+element = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, &quot;myDynamicElement&quot;))
+)
+</code></pre><p>finally:<br>    driver.quit()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果不写参数，程序默认会 0.5s 调用一次来查看元素是否已经生成，如果本来元素就是存在的，那么会立即返回。</span><br><span class="line"></span><br><span class="line">下面是一些内置的等待条件，你可以直接调用这些条件，而不用自己写某些等待条件了。</span><br></pre></td></tr></table></figure>
+<p>itle_is<br>title_contains<br>presence_of_element_located<br>visibility_of_element_located<br>visibility_of<br>presence_of_all_elements_located<br>text_to_be_present_in_element<br>text_to_be_present_in_element_value<br>frame_to_be_available_and_switch_to_it<br>invisibility_of_element_located<br>element_to_be_clickable – it is Displayed and Enabled.<br>staleness_of<br>element_to_be_selected<br>element_located_to_be_selected<br>element_selection_state_to_be<br>element_located_selection_state_to_be<br>alert_is_present<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 隐式等待</span><br><span class="line">隐式等待比较简单，就是简单地设置一个等待时间，单位为秒。</span><br></pre></td></tr></table></figure></p>
+<p>from selenium import webdriver</p>
+<p>driver = webdriver.Chrome()<br>driver.implicitly_wait(10) # seconds<br>driver.get(“<a href="http://www.xxxxx.com/loading&quot;" target="_blank" rel="noopener">http://www.xxxxx.com/loading&quot;</a>)<br>myDynamicElement = driver.find_element_by_id(“myDynamicElement”)<br><code>`</code><br>当然如果不设置，默认等待时间为0。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月17日 16:53</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/17/Selenium与PhantomJS/" title="Selenium与PhantomJS">https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/&title=《Selenium与PhantomJS》 — Enmin`s blog&pic=images/17.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/&title=《Selenium与PhantomJS》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Selenium与PhantomJS》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/17/Selenium与PhantomJS/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/爬虫/" class="color3">爬虫</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Selenium与PhantomJS"><span class="post-toc-text">Selenium与PhantomJS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Selenium"><span class="post-toc-text">Selenium</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#快速入门"><span class="post-toc-text">快速入门</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#页面操作"><span class="post-toc-text">页面操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定位UI元素-WebElements"><span class="post-toc-text">定位UI元素 (WebElements)</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#鼠标移动到-ac-位置"><span class="post-toc-text">鼠标移动到 ac 位置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在-ac-位置单击"><span class="post-toc-text">在 ac 位置单击</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在-ac-位置双击"><span class="post-toc-text">在 ac 位置双击</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在-ac-位置右击"><span class="post-toc-text">在 ac 位置右击</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在-ac-位置左键单击hold住"><span class="post-toc-text">在 ac 位置左键单击hold住</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#将-ac1-拖拽到-ac2-位置"><span class="post-toc-text">将 ac1 拖拽到 ac2 位置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#导入-Select-类"><span class="post-toc-text">导入 Select 类</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#找到-name-的选项卡"><span class="post-toc-text">找到 name 的选项卡</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#By-name"><span class="post-toc-text">By name</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#all"><span class="post-toc-text">all</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#WebDriverWait-库，负责循环等待"><span class="post-toc-text">WebDriverWait 库，负责循环等待</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#expected-conditions-类，负责条件出发"><span class="post-toc-text">expected_conditions 类，负责条件出发</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/05/17/网站模拟登录/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          网站模拟登录
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/05/17/使用BeautifuSoup4的爬虫/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">使用BeautifuSoup4的爬虫</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Selenium与PhantomJS" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Redis/">Redis</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/数据挖掘/">数据挖掘</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/网络原理/">网络原理</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/BeautifuSoup4/" style="font-size: 10px;">BeautifuSoup4</a> <a href="/tags/BeautifulSoup4/" style="font-size: 10px;">BeautifulSoup4</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 18.57px;">Django</a> <a href="/tags/Docker/" style="font-size: 12.86px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.43px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 12.86px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 12.86px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.43px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.43px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.43px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.43px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 12.86px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.43px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.71px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 12.86px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.43px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 15.71px;">Web</a> <a href="/tags/XPath/" style="font-size: 11.43px;">XPath</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 12.86px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 14.29px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.43px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.43px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 12.86px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/正则表达式/" style="font-size: 11.43px;">正则表达式</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a> <a href="/tags/算法/" style="font-size: 15.71px;">算法</a> <a href="/tags/编码/" style="font-size: 11.43px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.43px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/BeautifuSoup4/" style="font-size: 10px;">BeautifuSoup4</a> <a href="/tags/BeautifulSoup4/" style="font-size: 10px;">BeautifulSoup4</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 18.57px;">Django</a> <a href="/tags/Docker/" style="font-size: 12.86px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.43px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 12.86px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 12.86px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.43px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.43px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.43px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.43px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 12.86px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.43px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.71px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 12.86px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.43px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 15.71px;">Web</a> <a href="/tags/XPath/" style="font-size: 11.43px;">XPath</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 12.86px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 14.29px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.43px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.43px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 12.86px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/正则表达式/" style="font-size: 11.43px;">正则表达式</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a> <a href="/tags/算法/" style="font-size: 15.71px;">算法</a> <a href="/tags/编码/" style="font-size: 11.43px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.43px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

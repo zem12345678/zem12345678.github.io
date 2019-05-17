@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Enmin`s blog</title>
+  <title>训练Tesseract | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Enmin`s blog">
-<meta property="og:url" content="https://zem12345678.github.io/archives/page/3/index.html">
+  <meta name="description" content="训练Tesseract**要使用 Tesseract 的功能，比如后面的示例中训练程序识别字母，要先在系统中设置一 个新的环境变量 Tesseract 知道训练的数据文件存储在哪里，然后搞一份tessdata数据文件，放到Tesseract目录下。**1* 在大多数 Linux 系统和 Mac OS X 系统上,你可以这么设置: ```$export TESSDATA_PREFIX=/usr/lo">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="训练Tesseract">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/17/训练Tesseract/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="训练Tesseract**要使用 Tesseract 的功能，比如后面的示例中训练程序识别字母，要先在系统中设置一 个新的环境变量 Tesseract 知道训练的数据文件存储在哪里，然后搞一份tessdata数据文件，放到Tesseract目录下。**1* 在大多数 Linux 系统和 Mac OS X 系统上,你可以这么设置: ```$export TESSDATA_PREFIX=/usr/lo">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-17T08:57:30.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enmin`s blog">
+<meta name="twitter:title" content="训练Tesseract">
+<meta name="twitter:description" content="训练Tesseract**要使用 Tesseract 的功能，比如后面的示例中训练程序识别字母，要先在系统中设置一 个新的环境变量 Tesseract 知道训练的数据文件存储在哪里，然后搞一份tessdata数据文件，放到Tesseract目录下。**1* 在大多数 Linux 系统和 Mac OS X 系统上,你可以这么设置: ```$export TESSDATA_PREFIX=/usr/lo">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -132,373 +137,206 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap">
-  
-  
+        <section id="main" class="body-wrap"><article id="post-训练Tesseract" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/HTTPS的请求与响应/" class="archive-article-date">
-  <time datetime="2019-05-16T03:39:46.146Z" itemprop="datePublished">05-16</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/HTTPS的请求与响应/"  >HTTP/HTTPS的请求与响应</a>
+    <h1 class="post-title" itemprop="name">
+      训练Tesseract
     </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据挖掘/">数据挖掘</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
   
 
-    </header>
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
       
-        <div class="archive-post-footer">
+            
+            <h1 id="训练Tesseract"><a href="#训练Tesseract" class="headerlink" title="训练Tesseract"></a>训练Tesseract</h1><p>**要使用 Tesseract 的功能，比如后面的示例中训练程序识别字母，要先在系统中设置一 个新的环境变量 <figure class="highlight plain"><figcaption><span>Tesseract 知道训练的数据文件存储在哪里，然后搞一份tessdata数据文件，放到Tesseract目录下。**</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 在大多数 Linux 系统和 Mac OS X 系统上,你可以这么设置: ```$export TESSDATA_PREFIX=/usr/local/share/Tesseract</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>在 Windows 系统上也类似,你可以通过下面这行命令设置环境变量: <figure class="highlight plain"><figcaption><span>TESSDATA_PREFIX C:\Program Files\Tesseract OCR\Tesseract```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">大多数其他的验证码都是比较简单的。例如，流行的 PHP 内容管理系统 Drupal 有一个著名的验证码模块 https://www.drupal.org/project/captcha，可以生成不同难度的验证码。</span><br><span class="line">举个例子：</span><br><span class="line">![enter image description here](https://s2.ax1x.com/2019/05/17/ELVQXt.png)</span><br><span class="line">那么与其他验证码相比，为什么这个验证码更容易被人类和机器读懂呢?</span><br><span class="line"></span><br><span class="line">* 字母没有相互叠加在一起，在水平方向上也没有彼此交叉。也就是说，可以在每一个字 母外面画一个方框，而不会重叠在一起。</span><br><span class="line">* 图片没有背景色、线条或其他对 OCR 程序产生干扰的噪点。</span><br><span class="line">* 虽然不能因一个图片下定论，但是这个验证码用的字体种类很少，而且用的是 sans-serif 字体(像“4”和“M”)和一种手写形式的字体(像“m”“C”和“3”)。</span><br><span class="line"></span><br><span class="line">白色背景色与深色字母之间的对比度很高。</span><br><span class="line">这个验证码只做了一点点改变，就让 OCR 程序很难识别。</span><br><span class="line"></span><br><span class="line">* 字母和数据都使用了，这会增加待搜索字符的数量。</span><br><span class="line">* 字母随机的倾斜程度会迷惑 OCR 软件，但是人类还是很容易识别的。</span><br><span class="line">* 那个比较陌生的手写字体很有挑战性，在“C”和“3”里面还有额外的线条。</span><br><span class="line">* 另外这个非常小的小写“m”，计算机需要进行额外的训练才能识别。</span><br><span class="line"></span><br><span class="line">用下面的代码运行 Tesseract 识别图片:</span><br><span class="line"></span><br><span class="line">&gt;tesseract captchaExample.png output</span><br><span class="line"></span><br><span class="line">我们得到的结果 output.txt 是: 4N\，，，C&lt;3</span><br><span class="line"># 创建样本库训练Tesseract</span><br><span class="line">要训练 Tesseract 识别一种文字，无论是晦涩难懂的字体还是验证码，你都需要向 Tesseract 提供每个字符不同形式的样本。</span><br><span class="line"></span><br><span class="line">首先要收集大量的验证码样本，样本的数量和复杂程度，会决定训练的效果。第二步是准确地告诉 Tesseract 一张图片中的每个字符是什么，以及每个字符的具体位置。</span><br><span class="line"></span><br><span class="line">这里需要创建一些矩形定位文件(box file)，一个验证码图片生成一个矩形定位文件，也可以通过jTessBoxEditor软件来修改矩形的定位。</span><br><span class="line"></span><br><span class="line">一个图片的矩形定位文件如下所示:</span><br></pre></td></tr></table></figure></p>
+<pre><code>4  15 26 33 55 0
+M  38 13 67 45 0
+m  79 15 101 26 0
+C  111 33 136 60 0
+3  147 17 176 45 0
+</code></pre><p><code>`</code><br>第一列符号是图片中的每个字符，后面的 4 个数字分别是包围这个字符的最小矩形的坐标 (图片左下角是原点 (0，0)，4 个数字分别对应每个字符的左下角 x 坐标、左下角 y 坐标、右上角 x 坐标和右上角 y 坐标)，最后一个数字“0”表示图片样本的编号。</p>
+</li>
+</ul>
+<p>矩形定位文件必须保存在一个 .box 后缀的文本文件中，(例如 4MmC3.box)。</p>
+<blockquote>
+<p>博客园的一篇不错的训练教程：<a href="http://www.cnblogs.com/mjorcen/p/3800739.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">http://www.cnblogs.com/mjorcen/p/3800739.html?utm_source=tuicool&amp;utm_medium=referral</a></p>
+</blockquote>
+<p>前面的内容只是对 Tesseract 库的字体训练和识别能力的一个简略概述。如果你对 Tesseract 的其他训练方法感兴趣，甚至打算建立自己的验证码训练文件库，推荐阅读 Tesseract 官方文档：<a href="https://github.com/tesseract-ocr/tesseract/wiki，加油！" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tesseract/wiki，加油！</a></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月17日 16:57</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/17/训练Tesseract/" title="训练Tesseract">https://zem12345678.github.io/2019/05/17/训练Tesseract/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/17/训练Tesseract/&title=《训练Tesseract》 — Enmin`s blog&pic=images/23.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/17/训练Tesseract/&title=《训练Tesseract》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/17/训练Tesseract/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《训练Tesseract》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/17/训练Tesseract/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/17/训练Tesseract/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/17/训练Tesseract/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
             
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
     <a href="/tags/爬虫/" class="color3">爬虫</a>
       
-    <a href="/tags/HTTP/HTTPS/" class="color1">HTTP/HTTPS</a>
-      
   </li>
 
-        </div>
-      
+        </ul>
+        
+    </footer>
   </div>
 </article>
 
-  
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#训练Tesseract"><span class="post-toc-text">训练Tesseract</span></a></li></ol>
+        </nav>
+    </aside>
     
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/17/尝试对验证码机器识别进行处理：/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">尝试对验证码机器识别进行处理</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/爬虫原理与数据抓取/" class="archive-article-date">
-  <time datetime="2019-05-16T03:38:25.774Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/爬虫原理与数据抓取/"  >爬虫原理与数据抓取</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/爬虫/" class="color3">爬虫</a>
-      
-    <a href="/tags/python/" class="color2">python</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
+        <div id="SOHUCS" sid="训练Tesseract" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/python编码故事/" class="archive-article-date">
-  <time datetime="2019-05-16T03:30:08.423Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/python编码故事/"  >python编码故事</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/python/" class="color2">python</a>
-      
-    <a href="/tags/编码/" class="color3">编码</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/str和bytes的区别/" class="archive-article-date">
-  <time datetime="2019-05-16T02:29:36.683Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/str和bytes的区别/"  >str和bytes的区别</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/编码/" class="color3">编码</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/MySQL数据库集群-PXC方案/" class="archive-article-date">
-  <time datetime="2019-03-18T14:28:06.853Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/MySQL数据库集群-PXC方案/"  >MySQL数据库集群-PXC方案</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Mysql/" class="color1">Mysql</a>
-      
-    <a href="/tags/数据库集群/" class="color1">数据库集群</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/elasticsearch与MySQL数据同步/" class="archive-article-date">
-  <time datetime="2019-03-18T14:21:01.447Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/elasticsearch与MySQL数据同步/"  >elasticsearch与MySQL数据同步</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Mysql/" class="color1">Mysql</a>
-      
-    <a href="/tags/ElasticSearch/" class="color4">ElasticSearch</a>
-      
-    <a href="/tags/搜索引擎/" class="color5">搜索引擎</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/分布式搜索引擎ElasticSearch/" class="archive-article-date">
-  <time datetime="2019-03-18T14:10:07.878Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/分布式搜索引擎ElasticSearch/"  >分布式搜索引擎ElasticSearch</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/分布式/" class="color4">分布式</a>
-      
-    <a href="/tags/ElasticSearch/" class="color4">ElasticSearch</a>
-      
-    <a href="/tags/搜索引擎/" class="color5">搜索引擎</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/文档型数据库MongoDB/" class="archive-article-date">
-  <time datetime="2019-03-18T13:42:15.732Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/文档型数据库MongoDB/"  >文档型数据库MongoDB</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/MongoDB/" class="color3">MongoDB</a>
-      
-    <a href="/tags/数据库/" class="color4">数据库</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/LeedCode15：三数之和/" class="archive-article-date">
-  <time datetime="2019-03-18T09:26:28.175Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/LeedCode15：三数之和/"  >LeedCode15：三数之和</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Python/" class="color2">Python</a>
-      
-    <a href="/tags/算法/" class="color3">算法</a>
-      
-    <a href="/tags/LeetCood/" class="color4">LeetCood</a>
-      
-    <a href="/tags/数据结构/" class="color5">数据结构</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/15/使用随机森林对鸾尾花进行分类/" class="archive-article-date">
-  <time datetime="2019-03-15T06:49:26.147Z" itemprop="datePublished">03-15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/15/使用随机森林对鸾尾花进行分类/"  >使用随机森林对鸾尾花进行分类</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/算法/" class="color3">算法</a>
-      
-    <a href="/tags/Machinelearning/" class="color2">Machine learning</a>
-      
-    <a href="/tags/随机森林/" class="color5">随机森林</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><< Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/4/">Next >></a>
-  </nav>
 </section>
         
       </div>

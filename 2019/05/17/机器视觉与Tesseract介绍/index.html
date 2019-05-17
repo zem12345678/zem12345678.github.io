@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Enmin`s blog</title>
+  <title>机器视觉与Tesseract介绍 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Enmin`s blog">
-<meta property="og:url" content="https://zem12345678.github.io/archives/page/3/index.html">
+  <meta name="description" content="机器视觉与Tesseract介绍机器视觉从 Google 的无人驾驶汽车到可以识别假钞的自动售卖机，机器视觉一直都是一个应用广 泛且具有深远的影响和雄伟的愿景的领域。 我们将重点介绍机器视觉的一个分支：文字识别，介绍如何用一些 Python库来识别和使用在线图片中的文字。 我们可以很轻松的阅读图片里的文字，但是机器阅读这些图片就会非常困难，利用这种人类用户可以正常读取但是大多数机器人都没法读取的图">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器视觉与Tesseract介绍">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="机器视觉与Tesseract介绍机器视觉从 Google 的无人驾驶汽车到可以识别假钞的自动售卖机，机器视觉一直都是一个应用广 泛且具有深远的影响和雄伟的愿景的领域。 我们将重点介绍机器视觉的一个分支：文字识别，介绍如何用一些 Python库来识别和使用在线图片中的文字。 我们可以很轻松的阅读图片里的文字，但是机器阅读这些图片就会非常困难，利用这种人类用户可以正常读取但是大多数机器人都没法读取的图">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-17T08:55:19.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enmin`s blog">
+<meta name="twitter:title" content="机器视觉与Tesseract介绍">
+<meta name="twitter:description" content="机器视觉与Tesseract介绍机器视觉从 Google 的无人驾驶汽车到可以识别假钞的自动售卖机，机器视觉一直都是一个应用广 泛且具有深远的影响和雄伟的愿景的领域。 我们将重点介绍机器视觉的一个分支：文字识别，介绍如何用一些 Python库来识别和使用在线图片中的文字。 我们可以很轻松的阅读图片里的文字，但是机器阅读这些图片就会非常困难，利用这种人类用户可以正常读取但是大多数机器人都没法读取的图">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -132,373 +137,209 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap">
-  
-  
+        <section id="main" class="body-wrap"><article id="post-机器视觉与Tesseract介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/HTTPS的请求与响应/" class="archive-article-date">
-  <time datetime="2019-05-16T03:39:46.146Z" itemprop="datePublished">05-16</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/HTTPS的请求与响应/"  >HTTP/HTTPS的请求与响应</a>
+    <h1 class="post-title" itemprop="name">
+      机器视觉与Tesseract介绍
     </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据挖掘/">数据挖掘</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
   
 
-    </header>
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
       
-        <div class="archive-post-footer">
+            
+            <h1 id="机器视觉与Tesseract介绍"><a href="#机器视觉与Tesseract介绍" class="headerlink" title="机器视觉与Tesseract介绍"></a>机器视觉与Tesseract介绍</h1><h2 id="机器视觉"><a href="#机器视觉" class="headerlink" title="机器视觉"></a>机器视觉</h2><p>从 Google 的无人驾驶汽车到可以识别假钞的自动售卖机，机器视觉一直都是一个应用广 泛且具有深远的影响和雄伟的愿景的领域。</p>
+<p>我们将重点介绍机器视觉的一个分支：文字识别，介绍如何用一些 Python库来识别和使用在线图片中的文字。</p>
+<p>我们可以很轻松的阅读图片里的文字，但是机器阅读这些图片就会非常困难，利用这种人类用户可以正常读取但是大多数机器人都没法读取的图片，验证码 (CAPTCHA)就出现了。验证码读取的难易程度也大不相同，有些验证码比其他的更加难读。</p>
+<p>将图像翻译成文字一般被称为光学文字识别(Optical Character Recognition, OCR)。可以实现OCR的底层库并不多,目前很多库都是使用共同的几个底层 OCR 库,或者是在上面 进行定制。</p>
+<h2 id="ORC库概述"><a href="#ORC库概述" class="headerlink" title="ORC库概述"></a>ORC库概述</h2><p>在读取和处理图像、图像相关的机器学习以及创建图像等任务中，Python 一直都是非常出色的语言。虽然有很多库可以进行图像处理，但在这里我们只重点介绍：Tesseract</p>
+<h2 id="Tesseract"><a href="#Tesseract" class="headerlink" title="Tesseract"></a>Tesseract</h2><p>Tesseract 是一个 OCR 库,目前由 Google 赞助(Google 也是一家以 OCR 和机器学习技术闻名于世的公司)。Tesseract 是目前公认最优秀、最精确的开源 OCR 系统，除了极高的精确度，Tesseract 也具有很高的灵活性。它可以通过训练识别出任何字体，也可以识别出任何 Unicode 字符。</p>
+<h1 id="安装Tesseract"><a href="#安装Tesseract" class="headerlink" title="安装Tesseract"></a>安装Tesseract</h1><h2 id="Windows-系统"><a href="#Windows-系统" class="headerlink" title="Windows 系统"></a>Windows 系统</h2><p>下载可执行安装文件<a href="https://code.google.com/p/tesseract-ocr/downloads/list安装。" target="_blank" rel="noopener">https://code.google.com/p/tesseract-ocr/downloads/list安装。</a></p>
+<h2 id="Linux-系统"><a href="#Linux-系统" class="headerlink" title="Linux 系统"></a>Linux 系统</h2><p>可以通过 apt-get 安装: <figure class="highlight plain"><figcaption><span>apt-get tesseract-ocr```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Mac OS X系统</span><br><span class="line">用 Homebrew(http://brew.sh/)等第三方库可以很方便地安装 ```brew install tesseract</span><br></pre></td></tr></table></figure></p>
+<h1 id="安装pytesseract"><a href="#安装pytesseract" class="headerlink" title="安装pytesseract"></a>安装pytesseract</h1><p>Tesseract 是一个 Python 的命令行工具，不是通过 import 语句导入的库。安装之后,要用 tesseract 命令在 Python 的外面运行，但我们可以通过 pip 安装支持Python 版本的 Tesseract库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pytesseract</span><br></pre></td></tr></table></figure></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月17日 16:55</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/17/机器视觉与Tesseract介绍/" title="机器视觉与Tesseract介绍">https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/&title=《机器视觉与Tesseract介绍》 — Enmin`s blog&pic=images/19.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/&title=《机器视觉与Tesseract介绍》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《机器视觉与Tesseract介绍》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/17/机器视觉与Tesseract介绍/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
             
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
     <a href="/tags/爬虫/" class="color3">爬虫</a>
       
-    <a href="/tags/HTTP/HTTPS/" class="color1">HTTP/HTTPS</a>
-      
   </li>
 
-        </div>
-      
+        </ul>
+        
+    </footer>
   </div>
 </article>
 
-  
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#机器视觉与Tesseract介绍"><span class="post-toc-text">机器视觉与Tesseract介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#机器视觉"><span class="post-toc-text">机器视觉</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ORC库概述"><span class="post-toc-text">ORC库概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tesseract"><span class="post-toc-text">Tesseract</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装Tesseract"><span class="post-toc-text">安装Tesseract</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows-系统"><span class="post-toc-text">Windows 系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Linux-系统"><span class="post-toc-text">Linux 系统</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装pytesseract"><span class="post-toc-text">安装pytesseract</span></a></li></ol>
+        </nav>
+    </aside>
     
+
+<nav id="article-nav">
+  
+    <a href="/2019/05/17/selenium执行 JavaScript 语句/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          selenium执行 JavaScript 语句
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/05/17/动态页面模拟点击/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">动态页面模拟点击</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/爬虫原理与数据抓取/" class="archive-article-date">
-  <time datetime="2019-05-16T03:38:25.774Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/爬虫原理与数据抓取/"  >爬虫原理与数据抓取</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/爬虫/" class="color3">爬虫</a>
-      
-    <a href="/tags/python/" class="color2">python</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
+        <div id="SOHUCS" sid="机器视觉与Tesseract介绍" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/python编码故事/" class="archive-article-date">
-  <time datetime="2019-05-16T03:30:08.423Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/python编码故事/"  >python编码故事</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/python/" class="color2">python</a>
-      
-    <a href="/tags/编码/" class="color3">编码</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/str和bytes的区别/" class="archive-article-date">
-  <time datetime="2019-05-16T02:29:36.683Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/str和bytes的区别/"  >str和bytes的区别</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/编码/" class="color3">编码</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/MySQL数据库集群-PXC方案/" class="archive-article-date">
-  <time datetime="2019-03-18T14:28:06.853Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/MySQL数据库集群-PXC方案/"  >MySQL数据库集群-PXC方案</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Mysql/" class="color1">Mysql</a>
-      
-    <a href="/tags/数据库集群/" class="color1">数据库集群</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/elasticsearch与MySQL数据同步/" class="archive-article-date">
-  <time datetime="2019-03-18T14:21:01.447Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/elasticsearch与MySQL数据同步/"  >elasticsearch与MySQL数据同步</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Mysql/" class="color1">Mysql</a>
-      
-    <a href="/tags/ElasticSearch/" class="color4">ElasticSearch</a>
-      
-    <a href="/tags/搜索引擎/" class="color5">搜索引擎</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/分布式搜索引擎ElasticSearch/" class="archive-article-date">
-  <time datetime="2019-03-18T14:10:07.878Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/分布式搜索引擎ElasticSearch/"  >分布式搜索引擎ElasticSearch</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/分布式/" class="color4">分布式</a>
-      
-    <a href="/tags/ElasticSearch/" class="color4">ElasticSearch</a>
-      
-    <a href="/tags/搜索引擎/" class="color5">搜索引擎</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/文档型数据库MongoDB/" class="archive-article-date">
-  <time datetime="2019-03-18T13:42:15.732Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/文档型数据库MongoDB/"  >文档型数据库MongoDB</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/MongoDB/" class="color3">MongoDB</a>
-      
-    <a href="/tags/数据库/" class="color4">数据库</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/LeedCode15：三数之和/" class="archive-article-date">
-  <time datetime="2019-03-18T09:26:28.175Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/LeedCode15：三数之和/"  >LeedCode15：三数之和</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Python/" class="color2">Python</a>
-      
-    <a href="/tags/算法/" class="color3">算法</a>
-      
-    <a href="/tags/LeetCood/" class="color4">LeetCood</a>
-      
-    <a href="/tags/数据结构/" class="color5">数据结构</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/15/使用随机森林对鸾尾花进行分类/" class="archive-article-date">
-  <time datetime="2019-03-15T06:49:26.147Z" itemprop="datePublished">03-15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/15/使用随机森林对鸾尾花进行分类/"  >使用随机森林对鸾尾花进行分类</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/算法/" class="color3">算法</a>
-      
-    <a href="/tags/Machinelearning/" class="color2">Machine learning</a>
-      
-    <a href="/tags/随机森林/" class="color5">随机森林</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><< Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/4/">Next >></a>
-  </nav>
 </section>
         
       </div>

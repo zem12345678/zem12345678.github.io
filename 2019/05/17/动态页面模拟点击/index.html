@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Enmin`s blog</title>
+  <title>动态页面模拟点击 | Enmin`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Enmin,ZEnmin's Blog" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Enmin`s blog">
-<meta property="og:url" content="https://zem12345678.github.io/archives/page/3/index.html">
+  <meta name="description" content="动态页面模拟点击爬取斗鱼直播平台的所有房间信息：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152coding=utf-8from selenium import webdriverimport jsonimport timeclass Douyu:    #">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态页面模拟点击">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/17/动态页面模拟点击/index.html">
 <meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="动态页面模拟点击爬取斗鱼直播平台的所有房间信息：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152coding=utf-8from selenium import webdriverimport jsonimport timeclass Douyu:    #">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-17T08:54:47.611Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enmin`s blog">
+<meta name="twitter:title" content="动态页面模拟点击">
+<meta name="twitter:description" content="动态页面模拟点击爬取斗鱼直播平台的所有房间信息：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152coding=utf-8from selenium import webdriverimport jsonimport timeclass Douyu:    #">
   
   
     <link rel="icon" href="/favicon1.ico">
@@ -132,373 +137,201 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap">
-  
-  
+        <section id="main" class="body-wrap"><article id="post-动态页面模拟点击" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/HTTPS的请求与响应/" class="archive-article-date">
-  <time datetime="2019-05-16T03:39:46.146Z" itemprop="datePublished">05-16</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/HTTPS的请求与响应/"  >HTTP/HTTPS的请求与响应</a>
+    <h1 class="post-title" itemprop="name">
+      动态页面模拟点击
     </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据挖掘/">数据挖掘</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
   
 
-    </header>
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
       
-        <div class="archive-post-footer">
+            
+            <h1 id="动态页面模拟点击"><a href="#动态页面模拟点击" class="headerlink" title="动态页面模拟点击"></a>动态页面模拟点击</h1><p>爬取斗鱼直播平台的所有房间信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">coding=utf-8</span><br><span class="line"></span><br><span class="line">from selenium import webdriver</span><br><span class="line">import json</span><br><span class="line">import time</span><br><span class="line">class Douyu:</span><br><span class="line">    # 1.发送首页的请求</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.driver = webdriver.PhantomJS()</span><br><span class="line">        self.driver.get(&quot;https://www.douyu.com/directory/all&quot;) #请求首页</span><br><span class="line"></span><br><span class="line">    #获取没页面内容</span><br><span class="line">    def get_content(self):</span><br><span class="line">        time.sleep(3) #每次发送完请求等待三秒，等待页面加载完成</span><br><span class="line">        li_list = self.driver.find_elements_by_xpath(&apos;//ul[@id=&quot;live-list-contentbox&quot;]/li&apos;)</span><br><span class="line">        contents = []</span><br><span class="line">        for i in li_list: #遍历房间列表</span><br><span class="line">            item = &#123;&#125;</span><br><span class="line">            item[&quot;img&quot;] = i.find_element_by_xpath(&quot;./a//img&quot;).get_attribute(&quot;src&quot;) #获取房间图片</span><br><span class="line">            item[&quot;title&quot;] = i.find_element_by_xpath(&quot;./a&quot;).get_attribute(&quot;title&quot;) #获取房间名字</span><br><span class="line">            item[&quot;category&quot;] = i.find_element_by_xpath(&quot;./a/div[@class=&apos;mes&apos;]/div/span&quot;).text #获取房间分类</span><br><span class="line">            item[&quot;name&quot;] = i.find_element_by_xpath(&quot;./a/div[@class=&apos;mes&apos;]/p/span[1]&quot;).text #获取主播名字</span><br><span class="line">            item[&quot;watch_num&quot;] = i.find_element_by_xpath(&quot;./a/div[@class=&apos;mes&apos;]/p/span[2]&quot;).text #获取观看人数</span><br><span class="line">            print(item)</span><br><span class="line">            contents.append(item)</span><br><span class="line">        return contents</span><br><span class="line">    #保存本地</span><br><span class="line">    def save_content(self,contents):</span><br><span class="line">        f = open(&quot;douyu.txt&quot;,&quot;a&quot;)</span><br><span class="line">        for content in contents:</span><br><span class="line">            json.dump(content,f,ensure_ascii=False,indent=2)</span><br><span class="line">            f.write(&quot;\n&quot;)</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        #1.发送首页的请求</span><br><span class="line">        #2.获取第一页的信息</span><br><span class="line">        contents = self.get_content()</span><br><span class="line">            #保存内容</span><br><span class="line">        self.save_content(contents)</span><br><span class="line">        #3.循环  点击下一页按钮，知道下一页对应的class名字不再是&quot;shark-pager-next&quot;</span><br><span class="line">        while self.driver.find_element_by_class_name(&quot;shark-pager-next&quot;): #判断有没有下一页</span><br><span class="line">            #点击下一页的按钮</span><br><span class="line">            self.driver.find_element_by_class_name(&quot;shark-pager-next&quot;).click() #</span><br><span class="line">            # 4.继续获取下一页的内容</span><br><span class="line">            contents = self.get_content()</span><br><span class="line">            #4.1.保存内容</span><br><span class="line">            self.save_content(contents)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    douyu = Douyu()</span><br><span class="line">    douyu.run()</span><br></pre></td></tr></table></figure></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月17日 16:54</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/17/动态页面模拟点击/" title="动态页面模拟点击">https://zem12345678.github.io/2019/05/17/动态页面模拟点击/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/17/动态页面模拟点击/&title=《动态页面模拟点击》 — Enmin`s blog&pic=images/19.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/17/动态页面模拟点击/&title=《动态页面模拟点击》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/17/动态页面模拟点击/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《动态页面模拟点击》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/17/动态页面模拟点击/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/17/动态页面模拟点击/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/17/动态页面模拟点击/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
             
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
     <a href="/tags/爬虫/" class="color3">爬虫</a>
       
-    <a href="/tags/HTTP/HTTPS/" class="color1">HTTP/HTTPS</a>
-      
   </li>
 
-        </div>
-      
+        </ul>
+        
+    </footer>
   </div>
 </article>
 
-  
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#动态页面模拟点击"><span class="post-toc-text">动态页面模拟点击</span></a></li></ol>
+        </nav>
+    </aside>
     
+
+<nav id="article-nav">
+  
+    <a href="/2019/05/17/机器视觉与Tesseract介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          机器视觉与Tesseract介绍
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/05/17/网站模拟登录/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">网站模拟登录</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/爬虫原理与数据抓取/" class="archive-article-date">
-  <time datetime="2019-05-16T03:38:25.774Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/爬虫原理与数据抓取/"  >爬虫原理与数据抓取</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/爬虫/" class="color3">爬虫</a>
-      
-    <a href="/tags/python/" class="color2">python</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
+        <div id="SOHUCS" sid="动态页面模拟点击" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/python编码故事/" class="archive-article-date">
-  <time datetime="2019-05-16T03:30:08.423Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/python编码故事/"  >python编码故事</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/python/" class="color2">python</a>
-      
-    <a href="/tags/编码/" class="color3">编码</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/16/str和bytes的区别/" class="archive-article-date">
-  <time datetime="2019-05-16T02:29:36.683Z" itemprop="datePublished">05-16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/16/str和bytes的区别/"  >str和bytes的区别</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/编码/" class="color3">编码</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/MySQL数据库集群-PXC方案/" class="archive-article-date">
-  <time datetime="2019-03-18T14:28:06.853Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/MySQL数据库集群-PXC方案/"  >MySQL数据库集群-PXC方案</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Mysql/" class="color1">Mysql</a>
-      
-    <a href="/tags/数据库集群/" class="color1">数据库集群</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/elasticsearch与MySQL数据同步/" class="archive-article-date">
-  <time datetime="2019-03-18T14:21:01.447Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/elasticsearch与MySQL数据同步/"  >elasticsearch与MySQL数据同步</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Mysql/" class="color1">Mysql</a>
-      
-    <a href="/tags/ElasticSearch/" class="color4">ElasticSearch</a>
-      
-    <a href="/tags/搜索引擎/" class="color5">搜索引擎</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/分布式搜索引擎ElasticSearch/" class="archive-article-date">
-  <time datetime="2019-03-18T14:10:07.878Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/分布式搜索引擎ElasticSearch/"  >分布式搜索引擎ElasticSearch</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/分布式/" class="color4">分布式</a>
-      
-    <a href="/tags/ElasticSearch/" class="color4">ElasticSearch</a>
-      
-    <a href="/tags/搜索引擎/" class="color5">搜索引擎</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/文档型数据库MongoDB/" class="archive-article-date">
-  <time datetime="2019-03-18T13:42:15.732Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/文档型数据库MongoDB/"  >文档型数据库MongoDB</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/MongoDB/" class="color3">MongoDB</a>
-      
-    <a href="/tags/数据库/" class="color4">数据库</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/18/LeedCode15：三数之和/" class="archive-article-date">
-  <time datetime="2019-03-18T09:26:28.175Z" itemprop="datePublished">03-18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/18/LeedCode15：三数之和/"  >LeedCode15：三数之和</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/Python/" class="color2">Python</a>
-      
-    <a href="/tags/算法/" class="color3">算法</a>
-      
-    <a href="/tags/LeetCood/" class="color4">LeetCood</a>
-      
-    <a href="/tags/数据结构/" class="color5">数据结构</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/15/使用随机森林对鸾尾花进行分类/" class="archive-article-date">
-  <time datetime="2019-03-15T06:49:26.147Z" itemprop="datePublished">03-15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/15/使用随机森林对鸾尾花进行分类/"  >使用随机森林对鸾尾花进行分类</a>
-    </h1>
-  
-
-    </header>
-      
-        <div class="archive-post-footer">
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/算法/" class="color3">算法</a>
-      
-    <a href="/tags/Machinelearning/" class="color2">Machine learning</a>
-      
-    <a href="/tags/随机森林/" class="color5">随机森林</a>
-      
-  </li>
-
-        </div>
-      
-  </div>
-</article>
-
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><< Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/4/">Next >></a>
-  </nav>
 </section>
         
       </div>
