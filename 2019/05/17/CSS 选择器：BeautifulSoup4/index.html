@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>BeautifulSoup4解析器 | Enmin`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Enmin,ZEnmin's Blog" />
+  
+  <meta name="description" content="CSS 选择器：BeautifulSoup4和 lxml 一样，Beautiful Soup 也是一个HTML/XML的解析器，主要的功能也是如何解析和提取 HTML/XML 数据。lxml 只会局部遍历，而Beautiful Soup 是基于HTML DOM的，会载入整个文档，解析整个DOM树，因此时间和内存开销都会大很多，所以性能要低于lxml。  BeautifulSoup 用来解析 HTM">
+<meta name="keywords" content="爬虫,BeautifulSoup4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BeautifulSoup4解析器">
+<meta property="og:url" content="https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/index.html">
+<meta property="og:site_name" content="Enmin`s blog">
+<meta property="og:description" content="CSS 选择器：BeautifulSoup4和 lxml 一样，Beautiful Soup 也是一个HTML/XML的解析器，主要的功能也是如何解析和提取 HTML/XML 数据。lxml 只会局部遍历，而Beautiful Soup 是基于HTML DOM的，会载入整个文档，解析整个DOM树，因此时间和内存开销都会大很多，所以性能要低于lxml。  BeautifulSoup 用来解析 HTM">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/17/Eqw2Y4.png">
+<meta property="og:updated_time" content="2019-05-17T03:58:01.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BeautifulSoup4解析器">
+<meta name="twitter:description" content="CSS 选择器：BeautifulSoup4和 lxml 一样，Beautiful Soup 也是一个HTML/XML的解析器，主要的功能也是如何解析和提取 HTML/XML 数据。lxml 只会局部遍历，而Beautiful Soup 是基于HTML DOM的，会载入整个文档，解析整个DOM树，因此时间和内存开销都会大很多，所以性能要低于lxml。  BeautifulSoup 用来解析 HTM">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/17/Eqw2Y4.png">
+  
+  
+    <link rel="icon" href="/favicon1.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-127786403-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4802669a9f01ae631292334aca36a944";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1275093534&web_id=1275093534" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Enmin&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>文章</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于我</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Enmin&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        漫宅万岁，bilibili (゜-゜)つロ 乾杯~-
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="zem12345678" target="_blank" href="//https://zem12345678.github.io/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zem12345678">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zem12345678">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/Enmin_zhang">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-CSS 选择器：BeautifulSoup4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      BeautifulSoup4解析器
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据挖掘/">数据挖掘</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="CSS-选择器：BeautifulSoup4"><a href="#CSS-选择器：BeautifulSoup4" class="headerlink" title="CSS 选择器：BeautifulSoup4"></a>CSS 选择器：BeautifulSoup4</h1><p>和 lxml 一样，Beautiful Soup 也是一个HTML/XML的解析器，主要的功能也是如何解析和提取 HTML/XML 数据。<br>lxml 只会局部遍历，而Beautiful Soup 是基于HTML DOM的，会载入整个文档，解析整个DOM树，因此时间和内存开销都会大很多，所以性能要低于lxml。</p>
+<blockquote>
+<p>BeautifulSoup 用来解析 HTML 比较简单，API非常人性化，支持CSS选择器、Python标准库中的HTML解析器，也支持 lxml 的 XML解析器。</p>
+</blockquote>
+<blockquote>
+<p>Beautiful Soup 3 目前已经停止开发，推荐现在的项目使用Beautiful Soup 4。使用 pip 安装即可：pip install beautifulsoup4</p>
+</blockquote>
+<blockquote>
+<p>官方文档：<a href="http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0" target="_blank" rel="noopener">http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0</a><br>| 抓取工具      |    速度 | 使用难度  |安装难度 |<br>| :——– | :——–:| :–: |  :–: |<br>|  正则 | 最快 |  困难   | 无（内置）|<br>|   BeautifulSoup   |  慢  |  最简单  |简单|<br>|   lxml  |  快   | 快  | 一般 |</p>
+</blockquote>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p>首先必须要导入 bs4 库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># beautifulsoup4_test.py</span><br><span class="line"></span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = &quot;&quot;&quot;</span><br><span class="line">&lt;html&gt;&lt;head&gt;&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span><br><span class="line">&lt;a href=&quot;http://example.com/elsie&quot; class=&quot;sister&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;,</span><br><span class="line">&lt;a href=&quot;http://example.com/lacie&quot; class=&quot;sister&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">and they lived at the bottom of a well.&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">#创建 Beautiful Soup 对象</span><br><span class="line">soup = BeautifulSoup(html)</span><br><span class="line"></span><br><span class="line">#打开本地 HTML 文件的方式来创建对象</span><br><span class="line">#soup = BeautifulSoup(open(&apos;index.html&apos;))</span><br><span class="line"></span><br><span class="line">#格式化输出 soup 对象的内容</span><br><span class="line">print soup.prettify()</span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;title&gt;</span><br><span class="line">   The Dormouse&apos;s story</span><br><span class="line">  &lt;/title&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">  &lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;</span><br><span class="line">   &lt;b&gt;</span><br><span class="line">    The Dormouse&apos;s story</span><br><span class="line">   &lt;/b&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;story&quot;&gt;</span><br><span class="line">   Once upon a time there were three little sisters; and their names were</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;</span><br><span class="line">    &lt;!-- Elsie --&gt;</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ,</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;</span><br><span class="line">    Lacie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   and</span><br><span class="line">   &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;</span><br><span class="line">    Tillie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ;</span><br><span class="line">and they lived at the bottom of a well.</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;story&quot;&gt;</span><br><span class="line">   ...</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>如果我们在 IPython2 下执行，会看到这样一段警告：<br><img src="https://s2.ax1x.com/2019/05/17/Eqw2Y4.png" alt="enter image description here"></li>
+<li>意思是，如果我们没有显式地指定解析器，所以默认使用这个系统的最佳可用HTML解析器(“lxml”)。如果你在另一个系统中运行这段代码，或者在不同的虚拟环境中，使用不同的解析器造成行为不同。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>但是我们可以通过soup = BeautifulSoup(html,“lxml”)方式指定lxml解析器。</li>
+</ul>
+</blockquote>
+<h2 id="四大对象种类"><a href="#四大对象种类" class="headerlink" title="四大对象种类"></a>四大对象种类</h2><p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种:</p>
+<ul>
+<li>Tag</li>
+<li>NavigableString</li>
+<li>BeautifulSoup</li>
+<li>Comment</li>
+</ul>
+<h3 id="1-Tag"><a href="#1-Tag" class="headerlink" title="1. Tag"></a>1. Tag</h3><p>tag 通俗点讲就是 HTML 中的一个个标签，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;</span><br><span class="line">&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面的 title head a p等等 HTML 标签加上里面包括的内容就是 Tag，那么试着使用 Beautiful Soup 来获取 Tags:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = &quot;&quot;&quot;</span><br><span class="line">&lt;html&gt;&lt;head&gt;&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span><br><span class="line">&lt;a href=&quot;http://example.com/elsie&quot; class=&quot;sister&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;,</span><br><span class="line">&lt;a href=&quot;http://example.com/lacie&quot; class=&quot;sister&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">and they lived at the bottom of a well.&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">#创建 Beautiful Soup 对象</span><br><span class="line">soup = BeautifulSoup(html)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print soup.title</span><br><span class="line"># &lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">print soup.head</span><br><span class="line"># &lt;head&gt;&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">print soup.a</span><br><span class="line"># &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">print soup.p</span><br><span class="line"># &lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">print type(soup.p)</span><br><span class="line"># &lt;class &apos;bs4.element.Tag&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以利用 soup 加标签名轻松地获取这些标签的内容，这些对象的类型是bs4.element.Tag。但是注意，它查找的是在所有内容中的第一个符合要求的标签。如果要查询所有的标签，后面会进行介绍。</p>
+<p><strong>对于 Tag，它有两个重要的属性，是 name 和 attrs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">print soup.name</span><br><span class="line"># [document] #soup 对象本身比较特殊，它的 name 即为 [document]</span><br><span class="line"></span><br><span class="line">print soup.head.name</span><br><span class="line"># head #对于其他内部标签，输出的值便为标签本身的名称</span><br><span class="line"></span><br><span class="line">print soup.p.attrs</span><br><span class="line"># &#123;&apos;class&apos;: [&apos;title&apos;], &apos;name&apos;: &apos;dromouse&apos;&#125;</span><br><span class="line"># 在这里，我们把 p 标签的所有属性打印输出了出来，得到的类型是一个字典。</span><br><span class="line"></span><br><span class="line">print soup.p[&apos;class&apos;] # soup.p.get(&apos;class&apos;)</span><br><span class="line"># [&apos;title&apos;] #还可以利用get方法，传入属性的名称，二者是等价的</span><br><span class="line"></span><br><span class="line">soup.p[&apos;class&apos;] = &quot;newClass&quot;</span><br><span class="line">print soup.p # 可以对这些属性和内容等等进行修改</span><br><span class="line"># &lt;p class=&quot;newClass&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">del soup.p[&apos;class&apos;] # 还可以对这个属性进行删除</span><br><span class="line">print soup.p</span><br><span class="line"># &lt;p name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="2-NavigableString"><a href="#2-NavigableString" class="headerlink" title="2. NavigableString"></a>2. NavigableString</h3><p>既然我们已经得到了标签的内容，那么问题来了，我们要想获取标签内部的文字怎么办呢？很简单，用 .string 即可，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print soup.p.string</span><br><span class="line"># The Dormouse&apos;s story</span><br><span class="line"></span><br><span class="line">print type(soup.p.string)</span><br><span class="line"># In [13]: &lt;class &apos;bs4.element.NavigableString&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-BeautifulSoup"><a href="#3-BeautifulSoup" class="headerlink" title="3. BeautifulSoup"></a>3. BeautifulSoup</h2><p>BeautifulSoup 对象表示的是一个文档的内容。大部分时候,可以把它当作 Tag 对象，是一个特殊的 Tag，我们可以分别获取它的类型，名称，以及属性来感受一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print type(soup.name)</span><br><span class="line"># &lt;type &apos;unicode&apos;&gt;</span><br><span class="line"></span><br><span class="line">print soup.name </span><br><span class="line"># [document]</span><br><span class="line"></span><br><span class="line">print soup.attrs # 文档本身的属性为空</span><br><span class="line"># &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-Comment"><a href="#4-Comment" class="headerlink" title="4. Comment"></a>4. Comment</h3><p>Comment 对象是一个特殊类型的 NavigableString 对象，其输出的内容不包括注释符号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print soup.a</span><br><span class="line"># &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">print soup.a.string</span><br><span class="line"># Elsie </span><br><span class="line"></span><br><span class="line">print type(soup.a.string)</span><br><span class="line"># &lt;class &apos;bs4.element.Comment&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>a 标签里的内容实际上是注释，但是如果我们利用 .string 来输出它的内容时，注释符号已经去掉了。</p>
+<h2 id="遍历文档树"><a href="#遍历文档树" class="headerlink" title="遍历文档树"></a>遍历文档树</h2><h3 id="1-直接子节点-：-contents-children-属性"><a href="#1-直接子节点-：-contents-children-属性" class="headerlink" title="1. 直接子节点 ：.contents .children 属性"></a>1. 直接子节点 ：.contents .children 属性</h3><h4 id="content"><a href="#content" class="headerlink" title=".content"></a>.content</h4><p>tag 的 .content 属性可以将tag的子节点以列表的方式输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print soup.head.contents </span><br><span class="line">#[&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>输出方式为列表，我们可以用列表索引来获取它的某一个元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print soup.head.contents[0]</span><br><span class="line">#&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="children"><a href="#children" class="headerlink" title=".children"></a>.children</h4><p>它返回的不是一个 list，不过我们可以通过遍历获取所有子节点。</p>
+<p>我们打印输出 .children 看一下，可以发现它是一个 list 生成器对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print soup.head.children</span><br><span class="line">#&lt;listiterator object at 0x7f71457f5710&gt;</span><br><span class="line"></span><br><span class="line">for child in  soup.body.children:</span><br><span class="line">    print child</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;,</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">and they lived at the bottom of a well.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-所有子孙节点-descendants-属性"><a href="#2-所有子孙节点-descendants-属性" class="headerlink" title="2. 所有子孙节点: .descendants 属性"></a>2. 所有子孙节点: .descendants 属性</h3><p>contents 和 .children 属性仅包含tag的直接子节点，.descendants 属性可以对所有tag的子孙节点进行递归循环，和 children类似，我们也需要遍历获取其中的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for child in soup.descendants:</span><br><span class="line">    print child</span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;head&gt;&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;,</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">and they lived at the bottom of a well.&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;&lt;/html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;title&gt;The Dormouse&apos;s story&lt;/title&gt;</span><br><span class="line">The Dormouse&apos;s story</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;,</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">and they lived at the bottom of a well.&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line">&lt;b&gt;The Dormouse&apos;s story&lt;/b&gt;</span><br><span class="line">The Dormouse&apos;s story</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters; and their names were</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;,</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">and they lived at the bottom of a well.&lt;/p&gt;</span><br><span class="line">Once upon a time there were three little sisters; and their names were</span><br><span class="line"></span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;!-- Elsie --&gt;&lt;/a&gt;</span><br><span class="line"> Elsie </span><br><span class="line">,</span><br><span class="line"></span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;</span><br><span class="line">Lacie</span><br><span class="line"> and</span><br><span class="line"></span><br><span class="line">&lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;</span><br><span class="line">Tillie</span><br><span class="line">;</span><br><span class="line">and they lived at the bottom of a well.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;story&quot;&gt;...&lt;/p&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-节点内容-string-属性"><a href="#3-节点内容-string-属性" class="headerlink" title="3. 节点内容: .string 属性"></a>3. 节点内容: .string 属性</h3><p>如果tag只有一个 NavigableString 类型子节点,那么这个tag可以使用 .string 得到子节点。如果一个tag仅有一个子节点,那么这个tag也可以使用 .string 方法,输出结果与当前唯一子节点的 .string 结果相同。</p>
+<p>通俗点说就是：如果一个标签里面没有标签了，那么 .string 就会返回标签里面的内容。如果标签里面只有唯一的一个标签了，那么 .string 也会返回最里面的内容。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print soup.head.string</span><br><span class="line">#The Dormouse&apos;s story</span><br><span class="line">print soup.title.string</span><br><span class="line">#The Dormouse&apos;s story</span><br></pre></td></tr></table></figure></p>
+<h2 id="搜索文档树"><a href="#搜索文档树" class="headerlink" title="搜索文档树"></a>搜索文档树</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.<figure class="highlight plain"><figcaption><span>attrs, recursive, text, **kwargs)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#### 1）name 参数</span><br><span class="line">name 参数可以查找所有名字为 name 的tag,字符串对象会被自动忽略掉</span><br><span class="line">##### A.传字符串</span><br><span class="line">最简单的过滤器是字符串.在搜索方法中传入一个字符串参数,Beautiful Soup会查找与字符串完整匹配的内容,下面的例子用于查找文档中所有的&lt;b&gt;标签:</span><br></pre></td></tr></table></figure></h3><p>soup.find_all(‘b’)</p>
+<h1 id="The-Dormouse’s-story"><a href="#The-Dormouse’s-story" class="headerlink" title="[The Dormouse’s story]"></a>[<b>The Dormouse’s story</b>]</h1><p>print soup.find_all(‘a’)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>, <a class="sister" href="http://example.com/lacie" id="link2" target="_blank" rel="noopener">Lacie</a>, <a class="sister" href="http://example.com/tillie" id="link3" target="_blank" rel="noopener">Tillie</a>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##### B.传正则表达式</span><br><span class="line">如果传入正则表达式作为参数,Beautiful Soup会通过正则表达式的 match() 来匹配内容.下面例子中找出所有以b开头的标签,这表示```&lt;body&gt;```和```&lt;b&gt;```标签都应该被找到</span><br></pre></td></tr></table></figure></p>
+<p>import re<br>for tag in soup.find_all(re.compile(“^b”)):<br>    print(tag.name)</p>
+<h1 id="body"><a href="#body" class="headerlink" title="body"></a>body</h1><h1 id="b"><a href="#b" class="headerlink" title="b"></a>b</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##### C.传列表</span><br><span class="line">如果传入列表参数,Beautiful Soup会将与列表中任一元素匹配的内容返回.下面代码找到文档中所有```&lt;a&gt;```标签和```&lt;b&gt;```标签:</span><br></pre></td></tr></table></figure>
+<p>soup.find_all([“a”, “b”])</p>
+<h1 id="The-Dormouse’s-story-1"><a href="#The-Dormouse’s-story-1" class="headerlink" title="[The Dormouse’s story,"></a>[<b>The Dormouse’s story</b>,</h1><h1 id="Elsie"><a href="#Elsie" class="headerlink" title="Elsie,"></a><a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener">Elsie</a>,</h1><h1 id="Lacie"><a href="#Lacie" class="headerlink" title="Lacie,"></a><a class="sister" href="http://example.com/lacie" id="link2" target="_blank" rel="noopener">Lacie</a>,</h1><h1 id="Tillie"><a href="#Tillie" class="headerlink" title="Tillie]"></a><a class="sister" href="http://example.com/tillie" id="link3" target="_blank" rel="noopener">Tillie</a>]</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 2）keyword 参数</span><br></pre></td></tr></table></figure>
+<p>soup.find_all(id=’link2’)</p>
+<h1 id="Lacie-1"><a href="#Lacie-1" class="headerlink" title="[Lacie]"></a>[<a class="sister" href="http://example.com/lacie" id="link2" target="_blank" rel="noopener">Lacie</a>]</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 3）text 参数</span><br><span class="line">通过 text 参数可以搜搜文档中的字符串内容，与 name 参数的可选值一样, text 参数接受 字符串 , 正则表达式 , 列表</span><br></pre></td></tr></table></figure>
+<p>soup.find_all(text=”Elsie”)</p>
+<h1 id="u’Elsie’"><a href="#u’Elsie’" class="headerlink" title="[u’Elsie’]"></a>[u’Elsie’]</h1><p>soup.find_all(text=[“Tillie”, “Elsie”, “Lacie”])</p>
+<h1 id="u’Elsie’-u’Lacie’-u’Tillie’"><a href="#u’Elsie’-u’Lacie’-u’Tillie’" class="headerlink" title="[u’Elsie’, u’Lacie’, u’Tillie’]"></a>[u’Elsie’, u’Lacie’, u’Tillie’]</h1><p>soup.find_all(text=re.compile(“Dormouse”))<br>[u”The Dormouse’s story”, u”The Dormouse’s story”]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">### 2. CSS选择器</span><br><span class="line">就是另一种与 find_all 方法有异曲同工之妙的查找方法.</span><br><span class="line"></span><br><span class="line">* 写 CSS 时，标签名不加任何修饰，类名前加.，id名前加#</span><br><span class="line"></span><br><span class="line">* 在这里我们也可以利用类似的方法来筛选元素，用到的方法是 soup.select()，返回类型是 list</span><br><span class="line">#### 1）通过标签名查找</span><br></pre></td></tr></table></figure></p>
+<p>print soup.select(‘title’) </p>
+<p>#[<title>The Dormouse’s story</title>]</p>
+<p>print soup.select(‘a’)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>, <a class="sister" href="http://example.com/lacie" id="link2" target="_blank" rel="noopener">Lacie</a>, <a class="sister" href="http://example.com/tillie" id="link3" target="_blank" rel="noopener">Tillie</a>]</p>
+<p>print soup.select(‘b’)</p>
+<p>#[<b>The Dormouse’s story</b>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### 2）通过类名查找</span><br></pre></td></tr></table></figure></p>
+<p>print soup.select(‘.sister’)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>, <a class="sister" href="http://example.com/lacie" id="link2" target="_blank" rel="noopener">Lacie</a>, <a class="sister" href="http://example.com/tillie" id="link3" target="_blank" rel="noopener">Tillie</a>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### 3）通过 id 名查找</span><br></pre></td></tr></table></figure></p>
+<p>print soup.select(‘#link1’)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 4）组合查找</span><br><span class="line">组合查找即和写 class 文件时，标签名与类名、id名进行的组合原理是一样的，例如查找 p 标签中，id 等于 link1的内容，二者需要用空格分开</span><br></pre></td></tr></table></figure></p>
+<p>print soup.select(‘p #link1’)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">直接子标签查找，则使用 &gt; 分隔</span><br></pre></td></tr></table></figure></p>
+<p>print soup.select(“head &gt; title”)</p>
+<p>#[<title>The Dormouse’s story</title>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5）属性查找</span><br><span class="line">查找时还可以加入属性元素，属性需要用中括号括起来，注意属性和标签属于同一节点，所以中间不能加空格，否则会无法匹配到。</span><br></pre></td></tr></table></figure></p>
+<p>print soup.select(‘a[class=”sister”]’)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>, <a class="sister" href="http://example.com/lacie" id="link2" target="_blank" rel="noopener">Lacie</a>, <a class="sister" href="http://example.com/tillie" id="link3" target="_blank" rel="noopener">Tillie</a>]</p>
+<p>print soup.select(‘a[href=”<a href="http://example.com/elsie&quot;]&#39;" target="_blank" rel="noopener">http://example.com/elsie&quot;]&#39;</a>)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同样，属性仍然可以与上述查找方式组合，不在同一节点的空格隔开，同一节点的不加空格</span><br></pre></td></tr></table></figure></p>
+<p>print soup.select(‘p a[href=”<a href="http://example.com/elsie&quot;]&#39;" target="_blank" rel="noopener">http://example.com/elsie&quot;]&#39;</a>)</p>
+<p>#[<a class="sister" href="http://example.com/elsie" id="link1" target="_blank" rel="noopener"><!-- Elsie --></a>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 6) 获取内容</span><br><span class="line">上的 select 方法返回的结果都是列表形式，可以遍历形式输出，然后用 get_text() 方法来获取它的内容。</span><br></pre></td></tr></table></figure></p>
+<p>soup = BeautifulSoup(html, ‘lxml’)<br>print type(soup.select(‘title’))<br>print soup.select(‘title’)[0].get_text()</p>
+<p>for title in soup.select(‘title’):<br>    print title.get_text()<br><code>`</code></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月17日 11:58</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/17/CSS 选择器：BeautifulSoup4/" title="BeautifulSoup4解析器">https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/</a></p>
+        <footer>
+            <a href="https://zem12345678.github.io">
+                <img src="/images/logo.png" alt="Enmin">
+                Enmin
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wx.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wx.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/zfb.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/&title=《BeautifulSoup4解析器》 — Enmin`s blog&pic=images/16.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/&title=《BeautifulSoup4解析器》 — Enmin`s blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《BeautifulSoup4解析器》 — Enmin`s blog&url=https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/&via=https://zem12345678.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zem12345678.github.io/2019/05/17/CSS 选择器：BeautifulSoup4/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/爬虫/" class="color3">爬虫</a>
+      
+    <a href="/tags/BeautifulSoup4/" class="color5">BeautifulSoup4</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CSS-选择器：BeautifulSoup4"><span class="post-toc-text">CSS 选择器：BeautifulSoup4</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#示例："><span class="post-toc-text">示例：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四大对象种类"><span class="post-toc-text">四大对象种类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Tag"><span class="post-toc-text">1. Tag</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-NavigableString"><span class="post-toc-text">2. NavigableString</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-BeautifulSoup"><span class="post-toc-text">3. BeautifulSoup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-Comment"><span class="post-toc-text">4. Comment</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#遍历文档树"><span class="post-toc-text">遍历文档树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-直接子节点-：-contents-children-属性"><span class="post-toc-text">1. 直接子节点 ：.contents .children 属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#content"><span class="post-toc-text">.content</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#children"><span class="post-toc-text">.children</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-所有子孙节点-descendants-属性"><span class="post-toc-text">2. 所有子孙节点: .descendants 属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-节点内容-string-属性"><span class="post-toc-text">3. 节点内容: .string 属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搜索文档树"><span class="post-toc-text">搜索文档树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1"><span class="post-toc-text">1.attrs, recursive, text, **kwargs)```1234#### 1）name 参数name 参数可以查找所有名字为 name 的tag,字符串对象会被自动忽略掉##### A.传字符串最简单的过滤器是字符串.在搜索方法中传入一个字符串参数,Beautiful Soup会查找与字符串完整匹配的内容,下面的例子用于查找文档中所有的&lt;b&gt;标签:</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#The-Dormouse’s-story"><span class="post-toc-text">[The Dormouse’s story]</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#body"><span class="post-toc-text">body</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#b"><span class="post-toc-text">b</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#The-Dormouse’s-story-1"><span class="post-toc-text">[The Dormouse’s story,</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Elsie"><span class="post-toc-text">Elsie,</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Lacie"><span class="post-toc-text">Lacie,</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Tillie"><span class="post-toc-text">Tillie]</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Lacie-1"><span class="post-toc-text">[Lacie]</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#u’Elsie’"><span class="post-toc-text">[u’Elsie’]</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#u’Elsie’-u’Lacie’-u’Tillie’"><span class="post-toc-text">[u’Elsie’, u’Lacie’, u’Tillie’]</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/05/17/使用BeautifuSoup4的爬虫/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          使用BeautifuSoup4的爬虫
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/05/17/多线程爬取糗事百科/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">线程爬取糗事百科</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="CSS 选择器：BeautifulSoup4" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytRXLIlH';
+        var conf = '983bf9e4c3b1e70e33660721bdb62bb2';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：20<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：20<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Enmin<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zem12345678.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Django/">Django</a><a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/FastDFS/">FastDFS</a><a class="category-link" href="/categories/Flask/">Flask</a><a class="category-link" href="/categories/JWT/">JWT</a><a class="category-link" href="/categories/Machine-learning/">Machine learning</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Redis/">Redis</a><a class="category-link" href="/categories/django/">django</a><a class="category-link" href="/categories/前后端分离/">前后端分离</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/大数据/">大数据</a><a class="category-link" href="/categories/学习笔记/">学习笔记</a><a class="category-link" href="/categories/异步处理/">异步处理</a><a class="category-link" href="/categories/数据库/">数据库</a><a class="category-link" href="/categories/数据挖掘/">数据挖掘</a><a class="category-link" href="/categories/杂谈/">杂谈</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/网络原理/">网络原理</a><a class="category-link" href="/categories/随堂笔记/">随堂笔记</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/BeautifuSoup4/" style="font-size: 10px;">BeautifuSoup4</a> <a href="/tags/BeautifulSoup4/" style="font-size: 10px;">BeautifulSoup4</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 18.57px;">Django</a> <a href="/tags/Docker/" style="font-size: 12.86px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.43px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 12.86px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 12.86px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.43px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.43px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.43px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.43px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 12.86px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.43px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.71px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 12.86px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.43px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 15.71px;">Web</a> <a href="/tags/XPath/" style="font-size: 11.43px;">XPath</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 12.86px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 14.29px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.43px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.43px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 12.86px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/正则表达式/" style="font-size: 11.43px;">正则表达式</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a> <a href="/tags/算法/" style="font-size: 15.71px;">算法</a> <a href="/tags/编码/" style="font-size: 11.43px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.43px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>文章</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于我</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/BeautifuSoup4/" style="font-size: 10px;">BeautifuSoup4</a> <a href="/tags/BeautifulSoup4/" style="font-size: 10px;">BeautifulSoup4</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/Django/" style="font-size: 18.57px;">Django</a> <a href="/tags/Docker/" style="font-size: 12.86px;">Docker</a> <a href="/tags/ElasticSearch/" style="font-size: 11.43px;">ElasticSearch</a> <a href="/tags/FastDFS/" style="font-size: 12.86px;">FastDFS</a> <a href="/tags/Flask/" style="font-size: 12.86px;">Flask</a> <a href="/tags/Gunicorn/" style="font-size: 10px;">Gunicorn</a> <a href="/tags/HTTP-HTTPS/" style="font-size: 11.43px;">HTTP/HTTPS</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 11.43px;">Java</a> <a href="/tags/Jwt/" style="font-size: 11.43px;">Jwt</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/LeetCood/" style="font-size: 11.43px;">LeetCood</a> <a href="/tags/Machine-learning/" style="font-size: 12.86px;">Machine learning</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Mysql/" style="font-size: 11.43px;">Mysql</a> <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/Python/" style="font-size: 17.14px;">Python</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Redis/" style="font-size: 15.71px;">Redis</a> <a href="/tags/Requests/" style="font-size: 10px;">Requests</a> <a href="/tags/Restful/" style="font-size: 12.86px;">Restful</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/Token/" style="font-size: 11.43px;">Token</a> <a href="/tags/Urllib/" style="font-size: 10px;">Urllib</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Web/" style="font-size: 15.71px;">Web</a> <a href="/tags/XPath/" style="font-size: 11.43px;">XPath</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/决策树分类/" style="font-size: 10px;">决策树分类</a> <a href="/tags/分布式/" style="font-size: 12.86px;">分布式</a> <a href="/tags/前后端分离/" style="font-size: 14.29px;">前后端分离</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/回归分类/" style="font-size: 10px;">回归分类</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/容器/" style="font-size: 11.43px;">容器</a> <a href="/tags/富文本/" style="font-size: 10px;">富文本</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/搜索引擎/" style="font-size: 11.43px;">搜索引擎</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库集群/" style="font-size: 10px;">数据库集群</a> <a href="/tags/数据结构/" style="font-size: 12.86px;">数据结构</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/权限认证/" style="font-size: 10px;">权限认证</a> <a href="/tags/正则表达式/" style="font-size: 11.43px;">正则表达式</a> <a href="/tags/消息队列/" style="font-size: 10px;">消息队列</a> <a href="/tags/爬虫/" style="font-size: 20px;">爬虫</a> <a href="/tags/算法/" style="font-size: 15.71px;">算法</a> <a href="/tags/编码/" style="font-size: 11.43px;">编码</a> <a href="/tags/虚拟化/" style="font-size: 11.43px;">虚拟化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/随机森林/" style="font-size: 10px;">随机森林</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
